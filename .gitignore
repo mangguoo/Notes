@@ -1,0 +1,7 @@
+/*.assets/
+
+*_local.md
+
+.*
+
+!.gitignore
