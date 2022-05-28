@@ -1,3 +1,5 @@
+[TOC]
+
 ## Git 配置
 
 git的所有配置文件都保存在本地，可以通过git config -l来查看他们，查看不同级别的配置文件：
@@ -102,14 +104,16 @@ local > global > system
 
 ## Git的基本理论
 
-> 三个工作区域
+> git仓库的四个区域
 
 - Workspace：工作区，就是你平时存放项目代码的地方
 - Index / Stage：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息
 - Repository：仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本
 - Remote：远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换
 
-![640](https://lh3.googleusercontent.com/ojrJHK2rJHKkwKBu7ZQsDAXozZpgUXdkOsR9lkADoNtTQQ1zJtGGE2vvdzGpAA7YxHc_-z1k1KMn253kyZWjYVXdn-GoZkZOeyl4FGXT1qpu6Zr6w8CDhUDoLGU1JrqLPSZZ2cQTvg9QtyT_j3NoOqEiqv7JuuP9Z7A1oJvMy2_Qq3sI8hIkdYr3hyrinFiZr5pJqUtgI41Jw-qTjecHujagcuMl85uSn6mRoTnqVL0g6Qn4JlVAZfuVGn8qcXB_j23JPjMAxoQlbVh8szhxqFXolPYfNGsKYh6lO8XZ-8iyRkincJ3IFA6pM_I8T8I7JYWV69A1PRl9pZAK2IuKB-nO9damYS8LGCI7TEf9TQiEExiSHCOT3-x44Q5EZ99ugiSBoGg4Xix65KC-YU5olHIwTPNoX72k-3u0FQUcA4j4l6NHpYIBnvBGgEL4w3NYsJdPwiDmn54_hpZn87iesdpByRvANrAo1bGsy1X4SttkIHyNtZqyKGEytSvE3HPZaAUPr1Ha4fSop2jDsykuRnEtTmlrxe88ZmeMjBZDu_0OrhFXAKiO8Ht89r5ksgNKX3gLRGGUM0WlcInz2y1hCZftNT2JbCY0n23Yctb5GGLZUC-fAvg31qKZSrEm0LS1i0PcrUEx_-5zwgrpTohYm19Mh2yIWzDQc7nIM2wWgPXiObWKOwQzL-4BczKDoxFMLYdzxg_eP1J9gU5sSr3O2dTFlFuwtCmJMCGVX4paMni_OWs7f_YFPq4JSbXK0w=w500-h480-no?authuser=0)
+![640](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640.png)
+
+> 仓库目录结构
 
 - Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间。
 - WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间。
@@ -118,7 +122,7 @@ local > global > system
 - Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）。
 - Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。
 
-![640 (1)](https://lh3.googleusercontent.com/Xq6IYw0CxvdhcNYXIFafs1xEWgAn2aSSOCGMpa8ykf-D6QrTPemmGAfmd_6BTkVJj4IRqWa0tk4utjoXEhs3GeYWCJDVyDdlwC-ENx8oFbXGfyzX-f9LVjbotfdkV41uPfYum_EM44IIlsbAKAaJvULynHyW9971k0usUOuZkC8-JYF6GUBVaXT1uTlQKQbn3zp3ldUlnpBGAiMJJVkyaH3vVpHChBUpLZzyLw-lhpGbYW0Tj6jLBaYpjQBYsiYo1R3qTM98WYdm2bn9t0DsKnPNHSUtgBjiaR4INeh1l1D_ilPYcMSobugnX8vxF_4biNRo2chErSLoDJI49tf5q_YIpfR8mZ-BF40ZnzMFm18s-9qvMxWfKDrriePeOZnTE_jIriXHHLDBAkOIltvXm-kOiztk7HQ2kfLnu3j8ZdccF0Q75O4ejGUCX5PuT0EgW5xyQK8OFaUDr-cp7tvvrkHiliYKZnY5cKllVUaQmYWouYKIhU0pcXcIFSIWjt_oQwzQMwu-XXyE6YmF9_JPwe4_zVlZvQcfs2-BfZE6gtwTqCoLkb9akd6rils3uQfr8UTitrue8602iRCmCDKhtxVmB5V__eqlkOqhnJRAxojb7M_NZeeKMIXaFoBOnasJdUlYnhxxshTprsm1qvfWXGjqEOGkTlR82IpcQDlkP1bWC4of6JtCZPsJHaAHvmL2j94hxXYsbuve8cbef5ceb946i6TerDrWAe5OYhAGs1ZZEQbOzDia-DoTq_JYWg=w958-h646-no?authuser=0)
+![640 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640%20(1).png)
 
 > Git的工作流程
 
@@ -128,9 +132,9 @@ local > global > system
 
 3. 将暂存区域的文件提交到git仓库。
 
-因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)
+   因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)
 
-![640](https://lh3.googleusercontent.com/lmc_Qj-6XmEhcU9IIa0TB0U_8xko59jlMivpAuopHTKoJ2KUHwON0ENAb3jMWYz9pI-7fiRFsTHnET0BrdGFTpnncaY4MbeyOU8s4b1PkjT-MgeRZ2WRmK-bJ7fYAgO3h_sgobrA8oyy0mjRKU2u5i68aKu0EMh-cIxUYQPzNRwbVkErc72W8-LpBHaL98SfkZ8EhDzWcZ1n4nglwSC0bvViRdid8V3klrLCP8cQu1itXVQHNPXJDc-fR9ULztOPUTz46AqoTIWLKx3Hrg9hTEqCk-ptgEWiBoIJaHAwsQtxCwp7gHLNL-XevnqOFnFgCgVaLtW2IY298rkn0-UfEpf2vGETYWHDr2sHSWIN37cNh3J7UL-9l0u-aEIKDshZ_X6151GVjwJW6rJUH_sQ1UrYz-6vuYrtxvUgXJby7tMkTGdx4OmQrWKImUz50HXr-SajeXqA0tCxJrVPsSOTOLRN2ZQ6SI6BGvrdyjab8LprfKYkFToQuBNepqBibOJkQx7CRtCmrRozYyoBIcxaT44awUPfbnKNj52Yr8I9s8KlMjePwYXWDJHpPjmXdalS-C2xGAfo_0ha47sgFG4qlU_1NARcPGi2QEukStCfPEeBd3I2G_MCffQPSGp2gEH19-ehBBPXPn8iV9H4JQVfiSEqTVIrBYOGkPC409nLFkJBNJ7RITvg8FUZiFnoO6PUuuaLKt-kfPhnU6jIfPLrXMNdRiRhMqeK4DjgIfaezv7SX-K7JrxQ8Z8PzCBAzA=w958-h754-no?authuser=0)
+![640](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640.jpg)
 
 ## Git项目搭建
 
@@ -399,7 +403,7 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
 
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
 
-![0](https://lh3.googleusercontent.com/CHX4hCGOWk47NJmWpetYvFki8ZkH-bV7upC6Au-h-DbqsZ7qKPnSuyDQmsYRm5rnbj7ykhP8fCrvpNaGP7HhoyF8UBG6eNkgJuKSIfJM3D10sY9Uoxv4STCMQbXWC1c-G2JVJKPzNP3rwYV9ni3tvqO1zRsAkZx3x4GiN7g0VDGB2a0LmNq7kP9KYKArBnFWo06aJEohYZq3_DLR_b6U9Y7KGQP2lF28cebOB1xPjC423ajPs6RxrWs9kROUOR-twxDbuthpAE1um0Rc3rB3A1MfldmB3khG6WLxjq_BAP3Bg3vj4_PM0ULYBEkk25K5eUcB4JbR7K8EsjG_d8PEoeYmK3rHHRd9RVPbTeVzuf9vaEyHq4qOHknoXgjelR7YRAHyS8rvMh7yxY8u9UiNL8x7emaz7TFaxT17AnL2RkFNX6b1wbZV7xydTvZukFAhkWPMGpWlDHHjyM6D5lp89N0GPX2xV3Ydl5U4cdYeZlEyo5jMSkTe6gkeS6KQJPc7InEP5O1b84JIHOnWtI7GCzWvUChBENt0JIsyyJy_G01Vm3-SCCLCrgUY7s7MeNjQuJFzyVQa7v1oNWRpZHgbTONKrNw6O_Rjq_X23TCRSjVjJMi7IvfCmw2-1f4yYCsTqlC4o4LaF824aVE4BQyqu4M44BC8L5q0BMDz_g4cboDbYW27kD7P-Q-K51Ja_fN47PKJbGJSgSVNqhkB7U4KrP1W6IKr03w0qXp2OPkQGwNjSXd-6h-gyjJOdBx4AA=w458-h234-no?authuser=0)
+![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0.jpg)
 
 Git版本库里添加的时候，是分两步执行的：
 
@@ -567,7 +571,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 2. 登陆GitHub，设置publick key。
 
-   ![Snipaste_2022-05-24_18-06-00](https://lh3.googleusercontent.com/ILYi07rpCG6eV0zEJd8yB2QFqLfVwM0xVtebqstzWvb_lpOb4_Jl143oikyxgcrQLH-XGhNPdSjYRbgQqpo9ksZDvLNg4md4Apj0w5eaYwHTPoMfizuWRbyYYJkTYQGUd7Ue7hvwhkVfJLSlq3Ji498EEQOryCi8T3pc3Nd_2rfsKsNnoRGaQb7Lfn5xfceluGjsvF39kIbuSsAiP5xif6FljOwrb9PmhgDQY_qcpDJLHWZ5pKckyvbW8zoK_J8UztAiZ6ItWEbWIwIQgdfATf64xjlkX_0jj8utjpqjoUfPxY6gAkwVVYTTi1Xq7D5VuWq8Ntm_F15q0pTmabGnXmA3Qjgkg0XwGCDB38VDy_nJyGgSPXTZOastkp8VSKf-jeWuOUE73EKpXZw_kqmEQuDGj_gx4ctwspkv8eroat68t_sWgDPv4DqGc_Xcc9mLcCC9bKmTvjoebKBVznMgXXUaccINsGX1niq4uNse4I-gC8th3uyN-NpQkFLXgU6ne9IuSrt1IuiIf4Cbcm51ojwrbMDO4jrFjxR5IQTOSKT4LmpQOsmAGQtGMk2T1a65nUGKufm_WZ1jcCBFjxmx92wlfiH1G52I_CqVncCNQtaUzu1XB-2-XhwpJMnRoL11mHB5FHPVHPIgqTOxknZRg7ZIINWOdjUs6o0rRZ8Ef0_TjeVgzUbolsAHt_YRm8a3dfv29I2ZpWHYwW8OJNuXQgD4ghMVQopPpIW72sBUDslqXO26kuZQ1Ipr5btJ9Q=w809-h263-no?authuser=0)
+   ![Snipaste_2022-05-24_18-06-00](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-24_18-06-00.png)
 
 为什么GitHub需要SSH Key呢？
 
@@ -577,7 +581,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 1. 首先要在GitHub上创建一个仓库：
 
-   ![Snipaste_2022-05-24_18-16-42](https://lh3.googleusercontent.com/7yYPQDf20rY62f2FgpHBf7PFAm0oIKlC10AALqdUsApn7GM2aGQAOzDAoQjz-DIl9gKosnVNCSXUvLQAhTjBAgCFaJ2oSnjkF7gXYSKs9nVI6egDCH58CxKgQN6byrrN7eK61YRXI7tWvj3XCLgP18lnVmbtfofS_6AwAAJfDUN0MhFmJhXXIkHShNTI_6s1P5Qeyd9cTG6KbC3BZL6mqi85Ibwt6xWE9CKW_Wj4Q3UVC24W0IkevjS9Op0gPtL_CK94zOGx8PAgNJBhvxUrvUw0FaJYmg7WS5pic0WFSQmj_cu1rz4zR7x3UToC99EhYBNleTakRrwIMCsHCTSjVPAHySK9xJzn5by1qL_fjAM4HkI2ITLt1ofH_dSpIfOqtxzL4ZSqeIxvwB_mfMB5Ui2ULYmPiEXdkz3-Fi-WywPLV_LjURWP2rBdL6OzdyYpeJG7FL-4TgA5e6dYBDfTBUadlOlw-LpZaKTlvMJeoaLJYBSFOzhEvxAC0s7Wxnm7Nh8_GPlQpipNkd1HZyXVtxgME0pUBKsCAWrcsCpnz608nUtw1IhZlo23vQl6x6OzN1gmLgbu7qjbIuZUQxk4qcLk0yzhmweSAWQ-1NhSftH45clq_Odozt3hCcOgYeZ9AUyrXI5qW4BCHkUFFs08z54TFLMOGY9bcjRypjdBsp-ktn6p7IX5_F8FDT9EWsohZI2FHauW4vUwlAmNmU5iw570gAU8Unrza6t5QLdqMyYUL_2xq3F0GJG0JGkcjw=w792-h850-no?authuser=0)
+   ![Snipaste_2022-05-24_18-16-42](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-24_18-16-42.png)
 
 2. 创建的仓库是一个空仓库，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。我们可以根据GitHub的提示，在本地HY仓库中运行如下命令：
 
@@ -677,19 +681,19 @@ Git会把所有提交都串成一条时间线，这条时间线就是一个分�
 
 `master`指针是指向最新的`commit`，`HEAD`指针是指向当前分支，这样就能确定当前分支，以及当前分支的提交点：
 
-![0](https://lh3.googleusercontent.com/xwNLQyGkfBUI9MV-WbegoMMloq8ocOhC4TuWfXApvpFIz5_q-Wd4tQIzoJ3k4mZ4uaY2c84__n4VR7smJoCV4l7j80ySzjhq2pRXoDwGplalFzliP4MkNlVsDmPYOhtE38dc2_9Ydjl4YJKrtapRFmuY0c570odt3wnd9pYRLDQmMGPuAzQQ9B4yPqpyP4evMsRDaztxFLn5S_2xCnhTtWgZrHn3o3f9crc5B6xiCr768dV32vi6SlzwejMizK3vyDHiQCdvxJ6HADfnOUVsFB3Bt3wzOu_RK8hGNd6rYgDBANWxLkKxRBMqvm54ARFg18YJx1UvJ2-z4TqpMoXctb1_-LK2ltNcvmUidlsTVMEqFZUNZS_z0s3BmXfU6S9pgrLzbnOKSCVK2qSepTYCoD-jkpAm2Chd_2dzRA8CwnPfRuoXPX-XyqKq1540z4-D2sqWE-svw279p7CYiL_3o7sflqQS5p5gD7xKsbq2J24Db52mmuBos9GXnChtHWdddWnKhvG6AfuuDPY2DRjQoQMM4RQXqd-dAb9p5nPGNKo5Zd0Bsu2Da2TkKV9bvRa-v0hEGDIXSn0ntA_CZ7Zwm_hAfwY6WfBintXxcesKGR0zzFneGVHKhK9SfPa_498tlroZPfzT6IPnI2n7OfAjQ7d9YTACzViHmO_FYCQbNKPK7KrCFFN-C55ikGOw3sP-1TRvI7hUOKTOantEf5Xl1x8S7Ua0gyHtXewxVPLUOVE7I7D25K29Oj-DEosVow=w301-h151-no?authuser=0)
+![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0.png)
 
 当我们创建新的分支，例如`dev`时，Git新建了一个指针叫`dev`，指向`master`相同的提交，再把`HEAD`指向`dev`，就表示当前分支在`dev`上：
 
-![l](https://lh3.googleusercontent.com/ekT8J2WE3yGHPTpH92D5PRI-stNOw8WXJKcL-_SdEXJS2xV6KJdoOnWW-3C3mvHwFFhormp6smTqArT7O9yFzxu1L_s7cqJeabkl21qvf-QnV9VR3ECn-hCXJ3AGsztfAGHst4TTk8kq3Nh1Uj3xJwpRNR4Xtv1loWm6bNAmf8zuiOfhu0aTBL-iIxdb2TpPFHWvDLu0SF7r3ZJ9xol7NASuH_ZndeNlojRkhkCjvoeZWNE3iy93QnqH1hPTZJK3xazLDjAmaeCzMNOEon4jwm6dudquuAA8HuQXGP0tyE7eznSjKuIgtk9774wld7cqgDYUsy_QVQxjckMmMIELljTPRC71QMn5FyxC0qcQP2IS0YpEg1NDunM9_Mc2MksA9mdzsbgrhmpm3IhILaIC4AFumAFzGeOIIHyGKHrxJc8Njk550T9PmXHs0vOh05te8eoDb8LvUgyFSAyhOW5qSIz1nBoWlMXA-cgFa7caQjF3CsCtpgp5jbDsSm_kNjWryyJSrpsylsv95Qi69W5HrkTtwT1JyhL8_f8eWPPxknEUFK5lsbk4HCUC53C6qd4ggJpuYaDXg1M4ZCR0xvmX9qCEUlBRWIUrIK-VGeOO0gNpF-u8oZR3y_ke-k7iytoHNHtYIvir4XRqTlZHRMhLmtFAOzAQZegs4FMSbNY8KImr1s703uocACvIUFbNWVF0RyQa4AaVdTh7MYVAnmZ1TljlNS-roD5tpc1xujuh_AgqshmE02ItnF37WHwoeg=w367-h233-no?authuser=0)
+![l](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/l.png)
 
 从现在开始，对工作区的修改和提交就是针对`dev`分支了，比如新提交一次后，`dev`指针往前移动一步，而`master`指针不变：
 
-![l (1)](https://lh3.googleusercontent.com/Lwjup3E55xzMI6IGBj35vZyxS3KT_lEAfo-o9JGvp86nS1jI6YYNQbGdQtQs5lGfdgGkJt7JiVpgJZiT9TkCr2k8avWQ2zFNK8jw5RanJUiQG41hzQgNo4nXJOuH7sshfeYNBVrLfz9vQ7FkfhOBhzj_NCxMgGVLh79YByV4TadcMjb_W1dhW6rICFkG-yUoYL9tDlH_mnF6oietlVpxyWBNHEb-18obC1foMsCW33qUYlJOr1hTiWns3sY8aamjNfUKzN0QJ0EWsHiZcqIBdyjXXNH69aItanpICN7QryNKs54nBw_jYTNpq6kUkUjWdYoTYcH-gdm_pEshCUyd_c7GBYFSdnHs1XqRIzSosULj1RvQW5jtJ8pGjngh7oYZVFmVpWdpOMKAtgpARpuRpraalzli6ghN6QKbMh-44E11-I_W_6_qkhU868LfmK1VIwC6C1haTiig6avfbCt7obZtV11cq50VzZKPj2qR4i_o8bth1KUiFUkf8J1tsuxV9YZqIK0rT9K-U7qHhPwGhfZYK8BMW2ATzDo85CpaG6ruFLmbPydFhBrJlakedvoJ3xVAXfNdwyAsbhjmEPOdcnVTXza1ZxKHGC9QAbB7mOZENtBVIazTnqnXlXNMhkqCdWxcl5DPf-6iQcYeaogDuu0S6jG7rLZ8uQHIqYlceByWw1HsOTfav_nMn4IfMJRQKCVtFJMbmaxThaim6GLwtntHapUHu52TGEuCENUou6SiW2kXosRW7wDcKUoHNA=w494-h233-no?authuser=0)
+![l (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/l%20(1).png)
 
 如果在`dev`上的工作完成了，就可以把`dev`合并到`master`上。合并的方法就是直接把`master`指向`dev`的当前提交：
 
-![0 (1)](https://lh3.googleusercontent.com/-W0z2k2ohhq74PLRle_qnRSng1eSWbXd-wMhTX5o9DrqihvpjFE1dFxt8QIulu1a495J0gexbyRH7mWuvKoIWNfY_vNml35eYps4xOuRRKXVv_hERk9I7nRlgfIrBXw31kQJiIYzB6ELtLRgLbzamIYbXwqcNG3eEJb3JilgbJpOMltER7VgfKonbDXVEv1EHJoinGvjuhu7D3fviqf9MsbLqJx53BP3Aa6WDXnHrxWPGU2ftZSKVZ4aNVWyxkBM7SDVsU-ActjuXZBLE-f5IV85eFEzgDvQkWzGC0i7BTabgosox_T47LiFPkt7tGBJr4U4835kipCz4GJHhMhXLaVYXSwgUjExGu0ifZhhBVKWFH4w6WB6aGg6slzcQ51xTpxMg1IM0B9wWI-cRi4M9ccj4wcwUK0nzPLYqh2lBJN48mNrYkyT0RwK7TyV4QhVOg3-AV53wK-iD4DPdDwn53ejfkpeY9jHkN8uPMh8S7b337H-r3Fcb9aWFOFdiQIOzj8wkLvi6ggGx0j7rWhbfh267D8Rem_OEFpZoqhVkJdhRfvIOmrC5vlbhod7aK-rTkYH6H4pW76sB1mxY3AWErMFA0tAOWNJzSeiC4FoA3IARovNlLmoepxL0Fv79bekj8_Oj-oPlsZuT3k7Xc6Fsd_lBnRVCdM6yGcVeujDbGW9KJHPKoMc6eQvQv0h_SOj4HfSYzhHGNKAaD1yyJP3kbxdlDH9XfLfWcXPpcBE6JEvMePqtto6rlOLAxZVOQ=w423-h222-no?authuser=0)
+![0 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(1).png)
 
 创建`dev`分支，然后切换到`dev`分支：
 
@@ -775,7 +779,7 @@ git branch --set-upstream-to=origin/<branch> <branch>
 
 如果`master`分支和`feature1`分支各自都分别有新的提交：
 
-![0](https://lh3.googleusercontent.com/kv5URp8Bm9Q2QTDlFmpqb0zBw8UiAcJOX0PD1a5sYNKUq-FAenJjigEvLUL0cdeeIWLci_vI_Okh2grRUJgZnZJjbi7iWcTGiPQ_Q2_GbXkTVOktG2GU2CFOLvqNEIWs84oADT9kgA2R4acvhURkjj_mu-FT3rB1JnTbIjMdIl400TbMzuqlMunfGBRc7oUebpusVXbUT9Wx-17__Z46MZmd2MJ0NG3pe68oarpzHCMHbsajCoNbh5A2RheyVfYanm-g1MrSmWGfY7QkZm93p_WtStVZo6DCuNOxi0WI3HIhWK9ov44_IR9PXs72KaednlwHTgjXQzpRSKEXAhMtI3u8qt8_fecL1cPumsgXd83n5Ewr81WkAjAal5OrhXC1FHYtqamh5CbbJ_JdZxwV7TFUG6-iN1ajAIIAhm17gPwBvN6lIy7jzlmkMxnN3LNKeBO0r21Y9oNg87bBw8jTe1gaIrOT8lk1kq6Zva4xhADDaDT9Kpgw4y9jo4Og_fW0QmQRA4IuI594zYna0DSU5u4hzQEr1rc9xAPnBrjVtmzjQlnmZG0RuPGCqQdeXarj0BPY6QCom3kko7oPP3oISUv5HYVBFsl0OQeEkYTdJGl99GFJSuEoDPg3uhTozg3W3T1NaJjAmTe9qJg6O2Uy1LGRf4Xb0Q5s9bkHcxT1-0vixEh9xHCAyB8zWQ1adoiESoo1N6XtUCCEM18JufGxOeePJaDFEgEClRqeGwq1TTr85ByqgR_e3ISE7LlNUw=w425-h272-no?authuser=0)
+![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0-16534055659711.png)
 
 这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，可以通过`git status`查看冲突的文件：
 
@@ -823,7 +827,7 @@ $ git commit -m "merge branch"
 
 现在，`master`分支和`feature1`分支变成了下图所示：
 
-![0 (1)](https://lh3.googleusercontent.com/8ZLc43Ag5NYgpEvIWw6M0yE9e2nu8Ef_hXJI4t2qu-f8FAhzglFViZ4GGWpHGSB_DE6BjysHkUv5DjuCQFRGbPuV1beu3SyIrRRWnaGhxAlvj4oBYLulGJNT47111nCNu-Ze58H0fC4q7wZ23_hRlljnqBxtYUseaalgFWJbHRpgmHiZvkVgdrlkwjLimItXIKwPfI61HPU3oHaHU_BMkEAcYPOTtuj0223VmD1duNKAY5H_xMovL4YBCjS2KgYT0yetOpbxlrSrMKw3msVNs0lIrZHRYoGlJlFzMBbWPbSuKmOTUtt0xpT9c0zqIMA47hU2gTfyXITq6RHWTbnYR7Iw6fMmFhVkDt5RmmkJhd7UGAREx2Jyx6UX4_OjBIUmGhOpp9o6ajsQ1PPYVyoCNAGVRYf_dDMx94jfixDxKia_AT0O4X2BtGqXMZB6FrHGug_hbui_WzGvwLeZPhtz5Y5iJdqS0blH_LqhWyiSr5xklu8_xxtloIz85NWDkapHROlAKn4adHdWJhIUB24Z8RREcHYxJmuOovtI559z0FFijTRRYqjb-M-pLDXr5i4MS9U5vrWX7gyeONTNbT1eaIIVP5f9AZ8Zwlv03CM_UlezDz8oIbtk4i-LbErDQHWyug3G8c7aV6oo33NTyvZWKlYq1bomntD7L8lSSeO02RNSuJDKbOXxRnbETYd1scDO_LDHQhwF0n_yUB0CnW9qkEx0xBiYofIzkMtTX73ugbcfnz8xquyJUJx2qA14Qw=w551-h272-no?authuser=0)
+![0 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(1)-16534065410972.png)
 
 #### 分支管理策略
 
@@ -854,7 +858,7 @@ Merge made by the 'recursive' strategy.
 
 因为本次合并要创建一个新的commit，所以加上`-m`参数，把commit描述写进去。不使用`Fast forward`模式，merge后就是这样：
 
-![0 (2)](https://lh3.googleusercontent.com/kVEUrid018Cqrmmozrw0L1etJ74DcoRlXQfAMmK5bolAMwJOBqs-YcEDuki2J9ZuZd6BinH4RZCHXZM593gz8az8MSYjpkSwIXEI1fGr41Qg32FJ51VDN17dM2_qnFxn0bIGQyXL7UOlbswr4VV2mtIAOysawwOpOD9qxmhNm6WcynenxnuD2PMHohUUGs8XT3mnyr0cmZY9glHC2uukQ0DDFtSOma2TBTLSrnryG8q9HtcPT-gTsRhvGJ-DmR-UGs1XkBh4uMPMV6RMw9FKYPjtsCMYiD_aQt1h336Dv6YHsq-WwW3_9qQVKCh7nqJ7N1eg_h6RDDA1KxLWJ_y7t0yAtRUiKYE8rEV4cVSi-54SGpeCvta9JmHFTqAwTc6gATga61DGlQdEwrZ4YgAQQT2uinMkHxf24RHUZlRc9Jqy8txzTOwSK1oETfnFczgJEfPUkSeZOHWSfkbwkpvZnljN_MqSWPH4Y_mMj6zvm-W3sbTVqT54iEKLG2QMFFKM5N2yxlw6M8MiecD73sYnr-6XKMZ1jmEC1yCSQTrc-Ek-6aczTQIrh_qk_DA3_jbT57w83m8FpAM__GFTzUHPi9Ita5mFxXEBNK8NorT9nqsTgExXnUw5EfcwEVAXs7ddZohhekL50_Gb7RN2HfPCWIstKoptQWksbJwZrn-Ig4nD5eLfPhJ3Nlt2uVKCpCfBmUR7JQ6HBQdrnor85OMXyqfcHR6smVdQObI9zavrVKCYGLwrOwu2j3Nj-dERHA=w480-h257-no?authuser=0)
+![0 (2)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(2).png)
 
 > 分支策略
 
@@ -862,7 +866,7 @@ Merge made by the 'recursive' strategy.
 
 首先，`master`分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活。干活都在`dev`分支上，也就是说，`dev`分支是不稳定的，到某个时候，比如1.0版本发布时，再把`dev`分支合并到`master`上，在`master`分支发布1.0版本。每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了。所以，团队合作的分支看起来就像这样：
 
-![0 (3)](https://lh3.googleusercontent.com/cIEn-zR0diB0MfGLH6WEaUQIQ9P26SxiYuaBMgqArHf_SO5bZE0qRs9nCnwrNF-Vka4U5Q9Ej98HZnE1crH8n6X4OD3_oeHH-NA5pI7uJHJYM6GE37-W7J0Sl1gqMJJoUeeOnFeF4PdOW0h0cqyMah5z43R0-nTId7BiU-VI_HJNZk6iENzlFxRa4KvPIpqsBwj5Cck5uIPB_HYmLmWYdYOsrJEvt0F-uGgvigV2Jve3g_abVpishY1bV6UOWdBP0AA6WmcEPHk5LtyNA0MWwHc7f5ojWCILxt-HQMWOnaxX4Q5zkLuJgcdzNRflP2ooJHKeG84cW1587R1e7NlmyyCVmeypW0PnURQUFxJD7SWYt2yirXLnERTiHkv-5yhTyN-UlfEuQhFpkCSiuf8Y4T3Ajaisz5kOjrZx9GB_T6TnLzRZgmPqNwCIAGXBF1yxGJ_lwQkyCQMd3U9OyyNp56xk2ULonyzBKEzhyJUoOewfPucoTjQ5EbBsXvlY9eHAXVir1rey_QKiEhkCIfsWMaVnA_-x-LHbCGBdnkExN4D_UB5o9xuDcLRF2YflbA2Pn0VmYfPruqAJIR-ggjNMhKPFyMH5rXlghQeP_Mc17nV2IEwAjbt0H_XWvq0iBRBhhnkP6mOzw2e8kA7mlJYDJqTIEHTpZn9faH19WfVgSodnAWTybbkRYyB0E8QqO5gPUSgK474ZQhl1xEcsX0kKWut3PrVHA4OZLG_lq6MQn4Pf7mphlxoDYCsDsuIqlQ=w498-h125-no?authuser=0)
+![0 (3)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(3).png)
 
 #### Bug分支
 
@@ -1298,7 +1302,7 @@ To github.com:ilmangoi/HY.git
 
 要看看是否真的从远程库删除了标签，可以登陆GitHub查看：
 
-![Snipaste_2022-05-25_20-50-07](https://lh3.googleusercontent.com/TMdcdZHc9qWHOS7k_3q6Y1Qv6EPYn1PRos4FJsPYVRUpvVK3-OuPJV-AjRREnJmvXgd2fPGGbHaygR1j6lXmf82HCgZj5HNha0sQGyCxvqqVOGE-oAgvpRxNNQ6BuMIV_hIMEr6Gp3bsYfkusISydSDPzogHUr8iCxFx-midFMUklBHGZHTCk9rsGVGrJ5UEuri5MUpeiO9hURUdG8cjzYzDJe-w8_hKdUGP6Osx-3IhXsc7GPy83J6qWKrCaOEqXJMkRrcC_-uxYZjUtMjXMxMZ34u2eYEUlxIxIVx_JvOC8_XUDAhP4ZDhGFbVEEcn_GsLPhErRtxCTlxqIjo5S6ufrlG_WFGJsPCpbNHCROjQbLN_GBs1OJPCctMAgf-LLPR8SdOIDsk-tzzQD-EzKN56Bcu0Z9o7GQ7_-Cm9GpFKAy4clGcQP_Wn0Kg3qNK6mUjwlyDrvVyIrQNwrN21YnumLPYjp-bopD9VhrUJPxPWv2QGy1v3PB1jr4dMYBYgYcc-JW54oQO1dMw8kC8vBqupeMpEk-fGaYJZOOAzD_4mlR-rRjFe0wCH8XuEwKhySrjUE0yrG-Wf3IFlwJX0rhI9jdz-la1hkzcGPR4DqRxBg0LflkJ1toytwcUz40sW3FoTdzprZjtgEBASuz52BUOf1dZPkMWTzefWDijL4Bh3e44jgiGRMAF9Ju4q5W95zbl_HPZEZzdjjOPByob6WrgvQ05SGsvZqUmG5DZrlt4MV0DwapmJNLk6TFyw2w=w913-h322-no?authuser=0)
+![Snipaste_2022-05-25_20-50-07](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_20-50-07.png)
 
 ## Pull Request
 
@@ -1308,7 +1312,7 @@ To github.com:ilmangoi/HY.git
 
 1. Fork自己想要参与的开源项目仓库：
 
-   ![Snipaste_2022-05-25_21-07-52](https://lh3.googleusercontent.com/4FcBlDLxU7CtVddiMfIeoSK70W0ON8q7sxJEf_ZMIB19cHz5vuxNPzUjQAHFwe5OqdPHWMtPVl_-buP9SNmwhgzJt9hWB3e73EW54tC3p51aTBlLT0O8SYjPN631prQ7u9IOVm2QSwLkHDTxdM7lSCRiJ5-me0R31wCltTua9u5kZZvnWK0Pgra_zABQLXGEetkO1Av0lndSQ4jMzQR467qKWN6g9JLUrKepL027qRE8Ts-V5JEMNWcfMS5TRMETOQxXZmKvyI_PDAw6W4CntpTsxq_8-gVPPs4-brWzCHO5nZOXzvntqJDX99Runintny9RWpLWaS6DN7CpxQ8O6lXKjiEJOdVRPcUFHqyAw8_GSfQMoZEdVFOYFvmsFQGfj7NY8e3qAo_ww0IzQhSaTyePbJos2DO_ic-8N_YtmckZwGI1Yulab1HEUYNzTT8C_vPcqDG4O-3UeMKuqZW2L83FTcA0YFQ8Rjdae0FDbT6XKeEIUuoUU88Jl6t-JLBrJQz427HLQ7i-NrJqY_PNvVtsTcHViutjF7YjJAFoGhlGLTkrS3kK_b7JDT77mOzJmi5pmneiXrb-hufNSr0K_8Z1SDo5tsTIn0A0SixundKU_l8BNsGnRIE7_-bGFuZQdeoaaShB00DZcz8ZZQjX7wmA8sLxR4XxRVNTG0vmFWCd2Y9hfu7BBMVYDUCW-DbXR09CNPg_fbXmVEJF4AaR9z_fHPro6wlAdkjiKJ1ziPZ8aWVG34lKJ47A3pVNzg=w920-h602-no?authuser=0)
+   ![Snipaste_2022-05-25_21-07-52](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-07-52.png)
 
 2. 克隆Fork回来的仓库，一定要从自己的账号下clone仓库，这样你才能推送修改：
 
@@ -1357,8 +1361,8 @@ To github.com:ilmangoi/HY.git
 
    > 提交pull request
 
-   ![Snipaste_2022-05-25_21-28-19](https://lh3.googleusercontent.com/KTuK0JevFR7HyIcEX7qQ1dNeidbMc-oOsSAdrZnMDoNqMavkUwRCFfenvQ4XoMX_jB3cWxZCUmPRyCHRJHv8tHOKs0vsXoFKlXSl0AJe-c0mgjUKTnJrxBoHpr7h_8_xU3VERenX-wHWwTJbsidfLhdeBihEC9Ync3Ee-OIOdK_7ovhPsa1fijZE1os9YEVWVOOpKxhCgHH7jwTE8zWUXUvxlxKJ3tSqWfZTJQa34kSyd6NB_8Nj8FhcM3JNS-aN4gTLZ5_ZyahSVGQZ4n86fU6mmpjfK_wfqXU3w879AwbPOudObKAL4X3je5sJdErRL7CRdHt-HbIvcGdLVo68SbVgqzE5jKgvhL4bQ-isyISCoKxcr1AdYrbgJyfoNAF__ZWgOQZVs_HHDJlc8CmXPdlSt3cFaNxr2A1Cmx2Mgy6Doufu-2hDWGlQxmjMFvdRkX29S0zwNlTwDXZ4t0UvWhO4szGqMOUq4pTCnEUiRqTTgiiMMZUto8-WUWup_c9PADPWPfeDdqYGlTMCVmlmk2f5bCCON_X5RUveyucbTVu139QbVzZqSsynCL1zqtHX-GLEr48PL18V9t69eD_OPQqne0o_mY0zA1mPDOAHb526vqXuN5JC9IXW0Y-NIm6fQE9vMKiFlLstpcePsFNx_qz2OEUAln6b7ivs8XN490NkcnDRzqs-aBD1G7gW-yUF2J5cZg9XiBruS5U944Zp191oGgIp75C3cKhAfH6muodevVgLv2F0l3TcOGsXKQ=w916-h749-no?authuser=0)
+   ![Snipaste_2022-05-25_21-28-19](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-28-19.png)
 
    > 查看已提交的pull request
 
-   ![Snipaste_2022-05-25_21-30-02](https://lh3.googleusercontent.com/yHEsMG0CUsa_1-qlh7pUCRKaId8XZswuyPM-YX2nbY5dvlkuXC03aQWxUkP64aYAWH8h2KbD7FSXkwkk4iZgSYzrUKV8xGg646BlVeWkUIrXWUm8o3XhpkJdAD0WVZ4KcPyJRrweGsZ-pN4_N4gBcEUBQc-ew4cChU2RA9alx2_2-CCjCGjQL879lDQdOOzT2rf-qQ1jJJmMrzKWfbLizjNRGNrSUMei_HwOiIsK37PIM5R_sWkLBh9zUyp0Sp6UluaNbLWxZbOB7WiskEMbRQRN3jknaCfyBCwLQB17msby1q2Ll87sbJFYiMKx-FHWL7yw3WPzuEiaXjXWkuR4kDH7xqcwlyMl-nWFqH11Dr9PyhlHXnrM2sRXUri848fR7z1VdICcfhaX7y-uheo2ECQzuBcb8aNkCrTSGcEP7gIy_5NV7a23TdQ6h39LtVsy_YrCPiHwpWbCo3Gc9baJYGOOLgrsbwkO3kKcwo24RP6_FDNcpAqaSmqeb1wfDFyT_fLrcgPQbCsHR5_llUucSPLwDx5_R0AJ_Zh39oi3Rxr6Z0RU_TsktKU1e7h-tDd19oFcV5RFNHTN6gvJLsg-zj-pad3E-L3cGXOKUXKb7TWW-dT7fUq4HiEV5SP3Y_30q7k5ILvyvMN7tlsx0GBYu62Qr31NAY_Vj5uhK3rqMBTTb63f6lkdDLJGco4sekBK3qmFX-3podSfq0r2hBGrK__1dtNNzjLKKjKNxySXqrDWjqJIrmTMWWTBpCmkvA=w913-h804-no?authuser=0)
+   ![Snipaste_2022-05-25_21-30-02](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-30-02.png)
