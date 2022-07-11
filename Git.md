@@ -1392,3 +1392,67 @@ To github.com:ilmangoi/HY.git
    > 查看已提交的pull request
 
    ![Snipaste_2022-05-25_21-30-02](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-30-02.png)
+
+## wroktree
+
+> 一个git仓库可以支持多个工作树，分别对应不同的分支。我们在git中通过"git init"或"git clone"创建一个工作区（main working tree）。同理，我们使用git worktree创建一个不同目录的工作区，我们称之为为"链接工作区（linked working tree）"。git仓库有一个主工作树和零个或多个链接工作树。与重建的孤立的目录不同，链接工作树和主仓库是有机关联的，任何一个链接工作树的变更提交都在仓库内部。链接工作树用完后，可以直接通过git worktree remove删除。
+
+git worktree方案可以概括为：通过创建共享版本仓库的多个工作区，实现多分支并行开发，从而实现多个工程环境的缓存，达到提升开发效率的目的。具体地：
+
+- 可为一个分支创建一个工作区
+
+- 每个工作区的工程环境独立运行
+
+- 每个工作区共享同一个版本仓库信息
+
+相比通过git clone方式创建多个独立工程环境的工作区，git worktree的优点在于：
+
+- 更节省硬盘空间
+
+  git clone方式下，每个工作区都有一个版本仓库
+
+  git worktree方式下，每个工作区共享同一个版本仓库，节省了n-1/n（n为工作区数量）的硬盘空间
+
+- 各个工作区之间的更新同步更快
+
+  git clone方式下，A工作区和B工作区同步更新的路径：A工作区commit - A工作区push - B工作区pull
+
+  git worktree方式下，A工作区只要本地提交更新后，其他工作区就能立即收到（因为它们共享同一个版本仓库）
+
+![](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-1688c37a2c59e782b3d7e6b4f75ad7f4_r.jpg)
+
+1. 工作树的创建和创建新分支一样简单而高效。运行下面的格式创建工作树：
+
+   ``` base
+   git worktree add -b ../工作树目录 分支
+   ```
+
+   该命令会在../工作树目录下，创建一套完整分支工作区。该目录可以任意指定，但是最好在主仓库目录之外，免得污染仓库。然后就可以在该目录下检出分支，向上游推送，等等。如果分支不存在，则可以用-b操作，可以新建分支并使这个新分支关联到工作树。
+
+2. list功能会列出每个工作树的详细信息：
+
+   ``` base
+   git worktree list --porcelain]
+   ```
+
+   --porcelain 选项，可以列出更完整的哈希值和分支信息。
+
+3. *移动worktree到其他目录* ：
+
+   ``` base
+   git worktree move <worktree> <new-path> 
+   ```
+
+4. *清除那些检出目录已经被删除的worktree* ：
+
+   ``` base
+   git worktree prune
+   ```
+
+5. *删除worktree, 同时删除检出目录* ：
+
+   ``` base
+   git worktree remove -f <worktree>
+   ```
+
+   注意：该命令只能删除干净的工作树（没有未跟踪的文件，也无法对跟踪的文件进行任何修改）。不干净的工作树或带有子模块的树需要使用--force删除。主工作树无法删除。
