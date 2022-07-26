@@ -1,31 +1,3 @@
-- [Git 配置](#git-配置)
-- [Git的基本理论](#git的基本理论)
-- [Git项目搭建](#git项目搭建)
-- [Git忽略文件](#git忽略文件)
-- [Hello Wrold!](#hello-wrold)
-- [版本控制](#版本控制)
-    - [git diff命令](#git-diff命令)
-    - [版本回退](#版本回退)
-    - [工作区和暂存区](#工作区和暂存区)
-    - [管理修改](#管理修改)
-    - [撤销修改](#撤销修改)
-    - [删除文件](#删除文件)
-- [远程仓库](#远程仓库)
-    - [添加远程库](#添加远程库)
-    - [从远程库克隆](#从远程库克隆)
-- [分支管理](#分支管理)
-    - [创建与合并分支](#创建与合并分支)
-    - [解决冲突](#解决冲突)
-    - [分支管理策略](#分支管理策略)
-    - [Bug分支](#bug分支)
-    - [Feature分支](#feature分支)
-    - [多人协作](#多人协作)
-    - [Rebase](#rebase)
-- [标签管理](#标签管理)
-    - [创建标签](#创建标签)
-    - [操作标签](#操作标签)
-- [Pull Request](#pull-request)
-
 ## Git 配置
 
 git的所有配置文件都保存在本地，可以通过git config -l来查看他们，查看不同级别的配置文件：
@@ -416,6 +388,32 @@ a8387aa (HEAD -> master) HEAD@{6}: commit: change md file
 ad38df9 HEAD@{7}: commit: worte a md fild
 a9b8e9e HEAD@{8}: commit (initial): first commit
 ```
+
+##### git reset的三种模式：
+
+- reset --hard:重置stage区和工作目录
+
+  reset --hard 会在重置HEAD和branch的同时，重置stage区和工作目录里的内容。stage区和工作目录里的内容会被完全重置为指定提交中的内容。
+
+  > 换句话说就是没有commit 的修改会被全部擦掉。也可以类比为先git restore暂存区中的内容，然后git reset重置HEAD，最后再把工作区中的内容更改为HEAD中的内容。
+
+- reset --soft:保留工作目录,把重置HEAD所带来的新的差异放进暂存区
+
+  reset --soft 会在重置HEAD和branch时，保留工作目录和暂存区中的内容，并把[重置HEAD所带来的新的差异]放进暂存区。
+  
+  ![](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/131f7bb20e3b4382bf5868d7a78e43ab.png)
+  
+  把HEAD从4移动到3，而且在reset过程中工作目录和暂存区的内容没有被清理掉，所以4中的改动在reset后就也成了工作目录新增的 [工作目录和HEAD的差异]。这就是[重置HEAD所带来的差异]。
+  
+  当我们想合并 当前节点和reset目标节点之间不具有太大意义的commit记录 (可能是阶段性地频繁提交)时，可以考虑使用Soft Reset来让commit 演进线图较为清晰点。
+  
+  > 这个操作可以类比为先使用git reset重置HEAD，这时工作区和最新提交一定是有差异的，这时再使用git add *把所有差异提交到暂存区。
+  
+- reset 不加参数（mixed）：保留工作目录，并清空暂存区
+
+  保留工作目录并且清空暂存区。也就是说工作目录的修改、暂存区的内容以及由reset所导致的新的文件的差异，都会被放进工作目录。简而言之 ，就是把所有差异都混合（mixed）放在工作目录中。
+
+  > 这个操作可以类比为先使用git retore把暂存区的修改撤销，然后再使用git reset重置HEAD指向。
 
 #### 工作区和暂存区
 
