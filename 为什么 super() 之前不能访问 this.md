@@ -104,8 +104,8 @@ function MyRegExp(pattern, flags) {
 
 ```js
 function MyRegExp(pattern, flags) {
-  var obj = new RegExp.call(pattern, flags)
-  obj.__proto__ = MyRegExp.prototype//重置父类实例的原型，让其为子类构造函数的prototype
+  var obj = new RegExp(pattern, flags)
+  obj.__proto__ = MyRegExp.prototype//重置父类实例的原型，将其设为子类构造函数的prototype
 
   obj.type = "MyRegExp"
 
