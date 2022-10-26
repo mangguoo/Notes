@@ -87,7 +87,7 @@ module.exports = override(
 
 > `jsconfig.json`目录中存在文件表明该目录是 JavaScript 项目的根目录。该`jsconfig.json`文件指定了JavaScript 语言服务提供的功能的根文件和选项。
 >
-> `jsconfig.json`是tsconfig.json的后代，它是 TypeScript 的配置文件。`jsconfig.json`相当于`tsconfig.json`把`"allowJs"`属性设置为`true`。
+> `jsconfig.json`是`tsconfig.json`的后代，`tsconfig.json` 是 TypeScript 的配置文件。`jsconfig.json`相当于`tsconfig.json`把`"allowJs"`属性设置为`true`。
 
 Visual Studio Code 的 JavaScript 支持可以在两种不同的模式下运行：
 
@@ -148,7 +148,7 @@ Visual Studio Code 的 JavaScript 支持可以在两种不同的模式下运行�
 }
 ```
 
-### 使用craco库做增量配置
+### craco.config.js
 
 > **C**reate **R**eact **A**pp **C**onfiguration **O**verride是一个简单易于理解的create-react-app的配置层。相比于customize-cra，它的配置请法与原生webpack完全相同，不需要学习新的语法。
 >
@@ -225,5 +225,19 @@ module.exports = app => {
     })
   })
 }
+```
+
+### .env
+
+> 在react_create_apo创建的react应用中，根目录下可以写一个.env文件，他可以用于设置全局变量。变量名必须以 REACT_APP 开头，单词大写，以 _下划线分割，.env变量名更改之后，项目必须重启才会生效。
+>
+> ```js
+> REACT_APP_MSG = "消息"
+> ```
+
+在项目可以通过process.env.变量名的方式获取变量：
+
+```js
+process.env.REACT_APP_MSG
 ```
 

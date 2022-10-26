@@ -116,7 +116,7 @@ npm i art-template -S
 ##### 基础使用
 
 ```js
-npm i express express-art-template -S
+npm i art-template express-art-template -S
 ```
 
 ```js

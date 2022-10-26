@@ -6,7 +6,7 @@
 
 - 创建mysql 配置文件(my.ini)，在mysql根目录下创建：
 
-  ``` cmd
+  ``` js
   [Client]
   port = 3306
   [mysqld]
@@ -46,14 +46,14 @@
 
 - 连接mysql：
 
-  ``` cmd
+  ``` js
   mysql -u root -p
   // 密码就是初始化时显示的密码
   ```
 
 - 设置密码：
 
-  ``` cmd
+  ``` js
   ALTER USER 'root'@'localhost' identified by '密码';
   ```
 

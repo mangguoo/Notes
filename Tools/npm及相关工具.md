@@ -418,11 +418,32 @@
 
   ``` js
   // 本地安装后可以配置脚本使用nodemon,这里nodemon后面没有加文件
-  // 它会默认加载main中配置的文件
+  // 它会默认加载package.json文件中main属性配置的文件
   "script": {
       "dev": "nodemon"
   }
   ```
+
+**配置文件：**
+
+> 这个文件是nodemon的配置文件，可以在这里对nodemon进行各种配置，比如说下面就是对nodemon监听的文件进行忽略
+
+```json
+// nodemon.json
+{
+    "ignore": [
+        "log/*"
+    ]
+}
+```
+
+**nodemon骚操作：**
+
+> 使用nodemon配合ts-node实时运行ts项目：
+
+```json
+nodemon -e ts,js --exec npx ts-node ./src/app.ts
+```
 
 #### anywhere
 
@@ -468,5 +489,103 @@
   -o 在开始服务后打开浏览器
   ```
 
-  
+
+#### ts-node
+
+> Ts-node 是 Node.js 的 TypeScript 执行引擎和 REPL（交互式解释器）。
+>
+> 它将 TypeScript 转换为 JavaScript，使我们能够直接在 Node.js 上执行 TypeScript 而无需预编译。
+
+**安装：**
+
+```json
+npm install -D typescript
+npm install -D ts-node
+```
+
+#### node-dev
+
+> Node-DEV是Node.js的开发工具，当文件被修改时，它会自动重新启动nodejs进程。
+>
+> 与supervisor或Nodemon之类的工具相反，它不会扫描文件系统以查看要监听的文件。取而代之的是通过require()来判断项目依赖的文件，它将仅监听实际需要的文件。
+>
+> 这意味着我们不需要配置任何includes或excludes rule。如果修改仅在客户端上使用但从未在服务器上运行的JS文件，Node-Dev将知道这一点并且不会重新启动该过程。
+>
+> 这也意味着我们不必配置需要监听文件的扩展名。例如，仅需一个.json文件或.ts文件作为入口即可自动的进行监听。
+
+**安装：**
+
+```json
+npm install -g node-dev
+```
+
+**使用：**
+
+```json
+node-dev server.js
+```
+
+#### ts-node-dev
+
+> 可以理解为ts-node的升级版，他不仅可以直接编译运行ts文件，并且会监测文件的变化，并重新执行，它其实就是node-dev + ts-node
+
+**安装：**
+
+```json
+npm i ts-node-dev --save-dev
+```
+
+**使用：**
+
+使用它时可以随意使用`node-dev`和`ts-node`的选项：
+
+```
+ts-node-dev --respawn --transpile-only server.ts
+```
+
+`ts-node-dev`有一个别名`tsnd`：
+
+```
+tsnd --respawn server.ts
+```
+
+#### concurrently
+
+> 如果想要使用 npm 实现任务自动化，通常并发运行多个命令的方法是使用 `npm run watch-js & npm run watch-css`。这很好，但是很难跟踪不同的输出。此外，如果一个进程失败，其他进程仍然在运行，我们甚至无法发现。另一种选择是在不同的终端中运行所有命令，但是这样做很麻烦。使用concurrently的优势：
+>
+> - 跨平台(包括windows)
+>
+> - 输出后面加上了前缀，理容易区分是哪个指令的输出
+>
+> - 使用了`--kill-others` 选项后,一旦其中一个指令死亡，所有指令都会被终止
+
+**安装：**
+
+```js
+npm install concurrently --save
+```
+
+**使用：**
+
+```js
+concurrently "command1 arg" "command2 arg"
+```
+
+在package.json中使用时，要注意转义双引号：
+
+```json
+"scripts": {
+  "start": "concurrently \"command1 arg\" \"command2 arg\""
+}
+```
+
+**示例：**
+
+> 使用concurrently实现先通过tsc编译ts文件为js文件，然后使用nodemon实时监听编译后的入口文件。如果使用`tsc -w & nodemon dist/app.js`会导致出错==原因未知==。
+
+```json
+"scripts": {
+  "start": "concurrently \"tsc -w\" \"nodemon dist/app.js\""
+}
+```
 
