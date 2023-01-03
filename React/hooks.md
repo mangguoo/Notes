@@ -666,9 +666,11 @@ export default App
 
 ### useRef与createRef
 
-> useRef返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数( initialValue，如果没有传入初始值，则该ref对象的current属性为undefined )。
+> useRef返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数( initialValue，如果没有传入初始值，则该ref对象的current属性为undefined )
 >
-> useRef返回的 ref 对象在组件的整个生命周期内保持不变，当更新 current 值时并不会 reRender ，这就是它与 useState 不同的地方。
+> useRef返回的 ref 对象在组件的整个生命周期内保持不变，当更新 current 值时并不会 reRender ，这就是它与 useState 不同的地方
+>
+> 更新 useRef 是 side effect (副作用)，所以一般写在 useEffect 或 event handler 里
 
 **useRef与createRef的区别：**
 
@@ -887,8 +889,6 @@ function App() {
 export default App;
 ```
 
-
-
 ### react-router-dom-hook
 
 > react-router-dom@5也提供了hook的解决方案，它包括了三个hook，分别是：
@@ -924,6 +924,22 @@ const App = () => {
 };
 
 export default App
+```
+
+**listen方法监听路由变化**
+
+> 在使用react的函数组件时，有时候我们会想监听路由变化，并在路由变化时进行某些操作，就需要使用useHistory().listen来实现了
+
+```js
+const history = useHistory();
+useEffect(() => {
+    const unlisten = history.listen((historyLocation) => {
+        cnosole.log(historyLocation)
+    });
+    return () => {
+        unlisten();
+    };
+}, [history])
 ```
 
 #### useLocation

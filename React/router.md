@@ -14,15 +14,11 @@ npm i -S react-router-dom@5
 - **路由模式组件**：包裹整个应用，一个React应用只需要使用一次
   - HashRouter： 使用URL的哈希值实现 （localhost:3000/#/first）
   - BrowserRouter：使用H5的history API实现（localhost3000/first）
-
-- **导航组件**：用于指
-  
-- 定导航链接, 最终**Link会编译成a标签**
+- **导航组件**：用于指定导航链接, 最终**Link会编译成a标签**
   - Link:  不会有激活样式
     - exact属性：开启严格匹配模式
   - NavLink：如果地址栏中的地址和to属性相匹配，则会有激活样式 (.active)，可以通过activeClassName来修改匹配成功后样式名称
     - exact属性：开启严格匹配模式
-
 - **路由规则定义组件**：指定路由规则和对应**匹配成功后要渲染的组件**
 
   - Route：
@@ -352,7 +348,7 @@ class Admin extends Component {
           <div>
             <Switch>
               <Route path={`${parentRoutePath}/index`} component={Index} />
-              <Route path={`${parentRoutePath}/user`}component={User} />
+              <Route path={`${parentRoutePath}/user`} component={User} />
               <Redirect exact from={parentRoutePath} to={`${parentRoutePath}/index`} />
             </Switch>
           </div>
@@ -376,7 +372,7 @@ export default Admin
 import RenderCmp from './views/Render'
 /*
   类：
-  1.对于规则匹配成的组件没有办法去写逻辑，会直接渲染
+  1.对于规则匹配成功的组件没有办法去写逻辑，会直接渲染
   2.规则匹配成功后，会给组件中的props自动映射对应的路由对象
   3.当前载体中的state更新,它不会重新创建
 */

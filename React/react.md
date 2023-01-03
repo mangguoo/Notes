@@ -339,7 +339,7 @@ export default class extends React.Component {
 
 > 在 React 中，合成事件会以事件委托方式绑定在Root对象上。这里我们手写一个简单示例来观察 React 事件和原生事件的执行顺序：
 
-```js
+```jsx
 import React from "react";
 class App extends React.Component {
   parentRef;
@@ -426,7 +426,7 @@ React 事件：父元素事件冒泡！
 >
 > 3. 阻止合成事件间的冒泡，用e.stopPropagation()
 
-```js
+```jsx
 import React from "react";
 class StopBubbling extends React.Component {
   componentDidMount() {
@@ -1213,6 +1213,7 @@ export default App;
 > - 通过ref对象获取到文本框的值
 >
 > ref 如果绑定在普通的html元素中则返回dom对象
+>
 > ref 如果绑定在"类组件"中，则返回当前自定义类组件实例对象，可以用它来完成组件通信
 
 ```jsx

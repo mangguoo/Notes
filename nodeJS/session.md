@@ -19,7 +19,7 @@ npm install cookie-session
 
 ### **使用Api(`cookieSession(options)`):**
 
-> 通过提供的选项，创建一个新的cookie session中间件。这个中间件会将session属性依附依附到req上，session属性提供一个对象代表加载的session。这个session可以是一个新的session，如果request中没有提供有效的session，或者是一个在request中已经加载了的session。这个中间件将自动地向response中添加Set-Cookie头，如果req.session的内容被修改了的话。
+> 通过提供的选项，创建一个新的cookie session中间件。这个中间件会将session属性依附到req上，session属性提供一个对象代表加载的session。这个session可以是一个新的session，如果request中没有提供有效的session，或者是一个在request中已经加载了的session。这个中间件将自动地向response中添加Set-Cookie头，如果req.session的内容被修改了的话。
 
 ```js
 var cookieSession = require('cookie-session')

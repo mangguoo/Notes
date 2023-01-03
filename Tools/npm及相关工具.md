@@ -283,9 +283,9 @@
 
 #### npx
 
-> npx是npm5.2之后自带的一个命令，npx主要用于调用项目中的某个模块的指令，以webpack为例，比如全局安装的是webpack5.1.3，项目安装的是webpack3.6.0这时在终端执行 webpack --version的话，显示结果会是 webpack 5.1.3，也就是说使用的是全局的。原因非常简单，我们在使用webpack命令时，其实是在环境变量中去寻找，而项目中的webpack是安装在node_modules/.bin文件夹中的，这个文件夹是不存在于环境变量中的，所以找不到。
+**一、用途一：**
 
-如何使用项目（局部）中安装的webpack？
+npx主要用于调用项目中的某个模块的指令，以webpack为例，比如全局安装的是webpack5.1.3，项目安装的是webpack3.6.0这时在终端执行`webpack --version`的话，显示结果会是 webpack 5.1.3，也就是说使用的是全局的。原因非常简单，我们在使用webpack命令时，其实是在环境变量中去寻找，而项目中的webpack是安装在`node_modules/.bin`文件夹中的，这个文件夹是不存在于环境变量中的，所以找不到。如何使用项目（局部）中安装的webpack？
 
 - 方式一：明确查找到node_module下面的webpack：
 
@@ -303,9 +303,45 @@
 
 - 方式三：使用npx，npx的原理非常简单，它会到当前目录的node_modules/.bin目录下查找对应的命令：
 
-  ``` js
-  npx webpack --version
+  ``` shell
+  $ npx webpack --version
   ```
+
+**二、用途二：**
+
+另外，使用 `npx` 可以避免全局安装模块，比如：`create-react-app` 这个模块是全局安装，`npx` 可以运行它，而且不进行全局安装:
+
+```shell
+$ npx create-react-app my-react-app
+```
+
+上面代码运行时，`npx` 将 `create-react-app` 下载到一个临时目录，使用以后再删除。所以以后再次执行上面的命令，会重新下载 `create-react-app` 提供使用后再移除。并且在下载全局模块时，`npx` 允许指定版本：
+
+```shell
+$ npx webpack@4.44.1 ./src/index.js -o ./dist/main.js
+```
+
+**注意：**只要 `npx` 后面的模块无法在本地发现，就会下载同名模块。如果想让 `npx` 强制使用本地模块，不下载远程模块，可以使用 `--no-install` 参数，如果本地不存在该模块，就会报错：
+
+```shell
+$ npx --no-install webpack-dev-server
+```
+
+反过来，如果本地存在同名的模块，但是还是想使用远程的新版本模块，可以使用 `--ignore-existing` 参数:
+
+```shell
+$ npx --ignore-existing create-react-app my-react-app
+```
+
+**三、用途三：**
+
+除此之外，还可以利用 `npx` 指定 `node` 版本运行脚本：
+
+```shell
+$ npx node@14.15.0 -v
+```
+
+上面命令会使用 `v14.15.0` 版本的 `node` 执行脚本。原理是从 `npm` 下载这个版本的 `node`，使用后再删掉
 
 #### pnpm
 

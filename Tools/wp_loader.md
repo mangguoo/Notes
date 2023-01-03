@@ -374,3 +374,301 @@ document.body.appendChild(iEl)
 }
 ```
 
+## svg-sprite-loader
+
+### svg 的基本使用
+
+> SVG ：可缩放矢量图形（Scalable Vector Graphics），使用 XML 格式定义图像。使用起来其实也没什么不一样的地方，可以直接将下载好的 svg 图片导入，然后像这样使用：
+
+```jsx
+import apple from "../assets/icons/apple.svg"  // 得到一个计算之后的路径
+
+const Icon = (props) => {
+    return (
+        <img src="G:\office\MarkDown\Tools\{apple}" />
+    );
+};
+
+export default Icon;
+```
+
+
+这样使用可能会导致添加 color 样式不生效，因为下载的 svg 可能有自带的 fill 属性，虽然可以手动把 svg 图片中的 fill 属性给删掉，但是如果 svg 很多的话手动处理起来就会很耗时，我们可以通过更聪明的办法：自定义 loader 来解决这个问题
+
+### svg-sprite-loader
+
+> svg-sprite-loader 的官方解释是：一个用于创建 svg 雪碧图的 Webpack 加载器。这个加载器现在已经被 JetBrains 公司收录和维护了。通俗的讲：svg-sprite-loader 会把你引入的 svg 塞到一个个 symbol 中，合成一个大的 svg，最后将这个大的 svg 放入 body 中。symbol 的 id 如果不特别指定，就是你的文件名。在页面上形成这样的元素：
+
+```html
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         style="position: absolute; width: 0; height: 0" aria-hidden="true" 
+         id="__SVG_SPRITE_NODE__">
+        <symbol xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                class="icon" viewBox="0 0 1024 1024"
+                id="label">
+            <defs><style type="text/css"></style></defs>
+            <!-- path ... （path 中可能含有 fill 属性，也就是 svg 的自带颜色） -->
+        </symbol>
+        <!-- other symbols-->
+    </svg>
+</body>
+```
+
+通常情况下，我们用reqct脚手架初始化的项目是没有办法自定义 loader 的，那怎么办呢？我们就需要执行如下命令手动的项目的 webpack.config.js 文件搞出来（这个操作是不可逆的）
+
+```bash
+npm run eject
+// or
+yarn eject
+```
+
+执行会出现提示：Are you sure you want to eject? This action is permanent.(y/N)，直接回车就可以了。
+
+配置完成之后我们需要对 svg loader 进行相关配置，在 webpack.config.js 的 module.rules 的 oneOf 中添加：
+
+```js
+// 配置之前需要安装该 loader
+// npm install --dev svg-sprite-loader
+// yarn add --dev svg-sprite-loader
+{
+  test: /\.svg$/,
+  use: [
+    { 
+      loader: 'svg-sprite-loader', 
+      options: {
+        // symbolId: "[name]" // 这是默认值
+        symbolId: filePath => path.basename(filePath)
+      } 
+    }
+  ]
+}
+```
+
+完成上述配置之后，我们就可以通过指定 id 的方式使用 use 的方式使用 svg 了，如下：
+
+```jsx
+// 下面这种方式有坑，最终会被 Tree Shaking
+// import apple from "../assets/icons/apple.svg"  // 得到一个计算之后的路径
+require('../assets/icons/apple.svg')
+
+const Icon = (props) => {
+    return (
+        <svg fill="red">
+            <use xlink:href="#apple"/>
+        </svg>
+    );
+};
+
+export default Icon;
+```
+
+经过 svg-sprite-loader 加载之后，不仅可以通过指定 id 的方式引入 icon，而且相比图片引入的方式，最大的优点就在于可以通过给 svg 标签添加 fill 属性来调整 icon 的颜色
+
+除此之外，还可以通过给 svg 添加 class 来调整 icon 的样式，虽然说图片引入的方式也能做到，但是如果图片指定宽高与原图的宽高不成比例，就会导致图片的失真，而 svg 不会。即使随意调整 svg 的宽高样式，它也是按照原尺寸进行缩放，达到高保真的效果
+
+🚨：注意，如果你按照上面 import 的方式引入了 svg ，在页面上是找不到 icon 的。这是因为 import 引入的 apple 实际上是一个对象，通过 svg use 指定的 #id 的方式最终被 webpack 理解为 apple 对象没被用到，所以就 Tree Shaking 掉它，因此我们需要用 require 的方式引入（原因：CommonJS 模块的这种动态加载的性质意味着无法应用 Tree Shaking，因为在实际运行代码之前无法确定需要哪些模块）
+
+### 批量引入 svg
+
+> 项目中我们用到 svg 的地方，都需要手动引入一下然后使用，当 svg 多起来的时候，一遍遍的引入就显得不太聪明。能不能像 Element UI 那样，直接指定一个 name 就能使用特定的 svg ？那就需要在 Icon 组件中将所有的 svg 做批量的引入：
+
+```jsx
+// require('../assets/icons/apple.svg')
+// require('../assets/icons/banana.svg')
+// require('../assets/icons/orange.svg') // 这样就仿佛一个不太聪明的机器人
+
+//直接引入 src/assets/icons 目录下的所有 svg
+const importAll = (requireContext: __WebpackModuleApi.RequireContext) => {
+    requireContext.keys().forEach(requireContext);
+}
+
+try {
+    importAll(require.context('../assets/icons', true, /\.svg$/));
+} catch (error) {
+    console.log(error);
+}
+
+const Icon = (props) => {
+    return (
+        <svg>
+          <use xlinkHref={'#' + props.name}></use>
+        </svg>
+     );
+};
+
+export default Icon;
+```
+
+### vue配置：
+
+- **svgIcon.vue**
+
+```vue
+<template>
+  <svg
+    :class="svgClass"
+    aria-hidden="true"
+    fill="currentColor"
+    :height="height || size"
+    :width="width || size"
+    v-on="$listeners"
+  >
+    <use
+      :xlink:href="iconName"
+    />
+  </svg>
+</template>
+
+<script>
+export default {
+  name: 'SvgIcon',
+  props: {
+    iconClass: {
+      type: String,
+      required: true,
+    },
+    className: {
+      type: String,
+      default: '',
+    },
+    width: {
+      type: String,
+    },
+    height: {
+      type: String,
+    },
+    size: {
+      type: String,
+      default: '16',
+    },
+  },
+  computed: {
+    iconName() {
+      return `#${this.iconClass}`;
+    },
+    svgClass() {
+      return this.className ? `svg-icon ${this.className}` : 'svg-icon';
+    },
+  },
+};
+</script>
+```
+
+- **vue.config.js**
+
+```js
+module.exports = {
+  chainWebpack: config => {
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/assets/svg'))
+      .end()
+
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/svg'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: '[name]'
+      })
+  }
+};
+```
+
+## svgo-loader
+> svg-sprite-loader 可以帮助我们通过 svg use + 指定 id 的方式引入 svg，虽然可以通过给 svg 添加内联 fill 属性的方式修改 icon 的颜色，但是并不建议这样做，而是通过 class 样式的方式指定 icon 的颜色，这就需要用到 svgo-loader 先把 svg 自带的 fill 属性给清除掉，为我们后续指定 icon 的颜色扫清障碍
+>
+> svgo-loader 是基于 SVG Optimizer 的一个加载器，而 SVG Optimizer 是一个基于node.js 的工具，用于优化 SVG 矢量图形文件，它可以删除和修改SVG元素，折叠内容，移动属性等
+
+```js
+// 配置之前需要安装该 loader
+// npm install --dev svgo-loader
+// yarn add --dev svgo-loader
+
+{ loader: 'svg-sprite-loader', options: {} },
+{ loader: 'svgo-loader', options: {
+    plugins: [{
+        name: 'removeAttrs', // 必须指定name！
+        params: {attrs: 'fill'}
+        }]
+    }
+}
+```
+
+
+通过上述配置，引入项目中的 svg 文件会先经过 svgo-loader 清楚 fill 属性，然后再通过 svg-sprite-loader 将你引入的 svg 塞到一个个 symbol 中，合成一个大的 svg，最后将这个大的 svg 放入 body 中
+
+## @svgr/webpack
+
+### 基本使用
+
+- `webpack.config.js`
+
+```js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack'],
+}
+```
+
+- In your code
+
+```jsx
+import Star from './star.svg'
+
+const App = () => (
+  <div>
+    <Star />
+  </div>
+)
+```
+
+### 选项options
+
+```js
+{
+  test: /\.svg$/,
+  use: [
+    {
+      loader: '@svgr/webpack',
+      options: {
+        native: true,
+      },
+    },
+  ],
+}
+```
+
+### 配合`url-loader`或者`file-loader`使用
+
+- `webpack.config.js`:
+
+```js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+```
+
+- In your code:
+
+```jsx
+import starUrl, { ReactComponent as Star } from './star.svg'
+
+const App = () => (
+  <div>
+    <img src={starUrl} alt="star" />
+    <Star />
+  </div>
+)
+```
+
+默认情况下，如果没有其他loader处理，@svgr/webpack 将尝试通过默认导出导出ReactComponent
+
+当已经有任何其他loader使用 svg 文件的默认导出时,@svgr/webpack 将始终通过命名导出导出ReactComponent

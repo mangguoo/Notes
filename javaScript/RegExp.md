@@ -416,8 +416,24 @@ console.log(str)
 
 2. 位置字符用来提示字符所处的位置，主要有两个字符：
 
-   - `^` 表示字符串的开始位置
-   - `$` 表示字符串的结束位置
+- `^` 表示字符串的开始位置
+
+- `$` 表示字符串的结束位置
+
+```js
+const getCookie = (name) => {
+  let arrd = null;
+  // ^和$可以被当做一个特殊字符来匹配
+  // 在cookie字符串中，开头有可能是空格，但是也有可能没有空格，因为它可能是开头
+  // 而结尾可能是分号，但是也有可能没有分号，因为结尾的可以没有分号
+  const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+  if (document.cookie.match(reg)) {
+    arrd = document.cookie.match(reg);
+    return unescape(arrd[2]);
+  }
+  return null;
+};
+```
 
 3. 选择符（`|`）：在正则表达式中表示“或关系”（OR）；
 

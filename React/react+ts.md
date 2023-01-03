@@ -596,3 +596,6 @@ export const fetchUser = (): AppThunkActionType => async (dispatch) => {
 export default userSlice.reducer;
 ```
 
+### 其它类型
+
+- react组件实例的类型(prop)： React.ReactElement

@@ -81,76 +81,6 @@ createApp(App).mount('#app')
 - `Webpack`：重新编译打包，请求打包后的文件，客户端进行重新加载
 - `Vite`:请求变更后的模块，浏览器直接重新加载
 
-## vite的简单使用
-
-- **/package.json**
-
-```json
-scripts:{
- “dev”:”vite”
-}
-```
-
-- **/vite.config.js**
-
-> 使vite能够解析单文件组件(sfc)，需要安装 @vitejs/plugin-vue
-
-```js
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-
-export default defineConfig({
-  plugins: [
-    vue() // 让vite能解析vue
-  ]
-})
-```
-
-- **/index.html(vite构建时以该文件为入口，因此需要在这里直接通过esmodule引入js文件)**
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vite使用</title>
-</head>
-
-<body>
-  <div id="app"></div>
-  <!-- 注意这里使用了esmodule -->
-  <script type="module" src="./src/main.js"></script>
-</body>
-
-</html>
-```
-
-- **/src/views/main.js**
-
-```js
-//  -------------------- vite支持打包js和ts
-import { hello } from './views/hello' // 后缀可写可不写
-import axios from 'axios' // 导入第在方模块，vite会帮我们补全路径
-import { msg } from './views/world.ts' // 支持ts
-
-//  -------------------- vite支持打包css
-import './assets/style.css'
-// sass它也是支持的，只是需要安装sass编译工具  sass  npm i -D sass
-import './assets/style.scss'
-
-
-// new Vue({}) ==> 类，里面有很多的方法或模块，但是有时候工作中用不到，但它也打包进来了
-// vue3创建vue实例的方式变化了，不是直接导入vue，而是使用一个createApp方法来创建实例，这样就可以在打包的时候进行tree-shaking
-import { createApp } from 'vue'
-import App from './App.vue'
-
-const app = createApp(App)
-app.mount('#app')
-```
-
 ## hyVite
 
 > 可以将其配置为指令，并通过npm link链接到本地进行使用：
@@ -265,5 +195,349 @@ function resolveImports(content) {
   });
   return content;
 }
+```
+
+## vite的基本使用
+
+- **/package.json**
+
+```json
+scripts:{
+ “dev”:”vite”
+}
+```
+
+- **/index.html(vite构建时以该文件为入口，因此需要在这里直接通过esmodule引入js文件)**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vite使用</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 注意这里使用了esmodule -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
+```
+
+- **/src/views/main.js**
+
+```js
+//  -------------------- vite支持打包js和ts
+import { hello } from './views/hello' // 后缀可写可不写
+import axios from 'axios' // 导入第在方模块，vite会帮我们补全路径
+import { msg } from './views/world.ts' // 支持ts
+
+//  -------------------- vite支持打包css
+import './assets/style.css'
+// sass它也是支持的，只是需要安装sass编译工具  sass  npm i -D sass
+import './assets/style.scss'
+
+
+// new Vue({}) ==> 类，里面有很多的方法或模块，但是有时候工作中用不到，但它也打包进来了
+// vue3创建vue实例的方式变化了，不是直接导入vue，而是使用一个createApp方法来创建实例，这样就可以在打包的时候进行tree-shaking
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+app.mount('#app')
+```
+
+## 解析sfc与jsx
+
+> 使vite能够解析单文件组件(sfc)，需要安装 `@vitejs/plugin-vue`
+>
+> 如果要使vite能够解析jsx，则需要安装 `@vitejs/plugin-vue-jsx`
+
+- **/vite.config.js**
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+export default defineConfig({
+  plugins: [
+    vue(), // 让vite能解析vue文件
+    vueJsx() // 让vite能解析jsx文件
+  ]
+})
+```
+
+## Vite中编译JSX时在后缀(.vue)单文件报错解决
+
+### 问题原因
+
+1. `Vite`在启动时会做依赖的预构建
+2. 预构建，运行时默认都只会对`jsx`与`tsx`做语法转换。不会对`.js`文件做`jsx`的`语法转换`
+
+### 解决方法
+
+**解决方法一：**（不推荐）
+
+- 把`.vue后缀`文件更改为`.jsx` 或 `.tsx`文件 就可以执行
+
+**解决方法二：**（不推荐）
+
+- 配置@vitejs/plugin-vue-jsx，使其会解析vue文件（这个插件默认只对拓展名为.jsx/.tsx的文件进行babel解析，如果需要它解析其它扩展名文件下的jsx，可以进行如下配置）
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+export default defineConfig({
+  plugins: [
+    vue(), // 让vite能解析vue文件
+    vueJsx({
+      include: /\.[jt]sx|vue/
+    }) // 让vite能解析jsx文件
+  ]
+})
+```
+
+**解决方法三:** （推荐！）
+
+- `.vue`文件的script标签加上`lang='jsx' 或 lang='tsx'`就可以解析vue文件。但是首先要确保你已经安装了**解析jsx的plugin**: `@vitejs/plugin-vue-jsx`
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from "@vitejs/plugin-vue-jsx"
+export default defineConfig({
+  plugins: [
+    vue(),
+    vueJsx()
+  ]
+})
+```
+
+```html
+<script lang="jsx">
+export default {
+  data() {
+    return {
+      counter: 0,
+    };
+  },
+  render() {
+    const increment = () => this.counter++;
+    const decrement = () => this.counter--;
+    return (
+      <div>
+        <h2>script标签要加上lang='jsx'才能解析</h2>
+        <h2>当前计数: {this.counter}</h2>
+        <button onClick={increment}>+1</button>
+        <button onClick={decrement}>-1</button>
+      </div>
+    );
+  },
+};
+</script>
+```
+
+## vite基础配置
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [vue(), vueJsx({
+    // 默认只对扩展名为 .jsx/.tsx 进行babel解析，需要它解析.vue扩展名下面的jsx，可以进行如下配置
+    include: /\.[jt]sx|vue/
+  })],
+  resolve: {
+    alias: { // 添加别名
+      '@': path.resolve('src')
+    }
+  },
+  server: {
+    port: 8080, // 配置端口
+    open: false, // 自动打开浏览器
+    // 通过配置开发时，代理服务器，在开发时进行跨域解决
+    proxy: {
+      '/api': {
+        target: 'https://api.iynn.cn/film',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, '')
+      }
+    }
+  }
+})
+```
+
+如果配置了别名，想要让vscode能够识别这个别名，还需要在jsconfig.json中进行一些配置：
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+## 情景配置
+
+> 如果配置文件需要基于（`dev`/`serve` 或 `build`）命令或者不同的模式（`development`，`production`）来决定选项，亦或者是一个 SSR 构建（`ssrBuild`），则可以给defineConfig传入一个函数：
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
+import { viteMockServe } from 'vite-plugin-mock'
+
+export default defineConfig((command, mode, ssrBuild) => {
+  let config = {
+    plugins: [vue(), vueJsx(), viteMockServe({})],
+    resolve: {
+      alias: {
+        '@': path.resolve('src')
+      }
+    }
+  }
+
+  // 开发环境中添加网络代理
+  if ('development' === mode) {
+    // 开发环境
+    config = {
+      ...config,
+      server: {
+        port: 8080,
+        open: false,
+        proxy: {
+          '/api': {
+            target: 'https://api.iynn.cn/film',
+            changeOrigin: true
+          }
+        }
+      }
+    }
+  }
+  return config
+})
+```
+
+需要注意的是，在 Vite 的 API 中，在开发环境下 `command` 的值为 `serve`（在 CLI 中， `vite dev` 和 `vite serve` 是 `vite` 的别名），而在生产环境下为 `build`（`vite build`）
+
+`ssrBuild` 仍是实验性的。它只在构建过程中可用，而不是一个更通用的 `ssr` 标志，因为在开发过程中，我们唯一的服务器会共享处理 SSR 和非 SSR 请求的配置。某些工具可能没有区分浏览器和 SSR 两种构建目标的命令，那么这个值可能是 `undefined`，因此需要采用显式的比较表达式
+
+## mock数据
+
+- 首先要安装`vite-plugin-mock`和`mockjs`
+
+- 配置`vite.config.js`
+
+```js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
+import { viteMockServe } from 'vite-plugin-mock'
+  
+export default defineConfig({
+  plugins: [
+    viteMockServe({})
+  ]
+})
+```
+
+- 在根目录创建mock文件夹，在mock文件夹中创建index.js，然后以固定格式书写接口：
+
+```js
+import Mockjs from 'mockjs'
+
+const mockData = [
+  {
+    url: '/api/films',
+    method: 'get',
+    response: ({ query }) => {
+      const data = Mockjs.mock({
+        'films|10': [
+          {
+            "filmId|+1": 1,
+            'name': '@cname'
+          }
+        ]
+      })
+      return {
+        code: 0,
+        msg: 'ok',
+        data
+      }
+    }
+  },
+  {
+    url: '/api/login',
+    method: 'post',
+    response: () => ({
+      code: 0,
+      msg: 'ok',
+      data: {
+        uid: 1000,
+        nickname: '张三',
+        token: 'afewlfjewlfjewlfejlfejl;fejlf;e'
+      }
+    })
+  }
+]
+
+export default mockData
+```
+
+## import.meta.glob
+
+- **为true表示直接导入（同步导入）**
+
+```js
+import { createStore, useStore } from 'vuex'
+
+const moduleFiles = import.meta.glob('./modules/*', { eager: true })
+let modules = {}
+for (let key in moduleFiles) {
+  let prop = /\.\/modules\/(\w+)\.js/.exec(key)[1]
+  let value = moduleFiles[key].default
+  value['namespaced'] = true // 开启命名空间
+  modules[prop] = value
+}
+const store = createStore({ modules })
+
+export default store
+```
+
+- **为false表示动态导入，在构建时会分离为独立的chunk**
+
+```js
+import { createStore, useStore } from 'vuex'
+
+const moduleFiles = import.meta.glob('./modules/*')
+let modules = {}
+for (let key in moduleFiles) {
+  moduleFiles[key]().then(res => {
+    let prop = /\.\/modules\/(\w+)\.js/.exec(key)[1]
+    let value = res.default
+    value['namespaced'] = true // 开启命名空间
+    modules[prop] = value
+  })
+}
+const store = createStore({ modules })
+
+export default store
 ```
 
