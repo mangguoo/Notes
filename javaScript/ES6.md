@@ -626,5 +626,12 @@ function clickHandler(e) {
 }
 ```
 
+#### export的特殊用法
+
+```js
+export { default } from '../module.js'
+export { default as aotherName } from '../module.js'
+```
+
 
 

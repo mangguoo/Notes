@@ -1,4 +1,4 @@
-## Redux Toolkit
+## Redux/Toolkit
 
 > 它是一个开箱即用的高效 Redux 开发工具集，是官方推荐今后在项目中使用的redux库，内置了immer、redux-thunk和redux-devtools等一系列实用的库。
 >
@@ -6,8 +6,18 @@
 
 ### 安装
 
-```js
-npm i -S @reduxjs/toolkit react-redux
+```shell
+$ npm i -S @reduxjs/toolkit
+```
+
+使用React和Redux Toolkit启动新项目的推荐方法是使用create-react-app的官方Redux + JS模板，该模板集成了React Redux与React组件
+
+```shell
+$ npx create-react-app my-app --template redux
+```
+
+```shell
+$ npx create-react-app my-app --template redux-typescript
 ```
 
 ### 使用范例：
@@ -154,3 +164,192 @@ const App = () => {
 export default App
 ```
 
+## Redux-toolkit-persist
+
+### 基础使用
+
+- **src/store/index.js**
+
+```js
+import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { persistReducer, persistStore, persistCombineReducers, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'reduxjs-toolkit-persist';
+import storage from 'reduxjs-toolkit-persist/lib/storage'
+import autoMergeLevel1 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1';
+import countReducer from './reducers/count';
+import anotherReducer from './reducers/another';
+
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  stateReconciler: autoMergeLevel1,
+};
+
+// 拆开的写法
+const reducers = combineReducers({
+  count: countReducer,
+  another: anotherReducer
+});
+const _persistedReducer = persistReducer(persistConfig, reducers);
+
+// 也可以合起来写
+const _persistedReducer = persistCombineReducers(
+  persistConfig,
+  {
+    count: countReducer,
+    another: anotherReducer
+  }
+);
+
+export const store = configureStore({
+  reducer: _persistedReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      /* ignore persistance actions */
+      ignoredActions: [
+        FLUSH,
+        REHYDRATE,
+        PAUSE,
+        PERSIST,
+        PURGE,
+        REGISTER
+      ],
+    },
+  }),
+});
+
+export const persistor = persistStore(store)
+```
+
+- **src/store/count.ts**
+
+```js
+import {createSlice} from '@reduxjs/toolkit';
+
+export interface CountState {
+  count: number
+};
+
+const defaultState : CountState = {
+  count: 0,
+};
+
+const slice = createSlice({
+  name: 'count',
+  initialState: defaultState,
+  reducers: {
+    increment: (state: CountState, action) => {
+      state.count++;
+    },
+    decrement: (state: CountState, action) => {
+      state.count--;
+    }
+  }
+});
+
+export const { increment, decrement } = slice.actions;
+
+export default slice.reducer;
+```
+
+> 如果要使用react，需要使用PersisGate包装根组件。它可以延迟应用程序UI的呈现，直到检索到持久化状态并将其重新存回redux。loading选项可以是任何react实例，例如 load = { < Load/> }
+
+- **src/App.jsx**
+
+```jsx
+import React from 'react'
+import { PersistGate } from 'reduxjs-toolkit-persist/integration/react'
+import { store, persistor } from './store'
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootComponent />
+      </PersistGate>
+    </Provider>
+  );
+};
+```
+
+### state协调
+
+> 状态协调器定义传入的state如何与初始state合并。为我们的state选择正确的状态协调器是至关重要的:
+
+- **hardSet**
+  - **incoming state**: `{ foo: incomingFoo }`
+  - **initial state**: `{ foo: initialFoo, bar: initialBar }`
+  - **reconciled state**: `{ foo: incomingFoo }` 
+- **autoMergeLevel1**(它是默认值)
+  - **incoming state**: `{ foo: incomingFoo }`
+  - **initial state**: `{ foo: initialFoo, bar: initialBar }`
+  - **reconciled state**: `{ foo: incomingFoo, bar: initialBar }` // incomingFoo overwrites initialFoo
+- **autoMergeLevel2** 
+  - **incoming state**: `{ foo: incomingFoo }`
+  - **initial state**: `{ foo: initialFoo, bar: initialBar }`
+  - **reconciled state**: `{ foo: mergedFoo, bar: initialBar } `// initialFoo and incomingFoo are shallow merged
+
+```js
+import hardSet from 'reduxjs-toolkit-persist/lib/stateReconciler/hardSet'
+import autoMergeLevel2 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel2'
+// autoMergeLevel1是默认值，因此不需要导入
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  stateReconciler: hardSet,
+}
+```
+
+### 白名单和黑名单
+
+```js
+// DENYLIST
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  blacklist: ['navigation'] // navigation will not be persisted
+};
+
+// ALLOWLIST
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  whitelist: ['navigation'] // only navigation will be persisted
+};
+```
+
+### 嵌套持久化
+
+> 对于包含不同的storage adapters、code splitting或者deep filtering，嵌套持久化可能非常有用。例如，虽然黑名单和白名单只能深入一层，但是我们可以使用嵌套的持久化来深入黑名单:
+
+```js
+import { combineReducers } from '@reduxjs/toolkit'
+import { persistReducer } from 'reduxjs-toolkit-persist'
+import storage from 'reduxjs-toolkit-persist/lib/storage'
+
+import { authReducer, otherReducer } from './reducers'
+
+const rootPersistConfig = {
+  key: 'root',
+  storage: storage,
+  blacklist: ['auth']
+}
+
+const authPersistConfig = {
+  key: 'auth',
+  storage: storage,
+  blacklist: ['somethingTemporary']
+}
+
+const rootReducer = combineReducers({
+  auth: persistReducer(authPersistConfig, authReducer),
+  other: otherReducer,
+})
+
+export default persistReducer(rootPersistConfig, rootReducer)
+```
+
+### 存储引擎
+
+- **localStorage** `import storage from 'reduxjs-toolkit-persist/lib/storage'`
+- **sessionStorage** `import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'`

@@ -1,4 +1,4 @@
-### CSS模块化解决方案
+# CSS模块化解决方案
 
 > **在react项目中，可以让样式命名不冲突的方案**
 >
@@ -8,7 +8,7 @@
 >
 > 3、css-in-js 把css当作js来使用
 
-#### CSS Module
+## CSS Module
 
 > 使用 `.css` 文件
 >
@@ -83,13 +83,13 @@ export default Hello;
 }
 ```
 
-#### css-in-js
+## css-in-js
 
 > CSS-in-JS是一种**技术**，而不是一个具体的库实现。简单来说CSS-in-JS就是将应用的CSS样式写在JavaScript文件里面，而不是独立为一些css，scss或less之类的文件，这样你就可以在CSS中使用一些属于JS的诸如模块声明，变量定义，函数调用和条件判断等语言特性来提供灵活的可扩展的样式定义。CSS-in-JS在React社区的热度是最高的，这是因为React本身不会管用户怎么去为组件定义样式的问题，而Vue有属于框架自己的一套定义样式的方案。
 >
 > styled-components 应该是CSS-in-JS最热门的一个库，通过styled-components，你可以使用ES6的标签模板字符串语法，为需要styled的Component定义一系列CSS属性，当该组件的JS代码被解析执行的时候，styled-components会动态生成一个CSS选择器，并把对应的CSS样式通过style标签的形式插入到head标签里面。动态生成的CSS选择器会有一小段哈希值来保证全局唯一性来避免样式发生冲突。
 
-**原理**
+### **styled-components原理**
 
 > styled-components就是通过下面这种方式来拼接模板字符串的
 
@@ -126,7 +126,7 @@ export const ContentContainer = styled.div`
 </ContentContainer>
 ```
 
-**使用**
+### **styled-components使用**
 
 ```js
 # 安装
@@ -183,5 +183,28 @@ export const ContentContainer = styled.div`
   color:${props => props.color || '#888'};
   font-size: ${props => props.size || 12}px;
 `
+```
+
+### 实现全局样式
+
+```tsx
+import type { AppProps } from "next/app";
+import { createGlobalStyle } from "styled-components";
+import { globalStyle } from "../styles";
+
+const GlobalStyle = createGlobalStyle`
+  ${globalStyle}
+`;
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <GlobalStyle />
+	  ... ...
+    </>
+  );
+}
+
+export default MyApp;
 ```
 

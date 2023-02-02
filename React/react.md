@@ -26,7 +26,7 @@
 > 2. 必须要有jsx/null返回值，如果是jsx则一定要有顶层元素包裹
 
 ``` jsx
-import { Component } from 'react'
+import React from 'react';
 
 const App = () => {
   return (
@@ -253,9 +253,9 @@ React.createElement(
 
 ### **合成事件：**
 
-React基于浏览器的事件机制自身实现了一套事件机制，包括事件注册、事件的合成、事件冒泡、事件派发等，在React中这套事件机制被称之为合成事件。**React合成事件**是React **模拟原生DOM事件所有能力** 的一个事件对象。根据 ***W3C规范*** 来定义合成事件，**兼容所有浏览器**，拥有与浏览器原声事件相同的接口。合成事件拥有和浏览器原生事件相同的接口，包括`stopPropagetion()`和`preventDefault()`。
+React基于浏览器的事件机制自身实现了一套事件机制，包括事件注册、事件的合成、事件冒泡、事件派发等，在React中这套事件机制被称之为合成事件。**React合成事件**是React **模拟原生DOM事件所有能力** 的一个事件对象。根据***W3C规范***来定义合成事件，**兼容所有浏览器**，拥有与浏览器原声事件相同的接口。合成事件拥有和浏览器原生事件相同的接口，包括`stopPropagetion()`和`preventDefault()`。
 
-在React中，所有事件都是合成的，不是原生DOM事件，可以通过 `e.nativeEvent` 属性获取原生DOM事件。合成事件不会映射到原生事件，例如：在`onMouseLeave`事件中`event.nativeEvent`将指向`mouseout`事件；
+在React中，所有事件都是合成的，不是原生DOM事件，可以通过`e.nativeEvent`属性获取原生DOM事件。合成事件不会映射到原生事件，例如：在`onMouseLeave`事件中`event.nativeEvent`将指向`mouseout`事件；
 
 ```js
 const handleClick = (e) => console.log(e.nativeEvent);;

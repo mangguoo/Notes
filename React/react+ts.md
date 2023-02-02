@@ -2,9 +2,8 @@
 
 ### 初始化react为ts环境：
 
-```js
-// 本地先安装好typescript编译器  npm i -g typescript
-npm init react-app myapp 
+```shell
+$ npx create-react-app my-app --template typescript
 ```
 
 用上述命名创建出来的react脚手架，与react+js创建出来的脚手架几乎相同，只是增加了几个文件：
@@ -28,7 +27,7 @@ import React, { Component, ReactElement, PropsWithChildren } from 'react'
 interface IProps {
   num: number
   setNum: () => void
-  // children: ReactNode
+  // children: ReactElement
 }
 
 // 通过泛型给当前属性添加自定义属性的props类型，相当于在react+js中的prop-types定义
@@ -598,4 +597,47 @@ export default userSlice.reducer;
 
 ### 其它类型
 
-- react组件实例的类型(prop)： React.ReactElement
+#### ReactNode
+
+> ReactNode可以是一个ReactElement，一个ReactFragment，一个string类型，一个number类型，或者是null，或者是boolean，或者是undefined，或者一个ReactNode的数组
+
+```ts
+type ReactText = string | number;
+type ReactChild = ReactElement | ReactText;
+
+interface ReactNodeArray extends Array<ReactNode> {}
+type ReactFragment = {} | ReactNodeArray;
+
+type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
+```
+
+#### ReactElement
+
+> ReactElement 是一个具有type和element的object
+
+```ts
+type Key = string | number
+
+type JSXElementConstructor<P> =
+    | ((props: P) => ReactElement | null)
+    | (new (props: P) => Component<P, any>);
+
+interface ReactElement<P = any, T extends string | JSXElementConstructor<any> = string | JSXElementConstructor<any>> {
+    type: T;
+    props: P;
+    key: Key | null;
+}
+```
+
+#### JSX.Element
+
+> JSX.Element 是一个 ReactElement，props和type的泛型类型为 any。它存在是因为各种库可以以自己的方式实现 JSX，因此 JSX 是一个global namespace，然后由库设置:
+
+```ts
+declare global {
+  namespace JSX {
+    interface Element extends React.ReactElement<any, any> { }
+  }
+}
+```
+

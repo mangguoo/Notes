@@ -1,10 +1,10 @@
-#### npm
+## npm
 
  1. 分别使用以下命令设置全局的安装包目录：
 
-    ``` 
-    npm config set prefix "D:\Program Files\nodejs\node_global"
-    npm config set cache "D:\Program Files\nodejs\node_cache"
+    ``` shell
+    $ npm config set prefix "D:\Program Files\nodejs\node_global"
+    $ npm config set cache "D:\Program Files\nodejs\node_cache"
     
     配置条目含义：
     => registry：npm intall默认下载位置；
@@ -25,7 +25,7 @@
 
 2. npm 常用命令简写说明：
 
-   ```js
+   ```shell
    -g： 为 --global 的缩写，表示安装到全局目录里
    -S： 为 --save 的缩写，表示安装的包将写入package.json里面的dependencies
    -D： 为 --save-dev 的缩写，表示将安装的包将写入packege.json里面的devDependencies
@@ -34,89 +34,89 @@
 
 3. npm 安装模块：
 
-   ``` js
-   npm init  				// npm 初始化当前目录
-   npm i  					// 安装所有依赖
-   npm i express 		    // 安装模块到默认dependencies
-   npm i express -g 		// 会安装到配置的全局目录下
-   npm i express -S  		// 安装包信息将加入到dependencies生产依赖
-   npm i express -D  		// 安装包信息将加入到devDependencies开发依赖
-   npm i jquery@1.8.3  	// 安装jquery指定的1.8.3版本
-   npm i jquery@latest     // 安装jquery最新版本
+   ``` shell
+   $ npm init  				// npm 初始化当前目录
+   $ npm i  					// 安装所有依赖
+   $ npm i express 		    // 安装模块到默认dependencies
+   $ npm i express -g 		// 会安装到配置的全局目录下
+   $ npm i express -S  		// 安装包信息将加入到dependencies生产依赖
+   $ npm i express -D  		// 安装包信息将加入到devDependencies开发依赖
+   $ npm i jquery@1.8.3  	// 安装jquery指定的1.8.3版本
+   $ npm i jquery@latest     // 安装jquery最新版本
    
-   npm install git+https://github.com/EricXie79/GP22.git
+   $ npm install git+https://github.com/EricXie79/GP22.git
    //可以将git上的内容拉下来，但是要有keygen权限
    ```
 
 4. npm 卸载模块：
 
-   ``` js
-   npm uninstall express  				// 卸载模块，但不卸载模块留在package.json中的对应信息
-   npm uninstall express -g  			// 卸载全局模块
-   npm uninstall express --save  		// 卸载模块，同时卸载留在package.json中dependencies下的信息
-   npm uninstall express --save-dev    // 卸载模块，同时卸载留在package.json中devDependencies下的信息
+   ``` shell
+   $ npm uninstall express  				// 卸载模块，但不卸载模块留在package.json中的对应信息
+   $ npm uninstall express -g  			// 卸载全局模块
+   $ npm uninstall express --save  		// 卸载模块，同时卸载留在package.json中dependencies下的信息
+   $ npm uninstall express --save-dev    // 卸载模块，同时卸载留在package.json中devDependencies下的信息
    ```
 
 5. npm 更新模块：
 
-   ``` js
-   npm update jquery 			  // 更新最新版本的jquery
-   npm update jquery@2.1.0  	  // 更新到指定版本号的jquery
-   npm install jquery@latest     // 可以直接更新到最后一个新版本
+   ``` shell
+   $ npm update jquery 			  // 更新最新版本的jquery
+   $ npm update jquery@2.1.0  	  // 更新到指定版本号的jquery
+   $ npm install jquery@latest     // 可以直接更新到最后一个新版本
    
    // 使用 ‘npm i 包名@版本号’ 形式来更新包的方式更常见，也更方便
    ```
 
 6. npm 查看命令：
 
-   ``` js
-   npm root                     		 // 查看项目中模块所在的目录
-   npm root -g                  		 // 查看全局安装的模块所在目录
-   npm list 或者 npm ls          	    // 查看本地已安装模块的清单列表
-   npm view jquery dependencies 		 // 查看某个包对于各种包的依赖关系
-   npm view jquery version      		 // 查看jquery最新的版本号
-   npm view jquery versions     		 // 查看所有jquery历史版本号（很实用）
-   npm view jquery              		 // 查看最新的jquery版本的信息
-   npm info jquery 			 		 // 查看jquery的详细信息，等同于上面的npm view jquery
-   npm list jquery 或 npm ls jquery     // 查看本地已安装的jquery的详细信息
-   npm view jquery repository.url       // 查看jquery包的来源地址
+   ``` shell
+   $ npm root                     		 // 查看项目中模块所在的目录
+   $ npm root -g                  		 // 查看全局安装的模块所在目录
+   $ npm list 或者 npm ls          	    // 查看本地已安装模块的清单列表
+   $ npm view jquery dependencies 		 // 查看某个包对于各种包的依赖关系
+   $ npm view jquery version      		 // 查看jquery最新的版本号
+   $ npm view jquery versions     		 // 查看所有jquery历史版本号（很实用）
+   $ npm view jquery              		 // 查看最新的jquery版本的信息
+   $ npm info jquery 			 		 // 查看jquery的详细信息，等同于上面的npm view jquery
+   $ npm list jquery 或 npm ls jquery     // 查看本地已安装的jquery的详细信息
+   $ npm view jquery repository.url       // 查看jquery包的来源地址
    ```
 
 7. npm 其他命令：
 
-   ``` js
-   npm cache clean             // 清除npm的缓存
-   npm prune                   // 清除项目中没有被使用的包
-   npm outdated                // 检查模块是否已经过时
-   npm repo jquery             // 会打开默认浏览器跳转到github中jquery的页面
-   npm docs jquery             // 会打开默认浏览器跳转到github中jquery的README.MD文件信息
-   npm home jquery             // 会打开默认浏览器跳转到github中jquery的主页
+   ``` shell
+   $ npm cache clean             // 清除npm的缓存
+   $ npm prune                   // 清除项目中没有被使用的包
+   $ npm outdated                // 检查模块是否已经过时
+   $ npm repo jquery             // 会打开默认浏览器跳转到github中jquery的页面
+   $ npm docs jquery             // 会打开默认浏览器跳转到github中jquery的README.MD文件信息
+   $ npm home jquery             // 会打开默认浏览器跳转到github中jquery的主页
    ```
 
 8. 清除缓存缓存：
 
-   ``` js
+   ``` shell
    // 错误码是-4048需要清除
-   npm cache verify
-   npm cache clean  --force
+   $ npm cache verify
+   $ npm cache clean  --force
    ```
 
 9. 重设代理：
 
-   ``` js
+   ``` shell
    // 查看代理
-   npm config get proxy
-   npm config get https-proxy
+   $ npm config get proxy
+   $ npm config get https-proxy
    
    // 设置代理，错误内容 ECONNREFUSED 一直连接不上
-   npm config set proxy null
-   npm config set https-proxy null
+   $ npm config set proxy null
+   $ npm config set https-proxy null
    ```
 
 10. npm初始化package.json文件：
 
-   ``` js
-   npm  init [-y]              // -y表示静默初始化，自动使用默认值
+   ``` shell
+   $ npm  init [-y]              // -y表示静默初始化，自动使用默认值
    ```
 
 11. 发布npm包：
@@ -127,7 +127,7 @@
 
     - 修改package.json：
 
-      ``` js
+      ``` json
       {
           "name": "hy_test_utils", # 模块名一定要唯一
           "version": "1.0.0", # 版本要符合semver规范
@@ -171,41 +171,41 @@
 
 12. 更新npm仓库：修改版本号(最好符合semver规范)，因为一个包不能存在两个相同版本号，然后重新发布：
 
-    ``` js
-    npm publish
+    ``` shell
+    $ npm publish
     ```
 
 13. 删除发布的包：
 
-    ``` js
-    npm unpublish <pkg>[@<version>]
+    ``` shell
+    $ npm unpublish <pkg>[@<version>]
     ```
 
 14. 让发布的包过期：
 
-    ``` js
+    ``` shell
     // 语法
-    npm deprecate <pkg>[@<version range>] <message>
+    $ npm deprecate <pkg>[@<version range>] <message>
         
-    npm deprecate my-thing@"< 0.2.3" "critical bug fixed in v0.2.3"
+    $ npm deprecate my-thing@"< 0.2.3" "critical bug fixed in v0.2.3"
     // 提示下载该包0.2.3以前版本的用户:"critical bug fixed in v0.2.3"
     
-    npm deprecate my-thing@1.x "1.x is no longer supported"
+    $ npm deprecate my-thing@1.x "1.x is no longer supported"
     // 提示下载该包1.x版本的用户:"1.x is no longer supported"
     ```
 
 15. 使用package.json中的config给页面传参：
 
-    ``` js
+    ``` json
     // package.json
     "config": {
       "PORT": 8080
     }
     ```
 
-    ```js
+    ```shell
     // 开始运行
-    node main.js
+    $ node main.js
     
     // main.js
     console.log(process.env.npm_package_config_PORT)
@@ -222,29 +222,29 @@
 
     - 1. 安装
 
-    ```js
-    npm install --save-dev cross-env
+    ```shell
+    $ npm install --save-dev cross-env
     ```
 
     - 2. 用法
 
-    ``` js
+    ``` json
     // package.json
     "scripts": {
         "start": "cross-env ENV=position node main.js",
     }
     ```
 
-    ``` js
+    ``` shell
     // 开始执行
-    npm run start
+    $ npm run start
     
     // main.js
     console.log(process.env.ENV)
     // production
     ```
 
-#### nvm
+## nvm
 
 1. nvm配置文件：
 
@@ -259,18 +259,17 @@
 
 2. nvm常用命令：
 
-   ``` js
-   nvm list                       //查看已安装的nodejs版本
-   nvm list available             //查看网络上可以安装的版本
-   nvm on                         // 启用node.js版本管理
-   nvm off                        // 禁用node.js版本管理(不卸载任何东西)
-   nvm install <version>          // 安装node.js的命名 version是版本号 例如：nvm install 8.12.0
-   nvm use <version>              //使用某一version的nodejs
-   nvm uninstall <version>        // 卸载指定版本的nodejs
+   ``` shell
+   $ nvm list                       //查看已安装的nodejs版本
+   $ nvm list available             //查看网络上可以安装的版本
+   $ nvm on                         // 启用node.js版本管理
+   $ nvm off                        // 禁用node.js版本管理(不卸载任何东西)
+   $ nvm install <version>          // 安装node.js的命名 version是版本号 例如：nvm install 8.12.0
+   $ nvm use <version>              //使用某一version的nodejs
+   $ nvm uninstall <version>        // 卸载指定版本的nodejs
    ```
 
-
-#### nrm
+## nrm
 
 > ‘npm registry manager’ (即：指的是 ‘npm’ 的镜像源管理工具)。nrm 的诞生就是为了使用者在各个不同 npm 源之间来回切换，npm 是全世界最大的软件注册表，每天有数以万计的人从这个地方下载软件，nrm 的作用就是切换下载 npm 中资源的服务器。例如：你在国内，你使用 npm谷歌 的源下载软件就龟速，但是你使用 npm淘宝 的源就比较快，这时候你就可以使用 nrm 来快速切换源了。
 
@@ -281,7 +280,7 @@
 - `npm use <registry>`：切换 npm 源地址；
 - `nrm test [registry]`：测试源的访问速度； 不加 ‘registry’ 时，默认测试所有的源速度；
 
-#### npx
+## npx
 
 **一、用途一：**
 
@@ -295,7 +294,7 @@ npx主要用于调用项目中的某个模块的指令，以webpack为例，比�
 
 - 方式二：在 scripts定义脚本，来执行webpack：
 
-  ``` js
+  ``` json
   "scripts": {
       "webpack": "webpack --version"
   }
@@ -343,7 +342,7 @@ $ npx node@14.15.0 -v
 
 上面命令会使用 `v14.15.0` 版本的 `node` 执行脚本。原理是从 `npm` 下载这个版本的 `node`，使用后再删掉
 
-#### pnpm
+## pnpm
 
 - ##### pnpm的优势：
 
@@ -436,23 +435,23 @@ $ npx node@14.15.0 -v
 
   其中这个 `.pnpm` 是个虚拟磁盘目录，然后 express 这个依赖的一些依赖会被平铺到 `.pnpm/express@4.17.1/node_modules/` 这个目录下面，这样保证了依赖能够 require 到，同时也不会形成很深的依赖层级。在保证了 nodejs 能找到依赖路径的基础上，同时也很大程度上保证了依赖能很好的被放在一起。
 
-#### nodemon
+## nodemon
 
 [nodemon](https://links.jianshu.com/go?to=http%3A%2F%2Fnodemon.io%2F) 是一种工具，可在检测到目录中的文件更改时通过自动重新启动节点应用程序来帮助开发基于 node.js 的应用程序。
 
 - **全局安装**
 
-  ``` js
-  npm i -g nodemon
+  ``` shell
+  $ npm i -g nodemon
   ```
 
 - **本地安装**
 
-  ``` js
-  npm i -D nodemon
+  ``` shell
+  $ npm i -D nodemon
   ```
 
-  ``` js
+  ``` json
   // 本地安装后可以配置脚本使用nodemon,这里nodemon后面没有加文件
   // 它会默认加载package.json文件中main属性配置的文件
   "script": {
@@ -477,56 +476,55 @@ $ npx node@14.15.0 -v
 
 > 使用nodemon配合ts-node实时运行ts项目：
 
-```json
+```shell
 nodemon -e ts,js --exec npx ts-node ./src/app.ts
 ```
 
-#### anywhere
+## anywhere
 
 > Anywhere 随启随用的静态文件服务器， 随时随地将你的当前目录变成一个静态文件服务器的根目录。
 
 - 安装：
 
-  ``` js
-  npm install anywhere -g
+  ``` shell
+  $ npm install anywhere -g
   ```
 
 - 使用：
 
-  ``` js
+  ``` shell
   $ anywhere -p 8000  // 指定端口
   $ anywhere -h localhost -p 8888  // 指定端口和主机名
   $ anywhere -s  // or start it but silent(don't open browser)
   $ anywhere --help
   ```
 
-#### http-server
+## http-server
 
 > `http-server`是一个简单的、零配置的命令行静态 HTTP 服务器。它对于生产使用来说足够强大，但它足够简单和可破解，可以用于测试、本地开发和学习。
 
 - 使用 `npx` 可以运行http-server而无需先安装它：
 
-  ``` js
-  npx http-server [path] [options]
+  ``` shell
+  $ npx http-server [path] [options]
   // [path]默认为./public(如果文件夹存在)，不存在则为./
   ```
 
 - 全局安装：
 
-  ``` js
-  npm install --global http-server
+  ``` shell
+  $ npm install --global http-server
   ```
 
 - **options**
 
-  ``` js
+  ``` shell
   -p 端口号 (默认 8080)
   -a IP地址 (默认 0.0.0.0) 指定的地址必须是空闲的，并且是本机的网卡地址
   -o 在开始服务后打开浏览器
   ```
 
-
-#### ts-node
+## ts-node
 
 > Ts-node 是 Node.js 的 TypeScript 执行引擎和 REPL（交互式解释器）。
 >
@@ -534,12 +532,12 @@ nodemon -e ts,js --exec npx ts-node ./src/app.ts
 
 **安装：**
 
-```json
-npm install -D typescript
-npm install -D ts-node
+```shell
+$ npm install -D typescript
+$ npm install -D ts-node
 ```
 
-#### node-dev
+## node-dev
 
 > Node-DEV是Node.js的开发工具，当文件被修改时，它会自动重新启动nodejs进程。
 >
@@ -551,41 +549,41 @@ npm install -D ts-node
 
 **安装：**
 
-```json
-npm install -g node-dev
+```shell
+$ npm install -g node-dev
 ```
 
 **使用：**
 
-```json
-node-dev server.js
+```shell
+$ node-dev server.js
 ```
 
-#### ts-node-dev
+## ts-node-dev
 
 > 可以理解为ts-node的升级版，他不仅可以直接编译运行ts文件，并且会监测文件的变化，并重新执行，它其实就是node-dev + ts-node
 
 **安装：**
 
-```json
-npm i ts-node-dev --save-dev
+```shell
+$ npm i ts-node-dev --save-dev
 ```
 
 **使用：**
 
 使用它时可以随意使用`node-dev`和`ts-node`的选项：
 
-```
-ts-node-dev --respawn --transpile-only server.ts
+```shell
+$ ts-node-dev --respawn --transpile-only server.ts
 ```
 
 `ts-node-dev`有一个别名`tsnd`：
 
-```
-tsnd --respawn server.ts
+```shell
+$ tsnd --respawn server.ts
 ```
 
-#### concurrently
+## concurrently
 
 > 如果想要使用 npm 实现任务自动化，通常并发运行多个命令的方法是使用 `npm run watch-js & npm run watch-css`。这很好，但是很难跟踪不同的输出。此外，如果一个进程失败，其他进程仍然在运行，我们甚至无法发现。另一种选择是在不同的终端中运行所有命令，但是这样做很麻烦。使用concurrently的优势：
 >
@@ -597,14 +595,14 @@ tsnd --respawn server.ts
 
 **安装：**
 
-```js
-npm install concurrently --save
+```shell
+$ npm install concurrently --save
 ```
 
 **使用：**
 
-```js
-concurrently "command1 arg" "command2 arg"
+```shell
+$ concurrently "command1 arg" "command2 arg"
 ```
 
 在package.json中使用时，要注意转义双引号：
@@ -624,4 +622,13 @@ concurrently "command1 arg" "command2 arg"
   "start": "concurrently \"tsc -w\" \"nodemon dist/app.js\""
 }
 ```
+
+## 通过ESModule获取package.json中的数据
+
+```js
+// 获取版本号
+import { version } from "@walletconnect/universal-provider/package.json";
+```
+
+
 
