@@ -6,11 +6,11 @@
 
 ### 创建项目：
 
-```js
+```shell
 // 此方案创建出来的项目使用为react18版本
-npx create-react-app myapp 
-或 npm init react-app myapp 
-或 yarn create react-app myapp
+$ npx create-react-app myapp 
+$ npm init react-app myapp 
+$ yarn create react-app myapp
 ```
 
 注意：

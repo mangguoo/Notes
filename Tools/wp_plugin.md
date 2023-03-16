@@ -8,8 +8,8 @@
 
 **安装：**
 
-```js
-npm install clean-webpack-plugin -D
+```shell
+$ npm install clean-webpack-plugin -D
 ```
 
 **配置webpack：**
@@ -35,8 +35,8 @@ module.exports = {
 
 **安装：**
 
-```js
-npm install html-webpack-plugin -D
+```shell
+$ npm install html-webpack-plugin -D
 ```
 
 **配置webpack：**

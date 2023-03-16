@@ -5,7 +5,7 @@
 ### ESModule
 
 ```bash
-npm i js-cookie
+$ npm i js-cookie
 ```
 
 ### 直接下载
@@ -28,7 +28,7 @@ npm i js-cookie
 ## TS声明
 
 ```bash
-npm i @types/js-cookie
+$ npm i @types/js-cookie
 ```
 
 ## 基础使用
@@ -171,6 +171,4 @@ Cookies.withConverter({
   }
 })
 ```
-
-## 
 

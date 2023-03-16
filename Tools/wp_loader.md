@@ -8,8 +8,8 @@
 
 **安装css-loader：**
 
-```js
-npm install css-loader -D
+```shell
+$ npm install css-loader -D
 ```
 
 **css-loader的使用：**
@@ -148,8 +148,8 @@ export default function($dom) {
 
 **安装：**
 
-```js
-npm install style-loader -D
+```shell
+$ npm install style-loader -D
 ```
 
 **注意：**
@@ -164,14 +164,14 @@ style-loader是把转换后的样式通过页内样式的方式添加进来的�
 >
 > - 下载less编译工具：
 >
->   ```js
->npm install less -D
->   ```
+>```shell
+>$ npm install less -D
+> ```
 >
 > - 编译less为css：
 > 
-> ```js
->npx lessc ./src/css/title.less title.css
+> ```shell
+>$ npx lessc ./src/css/title.less title.css
 > ```
 
 但是在项目中我们会编写大量的less，为了避免手动转换，就可以使用less-loader，来自动使用less工具转换less到css：
@@ -203,20 +203,20 @@ npm install less-loader
 >
 > - 下载编译工具：
 >
-> ```js
-> npm install node-sass -D
+> ```shell
+> $ npm install node-sass -D
 > ```
 >
 > - 执行编译：
 >
-> ```js
-> npx node-sass a.scss>a.css
+> ```shell
+> $ npx node-sass a.scss>a.css
 > ```
 
 - 安装sass-loader
 
-```js
-npm install sass-loader
+```shell
+$ npm install sass-loader
 ```
 
 - 配置webpack.config.js
@@ -244,8 +244,8 @@ npm install sass-loader
 
 **安装:**
 
-```js
-npm install file-loader -D
+```shell
+$ npm install file-loader -D
 ```
 
 **配置处理图片的Rule：**
@@ -270,8 +270,8 @@ npm install file-loader -D
 
 **安装：**
 
-```js
-npm install url-loader -D
+```shell
+$ npm install url-loader -D
 ```
 
 **配置处理图片的Rule：**
@@ -420,9 +420,9 @@ export default Icon;
 通常情况下，我们用reqct脚手架初始化的项目是没有办法自定义 loader 的，那怎么办呢？我们就需要执行如下命令手动的项目的 webpack.config.js 文件搞出来（这个操作是不可逆的）
 
 ```bash
-npm run eject
+$ npm run eject
 // or
-yarn eject
+$ yarn eject
 ```
 
 执行会出现提示：Are you sure you want to eject? This action is permanent.(y/N)，直接回车就可以了。
@@ -502,7 +502,7 @@ const Icon = (props) => {
 export default Icon;
 ```
 
-### vue配置：
+### vue配置
 
 - **svgIcon.vue**
 
@@ -634,18 +634,11 @@ const App = () => (
 ```js
 {
   test: /\.svg$/,
-  use: [
-    {
-      loader: '@svgr/webpack',
-      options: {
-        native: true,
-      },
-    },
-  ],
+  use: [loader: '@svgr/webpack'],
 }
 ```
 
-### 配合`url-loader`或者`file-loader`使用
+### 配合`url-loader`使用
 
 - `webpack.config.js`:
 
@@ -672,3 +665,42 @@ const App = () => (
 默认情况下，如果没有其他loader处理，@svgr/webpack 将尝试通过默认导出导出ReactComponent
 
 当已经有任何其他loader使用 svg 文件的默认导出时,@svgr/webpack 将始终通过命名导出导出ReactComponent
+
+### React配置
+
+```ts
+const path = require('path')
+
+module.exports = {
+  webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      // oneOf数组，当规则匹配时，只使用第一个匹配规则
+      webpackConfig.module.rules[1].oneOf.unshift({
+        test: /\.svg$/,
+        include: [path.resolve(__dirname, 'src/assets/svg')],
+        issuer: /\.[jt]sx?$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              prettier: false,
+              svgo: false,
+              svgoConfig: { plugins: [{ removeViewBox: false }] },
+              titleProp: true,
+              ref: true
+            }
+          },
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'static/media/[name].[hash].[ext]'
+            }
+          }
+        ]
+      })
+      return webpackConfig
+    }
+  }
+}
+```
+

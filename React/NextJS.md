@@ -2,7 +2,7 @@
 
 ## 创建Next.js项目
 
-```bash
+```shell
 npm install create-next-app -g
 create-next-app next-app
 npm run dev
@@ -1377,6 +1377,88 @@ export default function handler(req, res) {
 ```
 
 以上代码相当于生成了一个test数据接口服务。在dev和SSR模式下，该API请求的地址就是http://localhost:3000/api/test
+
+## 动态导入
+
+> Next.js支持使用`import()`延迟加载外部库，同时也支持使用`next/dynamic`延迟加载React组件。延迟加载可以减少渲染页面所需的 JavaScript数量来帮助提高初始加载性能
+>
+> `next/dynamic`其实就是`React.lazy`和`Suspense`的复合扩展
+
+通过使用`next/dynamic`，header组件将不会包含在页面的初始JavaScript包中。`fallback`页面将首先被渲染，然后`Header`在服务端渲染完成后才加载
+
+```jsx
+import dynamic from 'next/dynamic'
+
+const DynamicHeader = dynamic(() => import('../components/header'), {
+  loading: () => 'Loading...',
+})
+
+export default function Home() {
+  return <DynamicHeader />
+}
+```
+
+要动态导入指定的导出，可以从`import()`返回的`Promise`中指定:
+
+```js
+// components/hello.js
+export function Hello() {
+  return <p>Hello!</p>
+}
+
+// pages/index.js
+import dynamic from 'next/dynamic'
+
+const DynamicComponent = dynamic(() =>
+  import('../components/hello').then((mod) => mod.Hello)
+)
+```
+
+注意: 在`import(‘path/to/Component’)`中，路径必须显式写入。它不能是模板字符串也不能是变量。此外，`import()`必须位于dynamic()调用内部，以便Next.j能够将webpack bundle/module ids 与特定的`dynamic()`调用相匹配，并在渲染之前预加载它们。Dynamic()不能在React组件内部使用，因为它需要在模块的顶层标记，以便预加载工作，类似于`React.lazy`
+
+### no ssr
+
+> 要在客户端动态加载组件，可以使用ssr选项禁用服务器渲染。如果外部依赖项或组件依赖于诸如window之类的浏览器API，则此选项非常有用
+
+```js
+import dynamic from 'next/dynamic'
+
+const DynamicHeader = dynamic(() => import('../components/header'), {
+  ssr: false,
+})
+```
+
+### 动态导入外部库
+
+> 此示例使用外部库fuse.js进行模糊搜索。该模块只有在用户在搜索输入中键入之后才会在浏览器中加载
+
+```js
+import { useState } from 'react'
+
+const names = ['Tim', 'Joe', 'Bel', 'Lee']
+
+export default function Page() {
+  const [results, setResults] = useState()
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search"
+        onChange={async (e) => {
+          const { value } = e.currentTarget
+          // Dynamically load fuse.js
+          const Fuse = (await import('fuse.js')).default
+          const fuse = new Fuse(names)
+
+          setResults(fuse.search(value))
+        }}
+      />
+      <pre>Results: {JSON.stringify(results, null, 2)}</pre>
+    </div>
+  )
+}
+```
 
 ## 使用CLI命令自定义输出目录
 

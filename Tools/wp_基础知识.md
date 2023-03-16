@@ -21,8 +21,8 @@
 
 **全局安装方法：**
 
-```js
-npm install webpack webpack-cli –g // 全局安装
+```shell
+$ npm install webpack webpack-cli –g // 全局安装
 ```
 
 **webpack、webpack-cli之间的关系：**
@@ -814,12 +814,10 @@ module.exports = {
 ```js
 const path = require('path')
 const moduleList = {}
-const dirname = '@/api'
 
-reqContext(dirname)
-function reqContext(dir) {
+function reqContext() {
   // 匹配特定 js 文件
-  const moduleFn = require.context(dir, true, /(api).js$/)
+  const moduleFn = require.context('@/apis', true, /(api).js$/)
   let fileList = moduleFn.keys()
   if (!fileList.length) return
   fileList.forEach((paths) => {
@@ -840,3 +838,27 @@ function assignment(obj) {
 module.exports = moduleList
 ```
 
+**注意：**
+
+>  ts环境下需要安装声明文件，然后在tsconfig.json中进行配置
+>
+> ```shell
+> $ yarn add @types/webpack-env -D
+> ```
+>
+> 在tsconfig.json的compilerOptions添加配置：
+>
+> ```json
+> {
+>     "compilerOptions": {
+>       ... ...
+>       "types": ["webpack-env"]
+>     }
+> }
+> ```
+
+> require.context的第一个参数只能传一个常量，不能是变量，否则会报如下错误：
+>
+> ```txt
+> __webpack_require__(...).context is not a function
+> ```

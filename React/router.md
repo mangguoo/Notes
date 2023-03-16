@@ -4,9 +4,9 @@
 
 > react-router-dom路由库，它路由相关的配置与vue大不相同，它是使用组件来配置路由信息。
 
-```js
+```shell
 // react-router-dom 它现在最新的版本6
-npm i -S react-router-dom@5
+$ npm i -S react-router-dom@5
 ```
 
 #### 相关组件：

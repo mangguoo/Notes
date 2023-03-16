@@ -16,8 +16,8 @@
 >
 > **安装mobx5：**
 >
-> ```js
-> npm i -S mobx@5 mobx-react@5 --force
+> ```shell
+> $ npm i -S mobx@5 mobx-react@5 --force
 > ```
 
 ### 单模块使用

@@ -1,4 +1,4 @@
-## react-router@6
+# react-router@6
 
 > **改变了什么：**
 >
@@ -16,13 +16,13 @@
 >
 > - 新增了多个hook函数,useParams、useSearchParams、useNavigate、useRoutes等
 
-### 安装路由：
+## 安装路由：
 
-```js
-yarn add react-router-dom@6
+```shell
+$ yarn add react-router-dom@6
 ```
 
-### 定义路由规则：
+## 定义路由规则：
 
 **在入口文件定义路由模式：**
 
@@ -74,7 +74,7 @@ const App = () => {
 export default App
 ```
 
-### 声明式导航：
+## 声明式导航：
 
 > - to：指定跳转到的路由地址
 >
@@ -100,7 +100,7 @@ export default App
 <NavLink to="home" end >home</NavLink>
 ```
 
-### 编程式导航：
+## useNavigate：
 
 > 编程式导航，需要用到useNavigate这个hook函数来得到导航对象，完成编程导航。它有如下参数：
 >
@@ -132,7 +132,7 @@ const Home = () => {
 export default Home
 ```
 
-### 页面参数获取：
+## useLocation,useParams,useSearchParams：
 
 > - 动态路由参数：useParams获取动态路由参数
 >
@@ -170,7 +170,7 @@ const Detail = () => {
 export default Detail
 ```
 
-### 配置式路由：
+## useRoutes：
 
 ```jsx
 import React from 'react'
@@ -236,5 +236,240 @@ export default [
     ]
   }
 ]
+```
+
+## Routers
+
+### createRoutesFromElements
+
+> 该方法可以把<Route>元素转换为路由对象
+
+```jsx
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Root />}>
+      <Route path="dashboard" element={<Dashboard />} />
+      {/* ... etc. */}
+    </Route>
+  )
+);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
+```
+
+### createBrowserRouter
+
+> 这是所有React Router Web项目的推荐路由器。它使用[DOM History API](https://developer.mozilla.org/en-US/docs/Web/API/History)来更新和管理URL历史栈
+
+```jsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Root, { rootLoader } from "./routes/root";
+import Team, { teamLoader } from "./routes/team";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    loader: rootLoader,
+    children: [
+      {
+        path: "team",
+        element: <Team />,
+        loader: teamLoader,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
+```
+
+**Basename**
+
+> 应用程序的基本名称，适用于无法将项目部署到域的根目录，而是部署到子目录的情况
+
+```js
+createBrowserRouter(routes, {
+  basename: "/app",
+});
+```
+
+链接到根时，尾部的斜杠将被遵守：
+
+```jsx
+createBrowserRouter(routes, {
+  basename: "/app",
+});
+<Link to="/" />; // results in <a href="/app" />
+
+createBrowserRouter(routes, {
+  basename: "/app/",
+});
+<Link to="/" />; // results in <a href="/app/" />
+```
+
+### createHashRouter
+
+> 如果无法配置Web服务器以将所有url访问重定向到React Router应用程序，则可以使用hash路由。因为它使用的是URL的散列 (#) 部分来管理“应用程序 URL”
+
+```jsx
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Root, { rootLoader } from "./routes/root";
+import Team, { teamLoader } from "./routes/team";
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <Root />,
+    loader: rootLoader,
+    children: [
+      {
+        path: "team",
+        element: <Team />,
+        loader: teamLoader,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
+```
+
+### RouterProvider
+
+> 所有路由器对象都可以传递给此组件以呈现应用程序并启用其余API
+
+```jsx
+<RouterProvider
+  router={router}
+  fallbackElement={<BigSpinner />}
+/>
+```
+
+`fallbackElement`：如果app不是ssr，那么它将在打开时启动所有匹配的路由加载器。在此期间，我们可以提供一个`fallbackElement`给用户一些表明该应用程序正在运行的指示
+
+## 路由懒加载
+
+### 组件形式
+
+```jsx
+import React from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Loading from './pages/loading'
+import NoFound from './pages/no_found'
+
+// React 组件懒加载
+const Index = React.lazy(async () => await import('./pages/index'))
+const About = React.lazy(async () => await import('./pages/about'))
+
+export default function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <div>
+          <Link to="/index">
+            <button>to: index</button>
+          </Link>
+          <Link to="/about">
+            <button>to: about</button>
+          </Link>
+          <Link to="/aaa">
+            <button>to: aaa</button>
+          </Link>
+        </div>
+        <Routes>
+          <Route
+            path="/about"
+            element={
+              // React.Suspense.fallback 在懒加载文件没有加载完成之前显示的内容
+              <React.Suspense fallback={<Loading />}>
+                <About />
+              </React.Suspense>
+            }
+          ></Route>
+          <Route
+            path="/index"
+            element={
+              <React.Suspense fallback={<Loading />}>
+                <Index />
+              </React.Suspense>
+            }
+          ></Route>
+          <Route path="/:params" element={<NoFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
+}
+```
+
+### 路由表
+
+```tsx
+import React, { lazy, createElement } from 'react'
+import { createBrowserRouter, type RouteObject, Navigate } from 'react-router-dom'
+
+// 路由elemnt中使用了lazy方法懒加载，那么就一定要在使用router provider的外层包裹suspense组件
+const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <Navigate to="/custody" replace />
+  },
+  {
+    path: '/custody',
+    // lazy返回值的类型是React.LazyExoticComponent<React.FC<{}>>，但是element必须是React.ReactElement类型，因此这里需要使用createElement方法包裹一下，注意：import()方法中只能传入常量，不能传入变量
+    element: createElement(lazy(async () => await import('@/App'))),
+    children: [
+      {
+        index: true,
+        element: <Navigate to="wallet" replace />
+      },
+      {
+        path: 'wallet',
+        element: createElement(lazy(async () => await import('@/pages/WalletList')))
+      },
+      {
+        path: 'login',
+        element: createElement(lazy(async () => await import('@/pages/Home')))
+      }
+    ]
+  }
+]
+
+const router = createBrowserRouter(
+  routes
+  // ,{
+  //   basename: '/custody'
+  // }
+)
+
+export default router
 ```
 

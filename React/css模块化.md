@@ -36,6 +36,8 @@ function Hello(props) {
 export default Hello;
 ```
 
+### module.css
+
 > 使用 `.module.css` 文件
 
 ```css
@@ -83,6 +85,89 @@ export default Hello;
 }
 ```
 
+### module.scss
+
+> - 如果想在react脚手架中使用scss，必须先安装scss(`npn i scss -D`)
+> - 然后就可以创建module.scss文件，在组件中进行使用了
+
+```jsx
+import styles from './index.module.scss'
+<div className={styles.css类名}></div>
+```
+
+**最佳使用方式：**在每个组件的根节点使用CSSModules形式的类名，其他所有的子节点，都使用普通的CSS类名:global
+
+- Index.module.scss
+
+```scss
+.app-container {
+  position: fixed;
+  left: 10px;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+
+  // 此处，使用 global 包裹其他子节点的类名。此时，这些类名就不会被处理，在 JSX 中使用时，就可以用字符串形式的类名
+  // 如果不加 :global ，所有类名就必须添加 styles.title 才可以
+  /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+  :global {
+    .title {
+      font-size: 30px;
+    }
+  }
+}
+```
+
+```css
+.App_app-container__ilamV {
+  position: fixed;
+  left: 10px;
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+}
+.App_app-container__ilamV .title {
+  font-size: 30px;
+}
+```
+
+- Component.tsx
+
+```tsx
+import styles from './index.module.scss'
+
+const component = () => {
+ return (
+   {/* （1） 根节点使用 CSSModules 形式的类名*/}
+   <div className={styles['app-container']}>
+     {/* （2） 所有子节点，都使用普通的 CSS 类名*/}
+     <h1 className="title">
+       hello world
+     </h1>
+   </div>
+ )
+}
+```
+
+在ts项目中，引入module.scss可能会报错(<u>找不到模块“./index.module.scss”或其相应的类型声明</u>)，解决方法如下：
+
+- 首先在src同级目录创建`globals.d.ts`,并添加下面代码
+
+```ts
+declare module '*.scss';  
+```
+
+- 在tsconfig的include中添加`"./**/*.ts"`，和exclude添加`"node_modules/**/*"`
+
+```json
+"include": [
+    "src",
+    "./**/*.ts"
+],
+"exclude": ["node_modules/**/*"]
+```
+
 ## css-in-js
 
 > CSS-in-JS是一种**技术**，而不是一个具体的库实现。简单来说CSS-in-JS就是将应用的CSS样式写在JavaScript文件里面，而不是独立为一些css，scss或less之类的文件，这样你就可以在CSS中使用一些属于JS的诸如模块声明，变量定义，函数调用和条件判断等语言特性来提供灵活的可扩展的样式定义。CSS-in-JS在React社区的热度是最高的，这是因为React本身不会管用户怎么去为组件定义样式的问题，而Vue有属于框架自己的一套定义样式的方案。
@@ -128,13 +213,14 @@ export const ContentContainer = styled.div`
 
 ### **styled-components使用**
 
-```js
+```shell
 # 安装
-npm install -S styled-components
+$ npm install -S styled-components
 ```
 
+- **/src/components/Child/index.jsx**
+
 ```jsx
-/src/components/Child/index.jsx
 import React, { Component } from 'react'
 import { 
     ChildContainer, 
@@ -161,8 +247,9 @@ class Child extends Component {
 export default Child
 ```
 
+- **/src/components/Child/style.js**
+
 ```js
-/src/components/Child/style.js
 import styled from 'styled-components'
 
 export const ChildContainer = styled.div`
@@ -183,6 +270,90 @@ export const ContentContainer = styled.div`
   color:${props => props.color || '#888'};
   font-size: ${props => props.size || 12}px;
 `
+```
+
+- 加上类型，这样在写JSX时就有提示，防止写错
+
+```tsx
+interface ColumnStyleProps {
+  spanHeight: boolean;
+  maxWidth: number;
+  center: boolean;
+}
+
+const SColumn = styled.div<ColumnStyleProps>`
+  position: relative;
+  width: 100%;
+  height: ${({ spanHeight }) => (spanHeight ? "100%" : "auto")};
+  max-width: ${({ maxWidth }) => `${maxWidth}px`};
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: ${({ center }) => (center ? "center" : "flex-start")};
+`;
+```
+
+### styled高阶组件
+
+```tsx
+import React from "react";
+import styled from "styled-components";
+import * as React from "react";
+import * as PropTypes from "prop-types";
+import styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+interface WrapperStyleProps {
+  center: boolean;
+}
+
+const SWrapper = styled.div<WrapperStyleProps>`
+  will-change: transform, opacity;
+  animation: ${fadeIn} 0.7s ease 0s normal 1;
+  min-height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: ${({ center }) => (center ? `center` : `flex-start`)};
+`;
+
+interface WrapperProps extends WrapperStyleProps {
+  children: React.ReactNode;
+}
+
+const Wrapper = (props: WrapperProps) => {
+  const { children, center } = props;
+  return (
+    <SWrapper {...props} center={center}>
+      {children}
+    </SWrapper>
+  );
+};
+
+Wrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+  center: PropTypes.bool,
+};
+
+Wrapper.defaultProps = {
+  center: false,
+};
+
+// 使用styled函数包裹组件，并通过断言规定类型，这样在使用SContent时就有提示了
+export const SContent = styled(Wrapper as React.FC<WrapperProps>)`
+  width: 100%;
+  height: 100%;
+  padding: 0 16px;
+`;
 ```
 
 ### 实现全局样式

@@ -14,19 +14,49 @@ module.exports = app => {
 }
 ```
 
+```js
+const { createProxyMiddleware } = require('http-proxy-middleware')
+
+module.exports = function (app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'http://waas.dw2nn.com',
+      changeOrigin: true
+    })
+  )
+
+  app.use(
+    '/fund',
+    createProxyMiddleware({
+      target: 'http://waas.dw2nn.com',
+      changeOrigin: true
+    })
+  )
+
+  app.use(
+    '/web-api',
+    createProxyMiddleware({
+      target: 'http://waas.dw2nn.com',
+      changeOrigin: true
+    })
+  )
+}
+```
+
 ### config-overrides.js
 
 > 通过react脚手架[create-react-app]创建的项目，是没有曝露webpack.config.js配置文件的，如果需要在项目中配置一些webpack配置，那么就需要借助第三方库来进行增量配置或配置改写。
 
 **下载依赖：**
 
-```js
+```shell
 // Customize-cra利用了React-App-Rewired的config-overrides.js文件。
 // 这个库中定义了一些实用的程序，可以通过它们轻松地修改ReactApp应用程序的基础配置对象
 // （WebPack，WebPack-Dev-Server，babel等）。
-npm install -D customize-cra 
+$ npm install -D customize-cra 
 // 提供调整 create-react-app webpack 配置的能力，通过config-overrides.js文件
-npm install -D react-app-rewired
+$ npm install -D react-app-rewired
 ```
 
 **改写package.json文件中的指令：**
@@ -160,8 +190,8 @@ Visual Studio Code 的 JavaScript 支持可以在两种不同的模式下运行�
 
 **安装craco：**
 
-```js
-yarn add -D @craco/craco babel-plugin-import
+```shell
+$ yarn add -D @craco/craco babel-plugin-import
 ```
 
 **修改package.json文件：**
@@ -189,41 +219,82 @@ module.exports = {
   babel: {
     plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }]]
   },
+  
   webpack: {
     alias: {
       '@': path.resolve('./src')
+    },
+    configure: (webpackConfig, { env, paths }) => {
+      // oneOf数组，当规则匹配时，只使用第一个匹配规则
+      webpackConfig.module.rules[1].oneOf.unshift({
+        test: /\.svg$/,
+        include: [path.resolve(__dirname, 'src/assets/svg')],
+        issuer: /\.[jt]sx?$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              prettier: false,
+              svgo: false,
+              svgoConfig: { plugins: [{ removeViewBox: false }] },
+              titleProp: true,
+              ref: true
+            }
+          },
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'static/media/[name].[hash].[ext]'
+            }
+          }
+        ]
+      })
+      return webpackConfig
     }
   },
-  devServer: {
-    open: false,
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        changeOrigin:true,
-        pathRewrite: { '^/api': '' }
-      }
-    },
-    setupMiddlewares: (mids, { app }) => {
+  // 在使用中发现，在这里修改的配置不会生效，不知道是不是bug
+  devServer: (devServerConfig, { env, paths, proxy, allowedHost }) => {
+    devServerConfig.setupMiddlewares: (mids, { app }) => {
       mockFn(app) // mock接口
       return mids
     }
+    return devServerConfig
   }
 }
 ```
 
-```js
-module.exports = app => {
-  app.get('/api/users', (req, res) => {
+- **/mock/index.ts**
+
+> 由于这里是在ts中使用express，并且使用了express中的类型，因此要定义express中导出api的类型，或者下载别人写好的：
+>
+> `npm install -D express @types/express` 
+
+```ts
+import type { Request, Response, Application } from 'express'
+
+export default (app: Application) => {
+  app.get('/api/users', (req: Request, res: Response) => {
     res.send({
       code: 0,
       msg: 'ok',
       data: [
         { id: 1, name: '张三' },
-        { id: 2, name: '李四' }
+        { id: 2, name: '李四' },
+        { id: 3, name: '王五' }
       ]
     })
   })
+}
+```
+
+**注意：**由于这两个文件都是使用ts文件来写的，因此他们都需要经过编译才能进行使用，因此需要在tsconfig.json文件把这两个文件加上到includes选项中：
+
+- **/src/tsconfig.json**
+
+```json
+{
+  // ... ...
+  "include": ["src", "craco.config.ts", "mock"]
 }
 ```
 

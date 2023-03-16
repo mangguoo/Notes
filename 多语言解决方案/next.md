@@ -192,6 +192,7 @@ const useLocale = (NS: string | string[]) => {
   const t = (key:string, options?: TOptions) => {
     const hashKey = `K${crc32(key).toString(16)}`
     const value = i18n.t(hashKey, options);
+    // 没有找到相应key的时候，t函数会直接返回hashKey
     if(value === hashKey) {
       return key;
     }

@@ -6,14 +6,14 @@
 
 PostCSS工具可以直接在命令行中使用，但是需要单独安装一个工具postcss-cli：
 
-```js
-npm install postcss postcss-cli
+```shell
+$ npm install postcss postcss-cli
 ```
 
 然后就可以使用postcss了，但是postcss只能解析css文件，要想使用他的各种功能就需要使用插件：
 
-```js
-npx postcss -o o.css ./a.css
+```shell
+$ npx postcss -o o.css ./a.css
 // 输出文件与输入文件相同，但是postcss会检查到输入文件中的语法错误
 ```
 
@@ -21,10 +21,10 @@ npx postcss -o o.css ./a.css
 
 > 该插件会根据browerlist加载指定的css兼容性样式，还可以为一些需要添加前缀的css规则添加前缀
 
-```js
-npm install postcss-preset-env -D
+```shell
+$ npm install postcss-preset-env -D
 
-npx postcss --use postcss-preset-env -o end.css ./src/css/style.css
+$ npx postcss --use postcss-preset-env -o end.css ./src/css/style.css
 ```
 
 ```js
@@ -54,8 +54,8 @@ npx postcss --use postcss-preset-env -o end.css ./src/css/style.css
 
 **安装autoprefixer：**
 
-```js
-npm install autoprefixer -D
+```shell
+$ npm install autoprefixer -D
 ```
 
 **在postcss.config.js文件中进行配置(与使用命令行配置相同)：**
@@ -72,8 +72,8 @@ module.exports = {
 
 **使用autoprefixer添加前缀：**
 
-```js
-npx postcss -o end.css ./src/css/style.css
+```shell
+$ npx postcss -o end.css ./src/css/style.css
 ```
 
 ### postcss-import
@@ -158,9 +158,9 @@ body{color:hsla(0,0%,44%,.5);margin:10px 20px}
 
 > 注：如果报错，则需要指定postcss-pxtorem版本，vue脚手架中安装的postCSS支持的就是5版本（postcss-pxtorem@5）
 
-```js
-npm install amfe-flexible --save
-npm install postcss-pxtorem --save-dev
+```shell
+$ npm install amfe-flexible --save
+$ npm install postcss-pxtorem --save-dev
 ```
 
 **使用：**
@@ -194,8 +194,8 @@ module.exports = {
 
 **安装：**
 
-```js
-npm install amfe-flexible
+```shell
+$ npm install amfe-flexible
 ```
 
 **使用(在入口文件中引入)：**
@@ -211,8 +211,8 @@ import 'amfe-flexible'
 
 **安装：**
 
-```js
-npm install postcss-loader -D
+```shell
+$ npm install postcss-loader -D
 ```
 
 **使用：**
@@ -285,10 +285,10 @@ babel本身可以作为一个独立的工具（和postcss一样），如果想�
 - --out-file：指定要输出的文件路径及名称；
 - --out-dir：指定要输出到的文件夹；
 
-```js
-npx babel demo.js --out-file dist/output.js
+```shell
+$ npx babel demo.js --out-file dist/output.js
 
-npx babel demo.js --out-dir dist
+$ npx babel demo.js --out-dir dist
 ```
 
 **注意：**--out-file与--out-dir参数不能同时使用。如果使用的是--out-dir参数，那么目标文件默认与源文件的名称相同。
@@ -299,22 +299,22 @@ npx babel demo.js --out-dir dist
 
 比如要转换箭头函数，那么就可以使用箭头函数转换相关的插件：
 
-```js
+```shell
 // 安装插件
-npm install @babel/plugin-transform-arrow-functions -D
+$ npm install @babel/plugin-transform-arrow-functions -D
 
 // 使用插件进行编译转换
-npx babel src --out-dir dist --plugins=@babel/plugin-transform-arrow-functions
+$ npx babel src --out-dir dist --plugins=@babel/plugin-transform-arrow-functions
 ```
 
 再比如要转换const，let等块级作用域：
 
-```js
+```shell
 // 安装插件
-npm install @babel/plugin-transform-block-scoping -D
+$ npm install @babel/plugin-transform-block-scoping -D
 
 // 使用插件进行编译转换
-npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions
+$ npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@babel/plugin-transform-arrow-functions
 ```
 
 ### babel预设
@@ -323,14 +323,14 @@ npx babel src --out-dir dist --plugins=@babel/plugin-transform-block-scoping,@ba
 
 **安装@babel/preset-env预设：**
 
-```js
-npm install @babel/preset-env -D
+```shell
+$ npm install @babel/preset-env -D
 ```
 
 **使用预设进行编译：**
 
-```js
-npx babel src --out-dir dist --presets=@babel/preset-env
+```shell
+$ npx babel src --out-dir dist --presets=@babel/preset-env
 ```
 
 ### babel-loader
@@ -339,8 +339,8 @@ npx babel src --out-dir dist --presets=@babel/preset-env
 
 **首先需要去安装相关的依赖：**
 
-```js
-npm install babel-loader @babel/core
+```shell
+$ npm install babel-loader @babel/core
 ```
 
 **在webpack.config.js中进行配置：**
@@ -394,8 +394,8 @@ babel在运行时会自动在这个文件中读取配置。这样不管是用命
 
 - 命令行调用：
 
-```js
-npx babel demo.js --out-dir dist
+```shell
+$ npx babel demo.js --out-dir dist
 ```
 
 - babel-loader调用：

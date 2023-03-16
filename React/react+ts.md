@@ -141,458 +141,38 @@ const App = () => {
 export default App
 ```
 
-### 增量配置webpack：
-
-- **craco.config.ts**
-
-```ts
-import { resolve } from "path";
-import mockFn from "./mock";
-import { Application } from "express";
-
-type IType = {
-  app: Application;
-};
-export default {
-  webpack: {
-    alias: {
-      '@': resolve('./src')
-    }
-  },
-  devServer: {
-    open: false,
-    port: 3000,
-    proxy: {
-      // '/api': {
-      //   target: 'http://localhost:3000',
-      //   changeOrigin:true,
-      //   pathRewrite: { '^/api': '' }
-      // }
-    }
-    // 第三方库中的一些方法，它里面的类型过于复杂，这时就可以用any
-    setupMiddlewares: (mids: any, { app }: IType) => {
-      mockFn(app)
-      return mids
-    }
-  }
-}
-```
-
-- **/mock/index.ts**
-
-> 由于这里是在ts中使用express，并且使用了express中的类型，因此要定义express中导出api的类型，或者下载别人写好的：
->
-> `npm install -D express @types/express` 
-
-```ts
-import type { Request, Response, Application } from 'express'
-
-export default (app: Application) => {
-  app.get('/api/users', (req: Request, res: Response) => {
-    res.send({
-      code: 0,
-      msg: 'ok',
-      data: [
-        { id: 1, name: '张三' },
-        { id: 2, name: '李四' },
-        { id: 3, name: '王五' }
-      ]
-    })
-  })
-}
-```
-
-**注意：**由于这两个文件都是使用ts文件来写的，因此他们都需要经过编译才能进行使用，因此需要在tsconfig.json文件把这两个文件加上到includes选项中：
-
-- **/src/tsconfig.json**
-
-```json
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src", "craco.config.ts", "mock"]
-}
-```
-
-### ts编写路由：
-
-- **/src/index.tsx**
-
-> 定义路由模式：`BrowserRouter`
+### forwardRef
 
 ```tsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
+import React, { forwardRef, useImperativeHandle, type Ref } from 'react'
+import { Input, Form } from 'antd'
 
-import { BrowserRouter as Router } from 'react-router-dom'
-
-ReactDOM
-.createRoot(document.getElementById('root') as HTMLElement)
-.render(
-    <Router>
-      <App />
-    </Router>
-)
-```
-
-- **/src/router/index.tsx**
-
-> 内置类型`RouteObject`，标注配置式路由的类型
-
-```tsx
-import { RouteObject } from 'react-router-dom'
-import Home from '@/views/Home'
-import About from '@/views/About'
-import Detail from '@/views/Detail'
-import User from '@/views/User'
-
-export default [
-  {
-    path: '/',
-    element: <Home />
-  },
-  {
-    path: '/about',
-    element: <About />
-  },
-  {
-    path: '/detail/:id',
-    element: <Detail />
-  },
-  {
-    path: '/user',
-    element: <User />
-  }
-] as RouteObject[]
-```
-
-- **/src/app.tsx**
-
-> 使用`RouteObject`定义配置式路由
-
-```tsx
-import React, { Fragment } from 'react'
-import { useRoutes } from 'react-router-dom'
-
-import routesRule from '@/router'
-
-const App = () => {
-  let routes = useRoutes(routesRule)
-
-  return <Fragment>
-    {routes}
-  </Fragment>
+interface IProps {
+  range: [number, number]
+  decimal: number
 }
 
-export default App
-
-```
-
-- **/src/views/About/index.tsx**
-
-> 编程式导航与声明式导航：`useNavigate`和`Link`
-
-```tsx
-import React from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-
-const data = Array(10)
-  .fill('')
-  .map((item, index) => index + 1)
-
-const About = () => {
-  const navigate = useNavigate()
-  return (
-    <div>
-      <h3>关于我们</h3>
-      <hr />
-      <button onClick={() => navigate('/')}>去首页</button>
-      <hr />
-      <ul>
-        {data.map(item => (
-          <li key={item}>
-            <Link to={`/detail/${item}?title=新闻`} state={{ phone: '13111111110' }}>{`新闻 -- ${item}`}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+// 导出这个类型，可以在引入组件中当做useRef的泛型参数useRef<TRef>(null)
+export interface TRef {
+  rules: string[]
 }
 
-export default About
-```
+const HyInput = (props: IProps, _ref: Ref<TRef>) => {
+  const { range, decimal } = props
+  const messageApi = useContext(context)
 
-- **/src/views/Detail/index.tsx**
+  const rules = []
 
-> 获取路由信息：`useParams`, `useSearchParams`, `useLocation`
-
-```tsx
-import React from 'react'
-import { useParams, useSearchParams, useLocation } from 'react-router-dom'
-
-const Detail = () => {
-  // 使用定义params的类型，在下面调用时会有提示
-  const params = useParams<{ id: string }>()
-  const [search] = useSearchParams()
-  const location = useLocation()
-
-  return (
-    <div>
-      <h3>详情页面</h3>
-      <div>动态路由参数：{params.id}</div>
-      <div>搜索参数：{search.get('title')}</div>
-      <div>state数据：{location.state.phone}</div>
-    </div>
-  )
-}
-
-export default Detail
-```
-
-- **/src/views/Home/index.tsx**
-
-> 声明式路由：`Link`
-
-```tsx
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-const Home = () => {
-  return (
-    <div>
-      <h3>首页页面</h3>
-      <hr />
-      <Link to="/about">关于</Link>
-    </div>
-  )
-}
-
-export default Home
-```
-
-### ts编写redux：
-
-- **/src/index.tsx**
-
-> 在上面路由例子的基础上扩充了reudx（增加了一个user组件用于编写redux范例）
-
-```tsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-
-import { BrowserRouter as Router } from 'react-router-dom'
-
-// redux
-import { Provider } from 'react-redux'
-import store from '@/store'
-
-ReactDOM
-.createRoot(document.getElementById('root') as HTMLElement)
-.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>
-)
-```
-
-- **/src/store/index.ts**
-
-> store入口文件
-
-```ts
-import { configureStore } from '@reduxjs/toolkit'
-import type { ThunkDispatch, Action, ThunkAction } from '@reduxjs/toolkit'
-// 把每个slice文件放在组件同级目录，方便操作
-import user from '@/views/User/userSlice'
-
-const store = configureStore({
-  reducer: {
-    user
-  }
-})
-
-// reduxjs/toolkit内置了thunk，因此它的dispatch方法可能是 Dispatch 或 ThunkDisptach 类型，因此我们必须把这两个类型统一下，然后使用统一的类型去给useDispatch定义dispatch的类型，否则在使用dispatch的时候可能会报错，因为它接收的是对象action类型，而不能接收函数action类型（redux-thunk赋予的能力）
-// 自动整合Dispatch或ThunkDisptach
-export type AppDispatchType = typeof store.dispatch
-
-// 得到redux中根的state类型（ReturnType是一个内置类型，用于获取函数返回值）
-export type RootStateType = ReturnType<typeof store.getState>
-
-// 定义thunkDispatch的类型，这个类型用于注解函数action中thunkDispatch的类型
-export type AppThunkDispatchType = ThunkDispatch<RootStateType, unknown, Action<string>>
-
-// 这个类型用于直接注解函数action，自然就会帮函数action中的thunkDispatch参数注解类型
-// 这里使用了一个泛型参数ReturnType，用于表示函数action的返回值，默认为void
-export type AppThunkActionType<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, Action<string>>
-
-export default store
-```
-
-- **/src/store/hooks.ts**
-
-> 重构 useDispatch 和 useSelector
-
-```ts
-import { useDispatch, useSelector } from 'react-redux'
-import type { TypedUseSelectorHook } from 'react-redux'
-import { AppDispatchType, RootStateType } from '.'
-
-// 使用泛型参数把useDispatch方法返回的dispatch进行注解，注解为在入口文件中定义的合并类型
-export const useAppDispatch = () => useDispatch<AppDispatchType>()
-// 使用内置泛型对useSelector进行注解，让他的返回值（state）变成根state的类型，这样我们写代码的时候就有提示了
-export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
-```
-
-- **/src/views/User/index.tsx**
-
-> 使用重构的useAppDispatch, useAppSelector
-
-```tsx
-import React, { useEffect } from 'react'
-import { setCount, fetchUser } from './userSlice'
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
-
-const User = () => {
-  const dispatch = useAppDispatch()
-  let count = useAppSelector(state => state.user.count)
-  let users = useAppSelector(state => state.user.users)
-
-  useEffect(() => {
-    dispatch(fetchUser())
+  useImperativeHandle(_ref, () => {
+    return { rules }
   })
 
   return (
-    <div>
-      <h3>用户列表 -- {count}</h3>
-      <button
-        onClick={() => {
-          dispatch(setCount(1))
-        }}
-      >
-        ++++
-      </button>
-      <hr />
-      <ul>
-        {users.map(item => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
-    </div>
+    <></>
   )
 }
 
-export default User
-```
-
-- **/src/views/User/typings.ts**
-
-> 定义网络请求返回数据的类型
-
-```ts
-// 用户类型
-export interface UserType {
-  id: number
-  name: string
-}
-
-// 网络请求返回的数据类型
-export interface DataType<T> {
-  code: number
-  msg: string
-  data: T
-}
-
-// state类型
-export interface IUserState {
-  count: number
-  users: UserType[]
-}
-```
-
-- /src/views/User/userSlice.ts
-
-> user的slice文件，定义user的action和reducer
-
-```ts
-import { createSlice } from "@reduxjs/toolkit";
-import type { Slice, PayloadAction } from "@reduxjs/toolkit";
-import type { IUserState, UserType, DataType } from "./typings";
-import type { AppThunkActionType, AppThunkDispatchType } from "@/store";
-
-// 限制state的数据类型，通过toolkit内置的泛型类型
-// const userSlice: Slice<IUserState> = createSlice({
-//   name: 'user',
-//   initialState: {
-//     count: 1
-//   },
-//   reducers: {}
-// })
-
-// 另外一种限制state中数据类型的方法，使用断言
-const userSlice = createSlice({
-  name: "user",
-  initialState: {
-    count: 1,
-    // 此数据通过网络请求得到
-    users: [],
-  } as IUserState,
-  reducers: {
-    // 通过toolkit内置的泛型类型注解action的类型，参数表示pyload的类型
-    setCount(state, action: PayloadAction<number>) {
-      state.count += action.payload;
-    },
-    setUsers(state, action: PayloadAction<UserType[]>) {
-      state.users = action.payload;
-    },
-  },
-});
-
-// 导出非异步的对象action
-export const { setCount, setUsers } = userSlice.actions;
-
-// 函数action中的dispatch的类型，有三种写法：
-// 写法一：着急时用时，先用any代替，让程序跑起来
-export const fetchUser = () => async (dispatch: any) => {
-   let ret: DataType<UserType[]> = await (await fetch('/api/users')).json()
-   dispatch(setUsers(ret.data))
-}
-
-// 写法二：推荐写法，直接注解dispatch的类型，使用我们在入口文件中定义的thunkDispatch类型
-export const fetchUser = () => async (dispatch: AppThunkDispatchType) => {
-   let ret: DataType<UserType[]> = await (await fetch('/api/users')).json()
-   dispatch(setUsers(ret.data))
-}
-
-// 写法三：使用toolkit提供的内置方法，直接注解函数action的类型
-export const fetchUser = (): AppThunkActionType => async (dispatch) => {
-  let ret: DataType<UserType[]> = await (await fetch("/api/users")).json();
-  dispatch(setUsers(ret.data));
-};
-
-export default userSlice.reducer;
+export default forwardRef<TRef, IProps>(HyInput)
 ```
 
 ### 其它类型
@@ -641,3 +221,40 @@ declare global {
 }
 ```
 
+#### DetailedHTMLProps
+
+> 继承这个类型就相当于可以让组件后接收原生标签可以接收的属性
+
+```tsx
+interface DINTextProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {
+  children?: React.ReactNode;
+  fontWeight?: 100 | 200 | 300 | 400;
+}
+
+const DINText = (props: DINTextProps) => {
+  const { className = [], fontWeight = 100 } = props;
+  const fontFamily = useMemo(() => {
+    const weightMap = {
+      100: "DINPro-Regular",
+      200: "DINPro-Medium",
+      300: "DINPro-Bold",
+      400: "DINPro-Black",
+    };
+    return weightMap[fontWeight];
+  }, [fontWeight]);
+
+  return (
+    <div
+      {...props}
+      className={classNames(styles.gDinproText, className)}
+      style={{ fontFamily, ...props.style }}
+    >
+      {props.children}
+    </div>
+  );
+};
+```

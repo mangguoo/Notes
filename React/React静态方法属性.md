@@ -6,9 +6,9 @@
 >
 > ```js
 > React.cloneElement(
->   element,
->   [config],
->   [...children]
+>     element,
+>     [config],
+>     [...children]
 > )
 > ```
 

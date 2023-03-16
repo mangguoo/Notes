@@ -353,3 +353,192 @@ export default persistReducer(rootPersistConfig, rootReducer)
 
 - **localStorage** `import storage from 'reduxjs-toolkit-persist/lib/storage'`
 - **sessionStorage** `import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'`
+
+## ts类型声明
+
+- **/src/index.tsx**
+
+> 在上面路由例子的基础上扩充了reudx（增加了一个user组件用于编写redux范例）
+
+```tsx
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import router from '@/routes'
+import { RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'reduxjs-toolkit-persist/integration/react'
+import store, { persistor } from '@/store'
+import './locale/i18next.config'
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
+)
+```
+
+- **/src/store/index.ts**
+
+> store入口文件
+
+```ts
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import type { ThunkDispatch, Action, ThunkAction, AnyAction, Reducer } from '@reduxjs/toolkit'
+import logger from 'redux-logger'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER
+} from 'reduxjs-toolkit-persist'
+import storage from 'reduxjs-toolkit-persist/lib/storage'
+import autoMergeLevel1 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1'
+import common from './slices/common'
+
+// * common reducer
+const commonPersistConfig = {
+  key: 'root',
+  storage,
+  // blacklist: []
+  // whitelist: []
+  stateReconciler: autoMergeLevel1
+}
+
+// 由于这里使用了持久化，reducer被持久化函数包裹返回后的return type变成了any
+// 所以这里对持久化后的reducer进行了显示注解，把它的return type赋回应该有的值(reducer返回一个完整的state)
+const commonReducer: Reducer<ReturnType<typeof common>, AnyAction> = persistReducer<
+  ReturnType<typeof common>,
+  AnyAction
+>(commonPersistConfig, common)
+
+// * other reducer
+// ... ...
+
+// * 合并reducer
+const reducer = combineReducers({
+  common: commonReducer
+})
+
+// * root reducer
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+  stateReconciler: autoMergeLevel1
+}
+
+const rootPersistedReducer: Reducer<ReturnType<typeof reducer>, AnyAction> = persistReducer<
+  ReturnType<typeof reducer>,
+  AnyAction
+>(rootPersistConfig, reducer)
+
+const store = configureStore({
+  reducer: rootPersistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        /* ignore persistance actions */
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    }).concat(logger)
+})
+
+// reduxjs/toolkit内置了thunk，因此它的dispatch方法可能是 Dispatch 和 ThunkDisptach 类型，因此我们必须把这两个类型统一下，然后使用统一的类型去给useDispatch定义dispatch的类型，否则在使用dispatch的时候可能会报错，因为它接收的是对象action类型，而不能接收函数action类型（redux-thunk赋予的能力）
+// 获取redux-toolkit中的store.dispatch的类型，稍后赋给react-redux的hook useDispatch
+export type AppDispatchType = typeof store.dispatch
+// 得到redux中根的state类型（ReturnType是一个内置类型，用于获取函数返回值）
+export type RootStateType = ReturnType<typeof store.getState>
+
+// 定义thunkDispatch的类型，这个类型用于注解函数action中thunkDispatch的类型
+export type AppThunkDispatchType = ThunkDispatch<RootStateType, unknown, Action<string>>
+// 这个类型用于直接注解函数action，自然就会帮函数action中的thunkDispatch参数注解类型
+// 这里使用了一个泛型参数ReturnType，用于表示函数action的返回值，默认为void
+export type AppThunkActionType<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, Action<string>>
+
+// 用于持久化
+export const persistor = persistStore(store)
+
+export default store
+```
+
+- **/src/store/hooks.ts**
+
+> 重构 useDispatch 和 useSelector
+
+```ts
+import { useDispatch, useSelector } from 'react-redux'
+import type { TypedUseSelectorHook } from 'react-redux'
+import { AppDispatchType, RootStateType } from '.'
+
+// 使用泛型参数把useDispatch方法返回的dispatch进行注解，注解为在入口文件中定义的合并类型
+export const useAppDispatch = () => useDispatch<AppDispatchType>()
+// 使用内置泛型对useSelector进行注解，让他的返回值（state）变成根state的类型，这样我们写代码的时候就有提示了
+export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
+```
+
+- **/src/store/slice/common.ts**
+
+> user的slice文件，定义user的action和reducer
+
+```ts
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import type { AppThunkActionType, AppThunkDispatchType } from '@/store'
+import * as Cookies from '@/utils/cookie'
+import * as httpSettings from '@/config/httpSettings'
+import NCommonSlice = global.NCommonSlice
+// import Router from '@/routes'
+
+const initialState: NCommonSlice.ICommonState = {
+  userInfo: {}, // 用户信息
+  roleAuth: {}, // 钱包权限
+  allocationRoleAuth: {}, // 配资权限
+  isLogin: false, // 登录状态
+  lan: 'en_US' // 当前语言
+}
+
+// 这里指定类型是为了让RootStateType更加具体，在写useSelector的时候有代码提示
+const commonSlice = createSlice({
+  name: 'common',
+  initialState,
+  reducers: {
+    logOut(state, action: PayloadAction<undefined>) {
+      state.isLogin = false
+      state.userInfo = {}
+    }
+  }
+})
+
+export const { logOut } = commonSlice.actions
+
+// 函数action中的dispatch的类型，有三种写法：
+// 写法一：着急时用时，先用any代替，让程序跑起来
+export const logOutAction = () => async (dispatch: any) => {
+   // logOut的参数会被传给reducer的action.payload: 
+   // {type: 'common/logOut', payload: undefined}
+   // 这里logOut的类型就是上面定义的PayloadAction<undefined>
+   dispatch(logOut())
+}
+
+// 写法二：推荐写法，直接注解dispatch的类型，使用我们在入口文件中定义的thunkDispatch类型
+export const logOutAction = () => async (dispatch: AppThunkDispatchType) => {
+   // ... ...
+}
+
+// 写法三：使用toolkit提供的内置方法，直接注解函数action的类型
+export const logOutAction = (): AppThunkActionType => async (dispatch) => {
+  // ... ...
+};
+
+export default commonSlice.reducer
+```
