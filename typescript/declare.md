@@ -20,9 +20,9 @@ console.log(lodash.join(["abc", "cba"]))
 
 ```html
 <script>
-    let whyName = "coderwhy"
-    let whyAge = 18
-    let whyHeight = 1.88
+    var whyName = "coderwhy"
+    var whyAge = 18
+    var whyHeight = 1.88
 
     function whyFoo() {
         console.log("whyFoo")
@@ -93,7 +93,7 @@ import ComponentA from './component/ComponentA.vue'
 
 ```html
 <script>
-    let obj = {
+    var obj = {
         name: "ilmango",
         age: 18,
         showMes: (message) => {
@@ -115,6 +115,26 @@ declare namespace obj {
 console.log(obj.name)
 console.log(obj.age)
 obj.showMes("aaa")
+```
+
+#### .d.ts
+
+> 在ts项目中，全局delclare声明的命名空间要通过如下方式进行导入，导入时并不需要写路径，因为.d.ts文件是会被tsc自动查找并编译的
+
+- `/src/types/a/b/c.d.ts`
+
+```ts
+declare namespace a.b.c {
+    export let name: string
+    export let age: number
+    export function showMes(message: string): void
+}
+```
+
+- `/src/main.ts`
+
+```ts
+import c = a.b.c
 ```
 
 ### 声明模板html文件中引入的第三方库：
