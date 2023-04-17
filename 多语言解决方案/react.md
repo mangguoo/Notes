@@ -82,6 +82,10 @@ export const defaultNS = 'ns1';
 //   en: {
 //     ns1,
 //     ns2,
+//   },
+//   zh: {
+//     ns1,
+//     ns2,
 //   }
 // };
 

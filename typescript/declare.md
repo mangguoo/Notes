@@ -14,7 +14,7 @@ import lodash from 'lodash'
 console.log(lodash.join(["abc", "cba"]))
 ```
 
-### 声明变量/函数/类：
+### 声明全局变量：
 
 > 在/index.html模板中写了一段script代码：
 
@@ -62,7 +62,37 @@ declare class Person {
 }
 ```
 
-### 声明文件：
+也可以使用下面这种方式来声明全局变量：
+
+```ts
+declare namespace globalThis {
+  export const BUILD_ENV: string
+}
+```
+
+### 为window添加属性
+
+如果不是在类型声明文件中进行声明，则必须要把`interface Window`放在`declare global`中才可以:
+
+```ts
+declare global {
+  interface Window {
+    // 为window添加属性
+    test: string;
+  }
+}
+```
+
+如果是在类型声明文件中进行声明，则可以直接进行声明：
+
+```ts
+interface Window {
+  // 为window添加属性
+  test: string;
+}
+```
+
+### 声明静态资源文件：
 
 > 在某些情况下，我们也可以声明文件：
 >
@@ -117,9 +147,16 @@ console.log(obj.age)
 obj.showMes("aaa")
 ```
 
-#### .d.ts
+### 类型声明文件
 
-> 在ts项目中，全局delclare声明的命名空间要通过如下方式进行导入，导入时并不需要写路径，因为.d.ts文件是会被tsc自动查找并编译的
+> 在ts项目中，全局`delclare`声明的命名空间要通过如下方式进行导入，导入时并不需要写路径，因为`.d.ts`文件是会被tsc自动查找并编译的
+>
+> 可以类型声明文件中给已有类型添加属性，它可以给js文件添加类型支持，但是使用他有几点注意事项：
+>
+> - 在类型声明文件中声明一个类型一定要用`declare`
+> - 如果你有此文件，则一定要在`tsconfig.json`文件中开启baseUrl配置，`baseUrl`要为 `./` 
+> - 在include中配置的路径都是以`baseUrl`为基准的，比如app.d.ts文件的路径为`./app.d.ts`
+> - 并要修改一下`tsconfig`中`include`的配置: `["src", "app.d.ts"]`（把类型声明文件加入到编译中）
 
 - `/src/types/a/b/c.d.ts`
 
@@ -137,11 +174,11 @@ declare namespace a.b.c {
 import c = a.b.c
 ```
 
-### 声明模板html文件中引入的第三方库：
+### 声明第三方库：
 
-> 比如我们在index.html中直接引入了jQuery，我们可以进行命名空间的声明。因为此库是通过<script>标记（而不是模块加载器ESModule）加载的，所以它的声明使用命名空间来定义其形状。
+> 比如我们在index.html中直接引入了jQuery，我们可以进行命名空间的声明。因为此库是通过`<script>`标记（而不是模块加载器ESModule）加载的，所以它的声明使用命名空间来定义其类型
 >
-> 可以看到jquery会在全局声明一个标识符\$来标识jquery，因此我们可以通过namespace来声明它。
+> 可以看到jquery会在全局声明一个标识符\$来标识jquery，因此我们可以通过namespace来声明它
 
 #### 声明jquery
 
@@ -162,8 +199,6 @@ $.ajax({
 
 #### 为Express.Response添加属性：
 
-> 声明文件，可以在此文件中给已有类型添加属性，它可以给js文件添加类型支持，在 .d.ts 文件中声明一个类型一定要用declare，如果你有此文件，则一定要在 tsconfig.json文件中开启 baseUrl 配置，baseUrl要为 ./ ，在include中配置的路径都是以baseUrl为基准的，比如app.d.ts文件的路径为 ./app.d.ts，并要修改一下 tsconfig中"include"的配置: ["src", "app.d.ts"]（把类型声明文件加入到编译中）
-
 ```ts
 // 由于这个文件中没有导入任何模块，所以这个文件中的类型是全局的(脚本模式)
 // 如果在模块中想要进行外参类型声明，可以使用declare global：
@@ -175,12 +210,6 @@ $.ajax({
 //   }
 // }
 
-declare global {
-  interface Window {
-    // 为window添加属性
-    test: string;
-  }
-}
 // 利用namespace会合并的特性，给Express添加属性
 declare namespace Express {
   // 由于我们这里是想给Express.Request添加属性，所以这里要用interface进行合并，而不是导出一个新的类型

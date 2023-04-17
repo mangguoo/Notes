@@ -141,40 +141,6 @@ const App = () => {
 export default App
 ```
 
-### forwardRef
-
-```tsx
-import React, { forwardRef, useImperativeHandle, type Ref } from 'react'
-import { Input, Form } from 'antd'
-
-interface IProps {
-  range: [number, number]
-  decimal: number
-}
-
-// 导出这个类型，可以在引入组件中当做useRef的泛型参数useRef<TRef>(null)
-export interface TRef {
-  rules: string[]
-}
-
-const HyInput = (props: IProps, _ref: Ref<TRef>) => {
-  const { range, decimal } = props
-  const messageApi = useContext(context)
-
-  const rules = []
-
-  useImperativeHandle(_ref, () => {
-    return { rules }
-  })
-
-  return (
-    <></>
-  )
-}
-
-export default forwardRef<TRef, IProps>(HyInput)
-```
-
 ### 其它类型
 
 #### ReactNode

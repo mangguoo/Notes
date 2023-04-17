@@ -70,7 +70,17 @@ div {
 
 ## sass变量
 
-> lighten是sass自带的运算颜色的函数，sass中自带了很多类似这样的函数
+> Sass变量的名字可以使用连字符和下划线
+>
+> 除了SassScript支持的数据类型之外，任何其他有效的CSS值都可以分配给变量。SassScript支持七种数据类型：
+>
+> - 数字
+> - 带引号和不带引号的字符串
+> - 颜色
+> - 布尔值
+> - 空值
+> - list
+> - map
 
 ```scss
 $fontSize: 12px;
@@ -80,6 +90,7 @@ body{
     margin:0;
 }
 .wrapper{
+    // lighten是sass自带的运算颜色的函数，sass中自带了很多类似这样的函数
     background:lighten($bgColor, 40%);
     .nav{
         font-size: $fontSize;
@@ -112,43 +123,209 @@ body {
 }
 ```
 
+### 变量的作用域
+
+> sass变量是有作用域的。定义在全局，则是全局变量，全局可用。定义在选择器内部，则是本地变量。本地变量只在嵌套的选择内部可用:
+
+```scss
+$primary:red;
+.link{
+  $primary green;
+  color:$primary;
+  &:hover{
+    color:$primary;
+  }
+}
+p{
+  color:$primary;
+}
+```
+
+```scss
+.link{
+  color:green;
+}
+.link:hover{
+  color:green;
+}
+p{
+  color:red;
+}
+```
+
+### 变量覆盖
+
+> 在同一个作用域定义同一个变量，变量被覆盖。术语叫重载
+
+```scss
+$primary:red;
+.link{
+  color:$primary
+}
+$primary:green;
+.other-link{
+  color:$primary;
+}
+```
+
+```scss
+.link{
+  color:red;
+}
+.other-link{
+  color:green;
+}
+```
+
+### !global关键字
+
+> !global关键字用来提升局部变量的权限，将局部变量提升到全局
+
+```scss
+$primary:red;
+.link{
+    $primary:green !global;
+    color:$primary;
+}
+.other-link{
+    color: $primary;
+}
+```
+
+```scss
+.link {
+  color: green; 
+}
+
+.other-link {
+  color: green; 
+}
+```
+
+### 变量运算
+
+> scss中定义的变量可以进入加减乘除以及模运算
+
+```scss
+$color1:blue;
+$color2:red;
+$distance:10px;
+.operations {
+    color: $color1 + $color2;
+    width: $distance * 100;
+    height: ($distance+10) * 5;
+    font-family: sans- +'serif';
+}
+```
+
+```scss
+.operations {
+  color: magenta;
+  width: 1000px;
+  height: 100px;
+  font-family: sans-serif; 
+}
+```
+
+### !default关键字
+
+> !default关键字用来定义默认属性，想要覆盖掉默认属性，我们只需要重新定义个相同的属性名。我们可以定义一些默认的变量，然后通过@import指令导入进来，从而让代码的重用行变得更好
+
+```scss
+$color:red;
+$color:green !default;
+
+.green{
+    color: $color;
+}
+```
+
+```scss
+.green {
+  color: red; 
+}
+```
+
 ## sass mixin
 
 > sass的mixin函数的定义方式与less有所不同，在sass中，必须通过@mixin的方式显式定义mixin函数。
 > 除了定义方式，调用方式也不同，在sass中，mixin函数必须以@include语法来调用mixin函数。
 
 ```scss
-$fontSize: 12px;
 $bgColor: red;
-@mixin boxA{
+@mixin boxBase{
     color:green;
 }
-@mixin boxB($fontSize){
-    font-size: $fontSize;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.box1{
-    @include boxB($fontSize + 3px);
-    line-height: 2em;
-}
-.box2{
+.box {
     @include boxA();
     line-height: 3em;
 }
 ```
 
 ```css
-.box1 {
+.box {
+  color: green;
+  line-height: 3em; 
+}
+```
+
+### mixin传值
+
+```scss
+$fontSize: 12px;
+@mixin boxBase($fontSize){
+    font-size: $fontSize;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.box{
+    @include boxBase($fontSize + 3px);
+    line-height: 2em;
+}
+```
+
+```scss
+.box {
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
   line-height: 2em; 
 }
+```
 
-.box2 {
-  color: green;
-  line-height: 3em; 
+### @content的使用
+
+```scss
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+```
+
+```scss
+.container {
+  @include mobile {
+    display: none;
+  }
+  @include tablet {
+    display: none;
+  }
+  @include desktop {
+    display: flex;
+  }
 }
 ```
 
@@ -199,6 +376,26 @@ $bgColor: red;
 }
 .wrapper .content:hover {
   background: red; 
+}
+```
+
+## sass function
+
+> @function指令创建的函数不会生成到编译后的css文件中，它只是返回一个值，下面是一个px转rem做个例子
+
+```scss
+$browser-context:16;
+@function px_to_rem($pixels,$context:$browser-context){
+    @return ($pixels/$browser-context)*1rem;
+}
+h1{
+    font-size: px_to_rem(20);
+}
+```
+
+```scss
+h1 {
+  font-size: 1.25rem; 
 }
 ```
 
@@ -290,6 +487,25 @@ $fontSize: 14px;
 .module .tips {
   font-size: 14px;
   color: #ccccff;
+}
+```
+
+## 插值语法
+
+> scss中的插值语法与js中的概念大致相同，无非是写法略有不同
+
+```scss
+$name:class;
+$direction:left;
+$units:px;
+.#{name}{
+  margin-#{$direction}:20#{units};
+}
+```
+
+```scss
+.class {
+  margin-left: 20px; 
 }
 ```
 
@@ -656,5 +872,92 @@ export default memo(Button)
    } 
 }
 
+```
+
+# .module.scss下的特殊标识
+
+## :global
+
+> 在React项目中，样式语言无论是用scss或less，如果想让样式仅作用在某个组件，而不影响全局，一般都会把样式文件进行模块化，即打包后每个class名都会被自动加上一串唯一的序列号
+>
+> 假如 **想让某个class不加序列号，可以作用到其他组件，那么就写到 :global { ... } 中即可**
+
+```scss
+.main {
+  width: 100px;
+  :global {
+    .ant-popover-title{
+        color: red;
+    }
+  }
+}
+```
+
+```css
+.main__3D0Xe{ width: 100px; }
+ 
+.main__3D0Xe .ant-popover-title{
+    color: red;
+}
+```
+
+可以看到，**main后面自动追加了一串唯一的序列号，而ant-popover-title则没有**，这样在main元素中其他任何组件，只要用到ant-popover-title这个class，字体都会变成红色
+
+## :export
+
+> :export用于在.module.scss文件中导出公共变量
+
+- **theme.scss**
+
+```scss
+$menuText:#bfcbd9;
+$menuActiveText:#409EFF;
+$subMenuActiveText:#f4f4f5;
+```
+
+如果这些变量是定义在.scss文件中，那么它可以直接被.scss或者.module.scss文件导入并使用：
+
+- **global.scss**
+
+```scss
+@import theme.scss
+ 
+body {
+	color: $menuText;
+}
+```
+
+而如果这些变量是定义在.module.scss文件中的，则这些变量必须使用:export关键字导出后，才能在其它地方引用它们：
+
+- **theme.module.scss**
+
+```scss
+$menuText:#bfcbd9;
+$menuActiveText:#409EFF;
+$subMenuActiveText:#f4f4f5;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+}
+```
+
+- **global.scss**
+
+```scss
+@import theme.module.scss
+ 
+body {
+	color: $menuText;
+}
+```
+
+- **index.js**
+
+```js
+import style from 'theme.module.scss'
+
+console.log(style.menuText)
 ```
 

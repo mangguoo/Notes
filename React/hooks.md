@@ -1,4 +1,4 @@
-> ​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   在 React 的世界中，有容器组件和 UI 组件之分，在 React Hooks 出现之前，UI 组件我们可以使用函数组件，无状态组件来展示 UI，而对于容器组件，函数组件就显得无能为力，我们依赖于类组件来获取数据，处理数据，并向下传递参数给 UI 组件进行渲染。React在**v16.8** 的版本中推出了 React Hooks 新特性，Hook是**一套工具函数的集合**,它增强了函数组件的功能，**hook不等于函数组件，所有的hook函数都是以use开头。**
+> 在 React 的世界中，有容器组件和 UI 组件之分，在 React Hooks 出现之前，UI 组件我们可以使用函数组件，无状态组件来展示 UI，而对于容器组件，函数组件就显得无能为力，我们依赖于类组件来获取数据，处理数据，并向下传递参数给 UI 组件进行渲染。React在**v16.8** 的版本中推出了 React Hooks 新特性，Hook是**一套工具函数的集合**,它增强了函数组件的功能，**hook不等于函数组件，所有的hook函数都是以use开头。**
 >
 > 使用 React Hooks 相比于从前的类组件有以下几点好处：
 >
@@ -143,6 +143,92 @@ const useInput = (initialValue = '') => {
 }
 
 export default useInput
+```
+
+**使用useState获取dom:**
+
+> 通常情况下，我们获取dom的方式是通过useRef，用它获取dom的优势在于useRef不会每次重新渲染都重新获取实例。但是他也有缺点，那就是useRef的值在更新后不会触发更新，因此想要将useRef获取到的元素实例用于传递给其它hook做为参数就变得不可能了。这里就可以使用useState来获取：
+
+```tsx
+import React, { type ReactNode, useState } from 'react'
+import { usePopper } from 'react-popper'
+import styles from './Popper.module.scss'
+import ReactDOM from 'react-dom'
+import { BrowserView, MobileView } from 'react-device-detect'
+import { Alert } from '@/components/common/Alert'
+import { type Placement } from '@popperjs/core/lib/enums'
+
+interface PopperProps {
+  children: ReactNode | string
+  content: string | ReactNode
+  placement?: Placement
+}
+const Popper = (props: PopperProps) => {
+  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null)
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null)
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null)
+  const { styles: popperStyles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: props.placement,
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10]
+        }
+      }
+    ]
+  })
+
+  const [visible, setVisible] = useState(true)
+
+  const handleOpenTip = () => {
+    Alert({
+      content: props.content,
+      hasCancel: false
+    })
+  }
+
+  return (
+    <>
+      <BrowserView>
+        <div
+          ref={setReferenceElement}
+          onMouseLeave={() => {
+            setVisible(true)
+          }}
+          onMouseEnter={() => {
+            setVisible(false)
+          }}
+          className={styles.popperButton}
+        >
+          {props.children}
+        </div>
+        {ReactDOM.createPortal(
+          <div
+            ref={setPopperElement}
+            style={popperStyles.popper}
+            {...attributes.popper}
+            className={styles.popperContent}
+            data-popper-reference-hidden={visible}
+          >
+            {props.content}
+            <div ref={setArrowElement} style={popperStyles.arrow} className={styles.popperArrow} />
+          </div>,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          document.querySelector('#root')!
+        )}
+      </BrowserView>
+      <MobileView>
+        <div className={styles.popperButton} onClick={handleOpenTip}>
+          {props.children}
+        </div>
+      </MobileView>
+    </>
+  )
+}
+
+export default Popper
 ```
 
 ### useEffect：
@@ -772,6 +858,56 @@ const App = () => {
 }
 
 export default App
+```
+
+- **ts类型**
+
+```tsx
+import React, { forwardRef, useImperativeHandle, type ForwardedRef } from 'react'
+import { Input, Form } from 'antd'
+
+interface IProps {
+  range: [number, number]
+  decimal: number
+}
+
+// 导出这个类型，可以在引入组件中当做useRef的泛型参数useRef<TRef>(null)
+export interface TRef {
+  rules: string[]
+}
+
+const HyInput = (props: IProps, _ref: ForwardedRef<TRef>) => {
+  const { range, decimal } = props
+  const messageApi = useContext(context)
+  const rules = []
+
+  useImperativeHandle(_ref, () => {
+    return { rules }WalletEditListRef
+  })
+
+  return <></>
+}
+
+export default forwardRef<TRef, IProps>(HyInput)
+```
+
+- 将ref绑定在指定元素上
+
+```tsx
+import React, { forwardRef } from 'react'
+
+const CurrentItem = (
+  props: IProps,
+  ref: React.LegacyRef<HTMLDivElement> | undefined
+) => {
+  return (
+    <div {...props} ref={ref}>
+      ... ...
+    </div>
+  )
+}
+
+const CurrentItemRef = forwardRef(CurrentItem)
 ```
 
 ### useImperativeHandle

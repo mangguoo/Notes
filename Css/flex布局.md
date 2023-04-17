@@ -212,7 +212,7 @@ gap: row-gap column-gap;
 
 ### flex-basis属性
 
-> **默认auto，用于设置项目宽度，默认auto时，项目会保持默认宽度，或者以width为自身的宽度，但如果设置了flex-basis，权重会width属性高，因此会覆盖widtn属性**
+> **默认auto，用于设置项目宽度，默认auto时，项目会保持默认宽度，或者以width为自身的宽度，但如果设置了flex-basis，权重会比width属性高，因此会覆盖widtn属性**
 
 ### flex属性
 
