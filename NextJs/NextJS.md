@@ -3,9 +3,9 @@
 ## 创建Next.js项目
 
 ```shell
-npm install create-next-app -g
-create-next-app next-app
-npm run dev
+$ npm install create-next-app -g
+$ create-next-app next-app
+$ npm run dev
 ```
 
 Next.js官方脚手架初始目录结构如下：
@@ -190,7 +190,7 @@ export default function Document() {
 
 \_document.js也是Next.js的指定文件名，且必须在pages目录下才可生效。那既然\_document.js可以设置<head>的内容，那为什么<title>却在_app.js中设置呢？
 
-这是因为\_document.js只会在初始时进行预渲染，因此可能会导致标题无法正常显示。因此官方不建议把<title>放到\_document.js中。如果你在\_document.js中的<head>里设置了<title>，在build的时候会收到warning。
+这是因为\_document.js只会在初始时进行预渲染，因此可能会导致标题无法正常显示。因此官方不建议把<title>放到\_document.js中。如果你在\_document.js中的<head>里设置了<title>，在build的时候会收到warning
 
 > 注意：在项目启动后，打开浏览器devTool，会发现_document.js文件中设置的模板并没有生效，这是因为这些内容只有在build后才会生效，dev模式中是看不到刚刚设置的内容的
 
@@ -205,8 +205,111 @@ export default function Document() {
 yarn start默认是运行在3000端口，如果想运行在其它端口，可以执行以下命令：
 
 ```bash
-npm run start -p 4000
+$ npm run start -p 4000
 ```
+
+### 配置webpack
+
+```js
+module.exports = {
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  ) => {
+    config.module.rules.push({
+      test: /\.mdx/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+          options: pluginOptions.options,
+        },
+      ],
+    })
+    return config
+  },
+}
+```
+
+### 配置代理
+
+> rewrite选项允许我们将传入请求路径映射到不同的目标路径。rewrite可以用作URL代理，并且可以屏蔽目标路径，看起来好像没有更改url。相反的，redirect将会把路由重定向到另一个路由，并显示 URL 更改。要使用rewrite，可以使用next.config.js中的rewrite key，rewrite允许我们将传入请求路径映射到不同的目标路径
+
+```js
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/about',
+        destination: '/',
+      },
+    ]
+  },
+}
+```
+
+### 使用CLI命令自定义输出目录
+
+如果我们的项目是一个比较通用的项目，希望通过CLI命令，根据需要动态生成不同的目录和basePath，那就不能把basePath写死在next.config.js里了
+
+这种场景适合于自动化部署，即：根据传递过来的目录名参数，动态生成静态化目录
+
+- 先安装cross-env这个插件，用来统一跨平台的环境变量写法：
+
+```bash
+npm instal cross-env --dev
+```
+
+- 如果是Windows系统，在package.json中添加customBuild脚本：
+
+```json
+"scripts": {
+  "dev": "next dev",
+  "build": "cross-env BASE_PATH=/test next build && next export",
+  "start": "next start",
+  "lint": "next lint",
+  "customBuild": "cross-env BASE_PATH=%npm_config_base% next build && next export -o %npm_config_out%"
+}
+```
+
+- 如果是MacOS或者Linux，刚才的命令行传参需要这种格式进行调整：
+
+```json
+{
+  "customBuild": "cross-env BASE_PATH=$npm_config_base next build && next export -o $npm_config_out"
+}
+```
+
+- 修改next.config.js：
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
+  },
+}
+
+if (process.env.BASE_PATH) {
+  nextConfig.basePath = process.env.BASE_PATH
+} else {
+  nextConfig.basePath = process.env.NODE_ENV === 'development' ? '' : '/app'
+}
+
+module.exports = nextConfig
+```
+
+- 然后执行下面的指令：
+
+```bash
+npm run customBuild --base=/diy --out=diy
+```
+
+完成之后就可以发现生成了diy的输出目录，basePath也变成了diy。通过这种方式，可以结合系统脚本，实现自动化部署
 
 ## css预处理及使用
 
@@ -220,30 +323,12 @@ npm install sass --dev
 
 安装后，即可正常使用Sass/Scss。受益于Next.js对Sass/Scss的友好支持，强烈建议在Next.js使用Sass/Scss
 
-### 样式命名规范
-
-合理的样式命名规范对项目开发有很大的帮助，主要体现在以下方面：
-
-1. 避免因样式名重复导致的污染
-
-2. 从命名上可直观区分“组件样式”、“页面样式”（用于给在此页面的组件样式做定制调整）、“全局样式”
-
-3. 快速定位模块，便于查找问题
-
-> 命名规范示例：
->
-> - **G-xx：** 表示全局样式，用来定义公用样式
->
-> - **P-xx:** 表示页面样式，用来设置页面的背景色、尺寸、定制化调整在此页面的组件样式
->
-> - **M-xx:** 表示组件样式，专注组件本身样式
-
 ### **配置全局样式**
 
 - common/styles/reset.css
 
 ```css
-    ...（略）
+...（略）
 ```
 
 - common/styles/global.scss
@@ -267,10 +352,10 @@ body {
 ```jsx
 import Head from 'next/head'
 import '@/common/styles/frame.scss'
-    ...（略）
+...（略）
 ```
 
-### **配置页面（pages）样式**
+### **配置页面样式**
 
 > 要特别注意的一点，在Next.js项目中，组件的代码中是无法引入全局样式的。对于组件自身的样式，只能使用CSS Module来引用，即文件名为"xxx.module.scss"。否则会报错如下：`Global CSS cannot be imported from files other than your Custom <App>. Due to the Global nature of stylesheets, and to avoid conflicts, Please move all first-party global CSS imports to pages/_app.js. Or convert the import to Component-Level CSS (CSS Modules).`
 
@@ -314,47 +399,6 @@ export default Index
 ```
 
 由于使用CSS Module的方式加载样式，因此在生成的HTML中，className会自动加上随机字符串后缀，对应的css也会自动添加相应的字符串。正因为CSS Module这个机制，同名样式互相污染的问题也就不存在了
-
-### 配置webpack
-
-```js
-module.exports = {
-  webpack: (
-    config,
-    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
-  ) => {
-    config.module.rules.push({
-      test: /\.mdx/,
-      use: [
-        options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-          options: pluginOptions.options,
-        },
-      ],
-    })
-    return config
-  },
-}
-```
-
-### 配置代理
-
-> rewrite选项允许我们将传入请求路径映射到不同的目标路径。rewrite可以用作URL代理，并且可以屏蔽目标路径，看起来好像没有更改url。相反的，redirect将会把路由重定向到另一个路由，并显示 URL 更改。要使用rewrite，可以使用next.config.js中的rewrite key，rewrite允许我们将传入请求路径映射到不同的目标路径
->
-
-```js
-module.exports = {
-  async rewrites() {
-    return [
-      {
-        source: '/about',
-        destination: '/',
-      },
-    ]
-  },
-}
-```
 
 ## 页面路由
 
@@ -407,7 +451,7 @@ module.exports = nextConfig
 
 **方法二：通过组件引入**
 
-了同时兼容dev、SSR、SSG模式，可以不依赖于next.config.js。直接采用最朴素的方式，新建一个页面并引入这个“首页”即可
+为了同时兼容dev、SSR、SSG模式，可以不依赖于next.config.js。直接采用最朴素的方式，新建一个页面并引入这个“首页”即可
 
 - pages/index.js
 
@@ -543,7 +587,7 @@ export default function Custom404() {
 
 **500页面**
 
-> 服务器呈现每次访问的错误页面会增加响应错误的复杂性。为了帮助用户尽快得到对错误的响应，Next.js 默认提供了一个静态500页面，而不需要添加任何其他文件
+> 服务器渲染每次访问的错误页面会增加响应错误的复杂性。为了帮助用户尽快得到对错误的响应，Next.js 默认提供了一个静态500页面，而不需要添加任何其他文件
 
 - pages/500.js
 
@@ -555,7 +599,7 @@ export default function Custom500() {
 
 **定制错误页面**
 
-> 在next中，错误由 Error 组件在客户端和服务器端处理。如果希望覆盖它，那么定义文件pages/_error.js并添加以下代码:
+> 在next中，错误由Error组件在客户端和服务器端处理。如果希望覆盖它，那么定义文件pages/_error.js并添加以下代码:
 
 - pages/_error.js
 
@@ -582,7 +626,6 @@ export default Error
 
 > Next.js项目内的页面跳转使用<Link>，不要使用<a>，如果是项目外部链接，则使用<a>
 >
-> 由于导航栏可能在多个页面中都会使用，因此定义为全局组件
 
 - **/components/nav/index.js**
 
@@ -687,7 +730,9 @@ export default Index
 
 但是，使用<img>，在执行yarn build静态化的时候，会报warning：
 
-> Warning: Do not use `<img>` element. Use `<Image />` from `next/image` instead. See: https://nextjs.org/docs/messages/no-img-element @next/next/no-img-element
+```error
+Warning: Do not use `<img>` element. Use `<Image />` from `next/image` instead. See: https://nextjs.org/docs/messages/no-img-element @next/next/no-img-element
+```
 
 ### **使用next/image引用图片**
 
@@ -798,49 +843,21 @@ module.exports = nextConfig
 
    这是以访问http://127.0.0.1/app/为例，可以看到页面正常显示了，静态资源引用的地址也改为了以"/app"开头的绝对路径，因此可以正常加载
 
-**注意：**进行以上设置后，SSR和SSG环境的网站访问路径都会多加了app这一级
-
-- dev模式，home页面地址为http://localhost:3000
-
-- SSR模式，home页面地址为http://localhost:3000/app/
-
-- SSG模式，home页面地址为http://localhost:3000
-
 ### **设置SSG export输出的目录名称**
 
 Next.js执行export命令默认输出的目录名称是out。当然可以自定义修改。只需为执行命令添加参数"-o 目录名称"即可。以输出目录名为app为例：
 
-```
+```shell
 npm run build -o app
 ```
 
 执行这个就相当于执行：
 
-```
+```shell
 npx next build && npx next export -o app
 ```
 
 ## 接口请求
-
-### **CSR/SSR/SSG**
-
-在Next.js项目中，API请求有三种方式。但是根据项目的部署方式，最多可以同时有两种，即：
-
-1. CSR+SSR
-
-2. CSR+SSG
-
-CSR的API请求，就是常规前端项目中的请求方式，即：由客户端浏览器发起请求，拿到数据后再渲染到页面
-
-SSR的API请求，是由服务端（Next.js的Node.js）发起请求，拿到数据后，组装到HTML里，然后把组装好的HTML返回给客户端浏览器
-
-SSG的API请求，与SSR的API请求类似，也是由服务器发起请求并把数据组装到HTML里，然后进行静态化输出。但由于是完全静态化的，所以当API数据发送变化的时候，必须重新静态化才能更新页面
-
-|          | **CSR **     | **SSR**       | **SSG**       |
-| -------- | ------------ | ------------- | ------------- |
-| 发起请求 | 客户端浏览器 | 服务端Node.js | 服务端Node.js |
-| 组装HTML | 客户端浏览器 | 服务端Node.js | 服务端Node.js |
-| 接口数据 | 实时更新     | 实时更新      | 需重新静态化  |
 
 ### getStaticProps
 
@@ -1380,7 +1397,7 @@ export default function handler(req, res) {
 
 ## 动态导入
 
-> Next.js支持使用`import()`延迟加载外部库，同时也支持使用`next/dynamic`延迟加载React组件。延迟加载可以减少渲染页面所需的 JavaScript数量来帮助提高初始加载性能
+> Next.js支持使用`import()`延迟加载外部库，同时也支持使用`next/dynamic`延迟加载React组件。延迟加载可以减少渲染页面所需的JavaScript数量来帮助提高初始加载性能
 >
 > `next/dynamic`其实就是`React.lazy`和`Suspense`的复合扩展
 
@@ -1460,319 +1477,512 @@ export default function Page() {
 }
 ```
 
-## 使用CLI命令自定义输出目录
+## next-redux-wrapper
 
-如果我们的项目是一个比较通用的项目，希望通过CLI命令，根据需要动态生成不同的目录和basePath，那就不能把basePath写死在next.config.js里了
-
-这种场景适合于自动化部署，即：根据传递过来的目录名参数，动态生成静态化目录
-
-- 先安装cross-env这个插件，用来统一跨平台的环境变量写法：
-
-```bash
-npm instal cross-env --dev
-```
-
-- 如果是Windows系统，在package.json中添加customBuild脚本：
-
-```json
-"scripts": {
-  "dev": "next dev",
-  "build": "cross-env BASE_PATH=/test next build && next export",
-  "start": "next start",
-  "lint": "next lint",
-  "customBuild": "cross-env BASE_PATH=%npm_config_base% next build && next export -o %npm_config_out%"
-}
-```
-
-- 如果是MacOS或者Linux，刚才的命令行传参需要这种格式进行调整：
-
-```json
-{
-  "customBuild": "cross-env BASE_PATH=$npm_config_base next build && next export -o $npm_config_out"
-}
-```
-
-- 修改next.config.js：
-
-```js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    images: {
-      unoptimized: true,
-    },
-  },
-}
-
-if (process.env.BASE_PATH) {
-  nextConfig.basePath = process.env.BASE_PATH
-} else {
-  nextConfig.basePath = process.env.NODE_ENV === 'development' ? '' : '/app'
-}
-
-module.exports = nextConfig
-```
-
-- 然后执行下面的指令：
-
-```bash
-npm run customBuild --base=/diy --out=diy
-```
-
-完成之后就可以发现生成了diy的输出目录，basePath也变成了diy。通过这种方式，可以结合系统脚本，实现自动化部署
-
-## redux
-
-- **store/counter/action.js**
-
-```js
-export const counterActionTypes = {
-  INCREMENT: "INCREMENT",
-};
-
-export const incrementCounter = () => {
-  return { type: counterActionTypes.INCREMENT };
-};
-```
-
-- **store/counter/reducer.js**
-
-```js
-import { counterActionTypes } from "./action";
-
-const counterInitialState = {
-  count: 0,
-};
-
-export default function reducer(state = counterInitialState, action) {
-  switch (action.type) {
-    case counterActionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    default:
-      return state;
-  }
-}
-```
-
-- **store/users/action.js**
-
-```js
-export const usersActionTypes = {
-  ADD_USER: "ADD_USER",
-};
-
-export const addUser = (newUser) => {
-  return { type: usersActionTypes.ADD_USER, user: newUser };
-};
-```
-
-- **store/users/reducer.js**
-
-```js
-import { usersActionTypes } from "./action";
-
-const usersInitialState = {
-  users: ["John Doe", "Mary Jane"]
-};
-
-export default function reducer(state = usersInitialState, action) {
-  switch (action.type) {
-    case usersActionTypes.ADD_USER: {
-        return { ...state, users: [...state.users, action.user] };
-      }
-    default:
-      return state;
-  }
-}
-```
-
-- **store/store.js**
-
-> next-redux-wrapper这个库帮我们做的事情就是，把在SSR期间(getServerSideProps)的dispatch结果合并到客户端redux存储中(通过派发一个叫HYDRATE的动作)，但不会将客户端存储状态同步到服务器redux存储
+> 在next中使用redux非常简单，只需要创建一个Store，并提供给所有页面，但是，涉及ssr渲染时，事情就会变得很麻烦
 >
-> 还有就是通过工厂模式(initStore)的方式来生成store，这样可以防止用户之间访问数据的冲突
+> 因为在getStaticProps或者getServerSideProps函数中都有可能去提交redux状态，但是这些动作是在服务端中完成的，操作的store是服务端中的store，要如果把的state同步到客户端呢？
+>
+> 这是Next-redux-wrapper派上用场的地方：我们只需要提供一个创建store的工厂函数，它会自动为我们创建store实例，并且保证服务端和客户端的store实例保持同步
 
-```js
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { HYDRATE, createWrapper } from 'next-redux-wrapper'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import users from './users/reducer'
-import counter from './counter/reducer'
+### 安装
 
-const combinedReducer = combineReducers({
-  counter,
-  users,
-})
+```shell
+# next-redux-wrapper依赖于react-redux
+$ npm install next-redux-wrapper react-redux --save
+```
 
-const masterReducer = (state, action) => {
+### 使用
+
+#### reducer
+
+Reducer必须有HYDRATE动作处理程序。HYDRATE动作处理程序必须在现有state之上正确的进行水合
+
+```ts
+// store.ts
+import {createStore, AnyAction, Store} from 'redux';
+import {createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
+
+export interface State {
+  tick: string;
+}
+
+const reducer = (state: State = {tick: 'init'}, action: AnyAction) => {
+  switch (action.type) {
+    case HYDRATE:
+      return {...state, ...action.payload};
+    case 'TICK':
+      return {...state, tick: action.payload};
+    default:
+      return state;
+  }
+};
+
+const makeStore = (context: Context) => createStore(reducer);
+
+export const wrapper = createWrapper<Store<State>>(makeStore, {debug: true});
+```
+
+#### wrapper.useWrappedStore
+
+使用hook写法在_app组件中对所有的页面进行包裹
+
+```ts
+import React, {FC} from 'react';
+import {Provider} from 'react-redux';
+import {AppProps} from 'next/app';
+import {wrapper} from '../components/store';
+
+const MyApp: FC<AppProps> = ({Component, ...rest}) => {
+  const {store, props} = wrapper.useWrappedStore(rest);
+  return (
+    <Provider store={store}>
+      <Component {...props.pageProps} />
+    </Provider>
+  );
+};
+```
+
+#### 水合中的冲突
+
+当用户打开包含getStaticProps或getServerSideProps的页面时，HYDRATE动作将被调度。这个动作发生在初始页面加载和常规页面导航时。此的payload包含静态生成或服务器端渲染时的状态，因此reducer必须正确地将其与现有客户端state合并
+
+下面的例子中，之所以要判断state.count，是为了防止多个页面在服务端渲染时对count的值进行了理性，而导致我们在切换这些页面时重置count的值
+
+```ts
+const reducer = (state, action) => {
   if (action.type === HYDRATE) {
     const nextState = {
       ...state,
-      counter: {
-        count: state.counter.count + action.payload.counter.count
-      },
-      users: {
-        users: [...new Set([...action.payload.users.users, ...state.users.users])]
-      }
-    }
-    return nextState
-  }
-  else {
+      ...action.payload,
+    };
+    // 在进行客户端导航时保存count值
+    if (state.count) nextState.count = state.count;
+    return nextState;
+  } else {
     return combinedReducer(state, action);
   }
-}
-
-const initStore = () => {
-  return createStore(masterReducer, composeWithDevTools(
-    applyMiddleware()
-  ))
-}
-
-export const wrapper = createWrapper(initStore)
-```
-
-- **pages/_app.js**
-
-```js
-import { wrapper } from '../store/store'
-
-const App = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />
-}
-
-export default wrapper.withRedux(App)
-```
-
-- **pages/index.js**
-
-> 每当用户打开`getStaticProps`的页面时，`HYDRATE`操作将被调度。此操作的`payload`包含页面静态生成时`state`，但是客户端没有这些`state`，因此我们必须将其与现有的客户端`state`正确合并
-
-```js
-import Page from '../components/Page'
-import { incrementCounter } from '../store/counter/action'
-import { wrapper } from '../store/store'
-
-const Index = (props) => {
-  return <Page title="Index Page" linkTo="/other" />
-}
-
-export const getStaticProps = wrapper.getStaticProps((store) => () => {
-  store.dispatch(incrementCounter())
-})
-
-export default Index
-```
-
-- **pages/other.js**
-
-> 每当用户打开`getServerSideProps`的页面时，`HYDRATE`操作将被调度。此操作的`payload`包含ssr时的`state`，而客户端不会收到这些`state`，因此我们必须将其与现有的客户端`state`正确合并
-
-```js
-import Page from "../components/Page";
-import { wrapper } from "../store/store";
-import { incrementCounter } from "../store/counter/action";
-import { addUser } from '../store/users/action';
-
-const Other = (props) => {
-  return <Page title="Other Page" linkTo="/" />;
 };
+```
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
-  store.dispatch(incrementCounter());
-  
-  const response = await fetch(`https://reqres.in/api/users/${Math.floor(Math.random() * (10) + 1)}`);
-  const {data} = await response.json();
-  store.dispatch(addUser(`${data.first_name} ${data.last_name}`))
+#### 自定义序列化与反序列化
+
+> 如果在state中存储Immutable.JS或JSON对象等复杂类型，定制的序列化和反序列化处理程序有助于在服务器上序列化redux状态并在客户机上再次反序列化。要做到这一点，可以提供seralizeState和defializeState作为createWrapper的参数
+
+```ts
+const {serialize, deserialize} = require('json-immutable');
+
+createWrapper(makeStore, {
+  serializeState: state => serialize(state),
+  deserializeState: state => deserialize(state),
+  debug: true
+});
+```
+
+```ts
+const {fromJS} = require('immutable');
+
+createWrapper(makeStore, {
+  serializeState: state => state.toJS(),
+  deserializeState: state => fromJS(state),
+  debug: true
+});
+```
+
+#### getStaticProps
+
+```ts
+import React from 'react';
+import {NextPage} from 'next';
+import {useSelector} from 'react-redux';
+import {wrapper, State} from '../store';
+
+export const getStaticProps = wrapper.getStaticProps(store => ({preview}) => {
+  store.dispatch({
+    type: 'TICK',
+    payload: 'was set in other page ' + preview,
+  });
 });
 
-export default Other;
-```
-
-- **components/Page.js**
-
-```js
-import Link from "next/link";
-import Users from "./Users";
-import AddCount from "./IncrementCounter";
-
-const Page = (props) => {
-  return (
-    <div>
-      <h1 style={{backgroundColor: "#ddd"}}>{props.title}</h1>
-      <Users/>
-      <AddCount />
-      <br/>
-      <nav>
-        <Link href={props.linkTo}>
-          <a>Navigate</a>
-        </Link>
-      </nav>
-    </div>
-  );
+const Page: NextPage = () => {
+  const {tick} = useSelector<State, State>(state => state);
+  return <div>{tick}</div>;
 };
 
 export default Page;
 ```
 
-- **components/IncrementCounter.js**
+#### getServerSideProps
 
-```js
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+```ts
+import React from 'react';
+import {NextPage} from 'next';
+import {connect} from 'react-redux';
+import {wrapper, State} from '../store';
 
-const IncrementCounter = () => {
-  const dispatch = useDispatch()
-  const counter = useSelector((state) => state.counter.count)
+export const getServerSideProps = wrapper.getServerSideProps(store => ({req, res, ...etc}) => {
+  store.dispatch({type: 'TICK', payload: 'was set in other page'});
+});
+
+const Page: NextPage<State> = ({tick}) => <div>{tick}</div>;
+
+export default connect((state: State) => state)(Page);
+```
+
+### 工作原理
+
+**第一阶段:** getInitialProps/getStaticProps/getServerSideProps
+
+- wrapper创建一个初始状态为空的服务器端store(使用makStore)。同时还提供了Request和Response对象作为makStore的选项
+
+- wrapper调用Page的getXXXProps函数并传递之前创建的store
+
+- 获取从Page的getXXXProps方法返回的props以及store的状态
+
+**第二阶段:** ssr
+
+- wrapper使用makeStore创建一个新的store
+
+- wrapper将之前store的state作为payload分派HYDRATE动作
+
+- 该store提供给_app或page组件
+
+- 连接的组件可以改变store的state，但是修改后的state不会传输到客户端
+
+**第三阶段:** 客户端
+
+- wrapper创建一个新store
+
+- wrapper将第1阶段的state作为payload发送HYDRATE操作
+
+- 该store提供给_app或page组件
+
+- wrapper将存储保存在客户端的window对象中，因此可以在HMR情况下还原它
+
+## next持久化方案
+
+### store部分
+
+- Components/store/index.ts
+
+> 这里要注意，next-redux-wrapper和redux-persist是有冲突的，因为他们都会在页面开始加载的时候进行水合，这就有可能导致next-redux-wrapper水合完成的state被redux-persist覆盖掉，从而达不到预期的效果
+>
+> 解决方法很简单，因为需要进行持久的属性，应该是用户的个性化配置，而这些属性和在ssr期间获取到的内容大概率是没有冲突的，因此只需要在persist的配置中把需要进行持久的属性加入白名单，这样就可以避免他们的冲突
+
+```ts
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import type { ThunkDispatch, Action, ThunkAction, AnyAction, Reducer } from '@reduxjs/toolkit'
+import logger from 'redux-logger'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'reduxjs-toolkit-persist'
+import storage from 'reduxjs-toolkit-persist/lib/storage'
+import autoMergeLevel1 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1'
+import counter from './slices/counter'
+import userinfo from './slices/userinfo'
+import { createWrapper } from 'next-redux-wrapper'
+
+const reducer = combineReducers({
+  counter,
+  userinfo,
+})
+
+type ReducerType = typeof reducer
+
+const makeConfiguredStore = (reducer: ReducerType) => {
+  return configureStore({
+    reducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          /* ignore persistance actions */
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(logger),
+  })
+}
+
+const makePersistStore = () => {
+  // * counter reducer
+  const counterPersistConfig = {
+    key: 'counter',
+    storage,
+    whiteList: [],
+    timeout: 1,
+    stateReconciler: autoMergeLevel1,
+  }
+
+  const counterPersistReducer: Reducer<ReturnType<typeof counter>, AnyAction> = persistReducer<
+    ReturnType<typeof counter>,
+    AnyAction
+  >(counterPersistConfig, counter)
+
+  // * userinfo reducer
+  const userinfoPersistConfig = {
+    key: 'userinfo',
+    storage,
+    whiteList: [],
+    timeout: 1,
+    stateReconciler: autoMergeLevel1,
+  }
+
+  const userinfoPersistReducer: Reducer<ReturnType<typeof userinfo>, AnyAction> = persistReducer<
+    ReturnType<typeof userinfo>,
+    AnyAction
+  >(userinfoPersistConfig, userinfo)
+
+  // * other reducer
+  // ... ...
+
+  // * 合并reducer
+  const reducer = combineReducers({
+    counter: counterPersistReducer,
+    userinfo: userinfoPersistReducer,
+  })
+
+  const store = makeConfiguredStore(reducer)
+  const persistor = persistStore(store)
+
+  // @ts-ignore
+  store.__persistor = persistor
+
+  return store
+}
+
+const makeStore = () => {
+  const isServer = typeof window === 'undefined'
+  if (isServer) return makeConfiguredStore(reducer)
+  else return makePersistStore()
+}
+
+type Store = ReturnType<typeof makeStore>
+
+export type AppDispatchType = Store['dispatch']
+export type RootStateType = ReturnType<Store['getState']>
+
+export type AppThunkDispatchType = ThunkDispatch<RootStateType, unknown, Action<string>>
+export type AppThunkActionType<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, Action<string>>
+
+export const wrapper = createWrapper<Store>(makeStore, { debug: true })
+```
+
+- Components/store/hooks.ts
+
+```ts
+import { useDispatch, useSelector } from 'react-redux'
+import type { TypedUseSelectorHook } from 'react-redux'
+import { type AppDispatchType, type RootStateType } from '.'
+
+// 重写useDispatch与useSelector，都是为了更好的类型提示
+export const useAppDispatch = () => useDispatch<AppDispatchType>()
+export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector
+```
+
+- Components/store/slices/counter.ts
+
+```ts
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+// import type { AppThunkActionType } from '../index'
+import NCounterSlice = global.NCounterSlice
+import { HYDRATE } from 'next-redux-wrapper'
+
+const initialState: NCounterSlice.ICounterState = {
+  num: 0,
+}
+
+// 这里指定类型是为了让RootStateType更加具体，在写useSelector的时候有代码提示
+const CounterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    addNum(state, action: PayloadAction<number>) {
+      state.num += action.payload
+    },
+    minusNum(state, action: PayloadAction<number>) {
+      state.num -= action.payload
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action: any) => {
+      console.log('HYDRATE', state, action.payload)
+      return { ...state, ...action.payload.counter }
+    })
+  },
+})
+
+export const { addNum, minusNum } = CounterSlice.actions
+
+// 下面两种函数action的定义方式均可
+// export const fetchUser = () => async (dispatch: AppThunkDispatchType) => {}
+// export const fetchUser = (): AppThunkActionType => async (dispatch) => {}
+
+export default CounterSlice.reducer
+```
+
+- Components/store/slices/userinfo.ts
+
+```ts
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import type { AppThunkActionType } from '../index'
+import NInfoSlice = global.NInfoSlice
+import { HYDRATE } from 'next-redux-wrapper'
+
+export const initialState: NInfoSlice.IInfoState = {
+  name: '',
+  age: 0,
+  sex: 0,
+}
+
+const Userinfo = createSlice({
+  name: 'userinfo',
+  initialState,
+  reducers: {
+    setUserinfo(state, action: PayloadAction<NInfoSlice.IInfoState>) {
+      return action.payload
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action: any) => {
+      console.log('HYDRATE', state, action.payload)
+      return { ...state, ...action.payload.userinfo }
+    })
+  },
+})
+
+export const { setUserinfo } = Userinfo.actions
+
+export const getUserinfo = (): AppThunkActionType => async (dispatch) => {
+  console.log('start request')
+  try {
+    const res = await (await fetch('http://localhost:3000/api/userinfo')).json()
+    if (res.data === null) throw new Error()
+    dispatch(setUserinfo(res))
+    return res
+  } catch (e) {
+    dispatch(setUserinfo({}))
+    return e
+  }
+}
+
+export default Userinfo.reducer
+```
+
+- Types/ReducerSlice/Counter.d.ts
+
+```ts
+declare namespace global.NCounterSlice {
+  export interface ICounterState {
+    num: number
+  }
+}
+```
+
+- Types/ReducerSlice/Userinfo.d.ts
+
+```ts
+declare namespace global.NInfoSlice {
+  export interface IInfoState {
+    name?: string
+    age?: number
+    sex?: 0 | 1
+  }
+}
+```
+
+### 入口组件_app
+
+- Pages/_app.tsx
+
+```tsx
+import '@/styles/globals.css'
+import type { FC } from 'react'
+import type { AppProps } from 'next/app'
+import { wrapper } from '@/components/store'
+import { PersistGate } from 'reduxjs-toolkit-persist/integration/react'
+import { Provider } from 'react-redux'
+
+const App: FC<AppProps> = ({ Component, ...rest }) => {
+  const { store, props } = wrapper.useWrappedStore(rest)
+
   return (
-    <div>
-      <h1>
-        Counter: <span>{counter}</span>
-      </h1>
-      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Add To Count</button>
-    </div>
+    <Provider store={store}>
+      {/* @ts-ignore */}
+      <PersistGate loading={null} persistor={store.__persistor}>
+        <Component {...props} />
+      </PersistGate>
+    </Provider>
   )
 }
 
-export default IncrementCounter
+export default App
 ```
 
-- **components/Users.js**
+### index页面
 
-```js
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addUser } from "../store/users/action";
+- Pages/index.tsx
 
-export default function Clock() {
-  const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.users);
-  const [name, setName] = useState("");
+```tsx
+import { useAppSelector, useAppDispatch } from '@/components/store/hooks'
+import { addNum, minusNum } from '@/components/store/slices/counter'
+import { getUserinfo } from '@/components/store/slices/userinfo'
+import { wrapper } from '@/components/store'
 
-  const addNewUser = () => {
-    dispatch(addUser(name));
-  };
+export default function Home() {
+  const num = useAppSelector((state) => state.counter.num)
+  const userinfo = useAppSelector((state) => state.userinfo)
+  const dispatch = useAppDispatch()
 
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
+  const increment = () => dispatch(addNum(1))
+  const decrement = () => dispatch(minusNum(1))
 
   return (
-    <div>
-      <label>New User:</label>
-      <input type="text" value={name} onChange={handleChange} />
-      <button onClick={addNewUser}>Add</button>
-      <h4>User List:</h4>
-      <ol>
-        {users.map((user) => (
-          <li>{user}</li>
-        ))}
-      </ol>
-    </div>
-  );
+    <>
+      <span>{num}</span>
+      <button onClick={increment} style={{ width: 20 }}>
+        +
+      </button>
+      <button onClick={decrement} style={{ width: 20 }}>
+        -
+      </button>
+      <div>{userinfo.name}</div>
+    </>
+  )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, res, ...etc }) => {
+  store.dispatch(addNum(5))
+  const response = await store.dispatch(getUserinfo())
+  console.log('request response: ', response)
+  return { props: {} }
+})
 ```
 
+### api
 
+- pages/api/userinfo.ts
+
+```ts
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+type Data = {
+  name: string
+  age: number
+  sex: 0 | 1
+}
+
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  res.status(200).json({ name: 'John Doe', age: 18, sex: 1 })
+}
+```
 

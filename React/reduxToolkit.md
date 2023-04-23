@@ -322,6 +322,16 @@ const persistConfig = {
 
 > 对于包含不同的storage adapters、code splitting或者deep filtering，嵌套持久化可能非常有用。例如，虽然黑名单和白名单只能深入一层，但是我们可以使用嵌套的持久化来深入黑名单:
 
+这样的写法其实是有缺陷的，而且会造成很多混乱：
+
+- 只要是被persistReducer方法包裹后的reducer都会被进行持久化，如果是这样的话，那么下面的这个例子中，auth被做了一次持久化，而被合并为root的auth和other又被做了一次持久化，这样在rehydrate的时候，root被水合其实auth就已经被水合了，而auth还会自己进行一次水合
+
+- auth做了持久化，但是other并没有做持久化，而在root进行持久化和水合的时候，其实也把other给连带的给持久化了
+
+- 虽然在root的持久化配置中用黑名单把auth禁用掉了，root虽然不会持久化auth，但是auth自己配置了持久了，因此auth的持久化并不会失效
+
+但是这样做也有好处，因为这样可以在根的位置进行一些集中配置，这在有些时候非常有用
+
 ```js
 import { combineReducers } from '@reduxjs/toolkit'
 import { persistReducer } from 'reduxjs-toolkit-persist'
@@ -353,6 +363,55 @@ export default persistReducer(rootPersistConfig, rootReducer)
 
 - **localStorage** `import storage from 'reduxjs-toolkit-persist/lib/storage'`
 - **sessionStorage** `import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'`
+
+### Transforms
+
+> 使用Transforms可以让我们自定义获得持久化和rehydrated的状态对象
+>
+> 当state被持久化时，它首先用JSON.stringify()进行序列化。如果state的某些部分不能映射到JSON对象，那么序列化过程就会出现一些错误。例如JSON中不存在javascript Set类型。在使用JSON.stringify()序列化Set时，它会被转换为一个空对象
+>
+> 下面是一个Transforms的例子，它成功地持久化了一个Set属性，它只是将其转换为一个数组并返回。通过这种方式，Set被转换为Array，这是一个 JSON中可识别的数据结构。当从持久化存储中提取出来时，数组将在保存到redux之前转换回Set
+
+```ts
+import { createTransform } from 'reduxjs-toolkit-persist';
+
+const SetTransform = createTransform(
+  // transform state并将其序列化和持久化
+  (inboundState, key) => {
+    return { ...inboundState, mySet: [...inboundState.mySet] };
+  },
+  // transform state being rehydrated
+  (outboundState, key) => {
+    // convert mySet back to a Set.
+    return { ...outboundState, mySet: new Set(outboundState.mySet) };
+  },
+  // define which reducers this transform gets called for.
+  { whitelist: ['someReducer'] }
+);
+
+export default SetTransform;
+```
+
+CreateTransform函数接受三个参数：
+
+- 在state持久化之前被调用的“inbound”函数(可选)
+
+- 在state重新水合之前被调用的“outbound”函数(可选)
+
+- 一个配置对象，指定转换state中的哪些键(默认情况下不转换任何键)
+
+为了生效，需要将转换添加到PersisReducer的配置对象中：
+
+```ts
+import storage from 'reduxjs-toolkit-persist/lib/storage';
+import { SetTransform } from './transforms';
+
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  transforms: [SetTransform]
+};
+```
 
 ## ts类型声明
 
