@@ -210,3 +210,38 @@ module.exports = {
 }
 ```
 
+## inline-chunk-html-plugin
+
+> 这个webpack插件将脚本块内联到index.html中，它与HtmlWebpackPlugin 4.x协同工作
+>
+> ```ts
+> new InlineChunkHtmlPlugin(htmlWebpackPlugin: HtmlWebpackPlugin, tests: Regex[])
+> ```
+
+```ts
+var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var InlineChunkHtmlPlugin = require('inline-chunk-html-plugin');
+ 
+var publicUrl = '/my-custom-url';
+ 
+module.exports = {
+  output: {
+    // ...
+    publicPath: publicUrl + '/',
+  },
+  // ...
+  plugins: [
+    // 生成index.html文件，并注入<script>标签
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.resolve('public/index.html'),
+    }),
+    // 筛选chunk name为runtime的js块，注入为内联script
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime/]),
+    // ...
+  ],
+  // ...
+};
+```
+
