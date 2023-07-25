@@ -1,10 +1,10 @@
-#### path
+# path
 
 >  路径主要是为了解决本地路径的拼接所需要的一个方法集
 
-##### path.join
+## path.join
 
-方法使用平台特定的分隔符作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径。
+方法使用平台特定的分隔符作为定界符将所有给定的 path 片段连接在一起，然后规范化生成的路径
 
 ``` js
 path.join("c:/ab/cd","c.txt")
@@ -12,7 +12,7 @@ path.join("c:/ab/cd","../c.txt")
 path.join("c:/ab/cd","../../c.txt")
 ```
 
-##### path.basename
+## path.basename
 
 返回路径中最后的部分,可以去掉扩展名
 
@@ -22,7 +22,7 @@ path.basename(str)
 path.basename(str,".txt")
 ```
 
-##### path.dirname
+## path.dirname
 
 返回路径中目录名
 
@@ -31,7 +31,7 @@ var str=path.join('/foo', 'bar', 'baz/asdf.txt')
 path.dirname(str)
 ```
 
-##### path.extname
+## path.extname
 
 返回路径中的扩展名
 
@@ -40,7 +40,7 @@ var str=path.join('/foo', 'bar', 'baz/asdf.txt');
 console.log(path.extname(str));
 ```
 
-##### path.parse
+## path.parse
 
 将字符串对象转换为对象
 
@@ -49,7 +49,7 @@ var str=path.join('/foo', 'bar', 'baz/asdf.txt');
 console.log(path.parse(str));
 ```
 
-##### path.format
+## path.format
 
 将path对象转换为字符串
 
@@ -59,7 +59,7 @@ var obj=path.parse(str);
 console.log(path.format(obj))
 ```
 
-##### `__filename` 与 `__dirname`
+## `__filename` 与 `__dirname`
 
 分别表示当前文件路径，与当前文件夹路径
 
@@ -68,7 +68,7 @@ console.log(__dirname, __filename)
 path.join(path.join(__dirname, 'a.js')) // 当前目录下的a.js
 ```
 
-##### path.resolve
+## path.resolve
 
 1、给定的路径序列会**从右到左**进行处理，后面的每个 `path` 会被追加到前面，**直到构造出绝对路径**；
 

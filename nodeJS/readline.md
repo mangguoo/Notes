@@ -1,8 +1,8 @@
-### readlie
+# readlie
 
 > readline是Node.js里实现标准输入输出的封装好的模块，通过这个模块我们可以以逐行的方式读取数据流。readline 模块提供了用于从可读流（例如 process.stdin）每次一行地读取数据的接口。
 
-#### close事件：
+## close事件：
 
 >  发生以下情况之一时会触发close事件：
 
@@ -12,12 +12,12 @@
 （4）input 流接收 Ctrl+C 以发出 SIGINT 信号，并且在 readline.Interface 实例上没有注册 ‘SIGINT’ 事件监听器。
 调用监听器函数时不传入任何参数。一旦触发 ‘close’ 事件，则 readline.Interface 实例就完成了。
 
-#### readline.createInterface(options)：
+## readline.createInterface(options)：
 
 input <stream.Readable> 要监听的可读流。
 output <stream.Writable> 要将逐行读取的数据写入的可写流。
 
-#### 使用示例：
+## 使用示例：
 
 > 例子：读取文件中的数据，并格式化为sql语句，如下：
 >

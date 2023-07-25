@@ -1,6 +1,6 @@
-### http和https
+# http和https
 
-#### get
+## get
 
 ``` js
 // const { get, request } = require('http') // 根据要请求地址的协议选用http和https
@@ -20,9 +20,9 @@ function getData(req) {
 }
 ```
 
-##### 使用get代理跨域：
+### 使用get代理跨域：
 
-**代理服务器**
+- **代理服务器**
 
 ``` js
 const http = require('http')
@@ -56,7 +56,7 @@ function httpsGet(url) {
 }
 ```
 
-**前端**
+- **前端**
 
 ``` js
 const xhr = new XMLHttpRequest()
@@ -69,11 +69,11 @@ function loadHandler(e) {
 }
 ```
 
-#### request
+## request
 
-##### 使用request代理跨域
+### 使用request代理跨域
 
-**代理服务器**
+- **代理服务器**
 
 ``` js
 const http = require('http')
@@ -122,7 +122,7 @@ function getData(req) {
 }
 ```
 
-**被跨域服务器**
+- **被跨域服务器**
 
 ``` js
 const http = require('http')
@@ -138,7 +138,7 @@ http
   .listen(4001)
 ```
 
-**前端**
+- **前端**
 
 ``` js
 const postData = JSON.stringify({
@@ -163,10 +163,10 @@ function loadHandler(e) {
 }
 ```
 
-#### get和request的区别
+## get和request的区别
 
-- get 方式不含有请求的方式(options)，直接写入地址请求就可以了；
-- request 方式包含详细的请求方式，既可以解决get问题也可以解决post问题；
-- 如果要发送数据(post)，就需要给请求中设置headers属性，增加Content-Length头部，属性值就是 Buffer.byteLength(data)；
-- request会返回一个对象，只有调用该对象的end方法后才会发送数据；
+- get方式不含有请求的方式(options)，直接写入地址请求就可以了
+- request方式包含详细的请求方式，既可以解决get问题也可以解决post问题
+- 如果要发送数据(post)，就需要给请求中设置headers属性，增加Content-Length头部，属性值就是Buffer.byteLength(data)
+- request会返回一个对象，只有调用该对象的end方法后才会发送数据
 

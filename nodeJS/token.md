@@ -7,7 +7,7 @@
 - **jwt.sign**
 
   ```js
-  //  何时返回token  要根据自己的业务逻辑
+  // 何时返回token  要根据自己的业务逻辑
   router.get("/login", function (req, res) {
     res.json({
       result: "ok",
@@ -33,8 +33,8 @@
     if (req.originalUrl.indexOf("/getToken") >= 0) {
       return next();
     }
-    //定义 用token的api  对其验证
-    var token = rq.body.token || rq.query.token || rq.headers["x-access-token"];
+    //定义 用token的api 对其验证
+    var token = req.body.token || req.query.token || req.headers["x-access-token"];
     jwt.verify(token, global.PrivateKey, function (err, decoded) {
       if (err) {
         // 返回错误信息

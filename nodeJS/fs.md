@@ -1,13 +1,13 @@
-#### file
+# file
 
-##### 引入
+## 引入
 
 ``` js
 const fs=require("fs");
 const fsp=require("fs/promise");
 ```
 
-##### fsp.mkdir
+## fsp.mkdir
 
 ``` js
 fsp.mkdir(path.join(__dirname, 'test/anlw/ppp'), { recursive: true }).catch((err) => {
@@ -16,7 +16,7 @@ fsp.mkdir(path.join(__dirname, 'test/anlw/ppp'), { recursive: true }).catch((err
 // recursive选项表示递归创建
 ```
 
-##### fsp.rm
+## fsp.rm
 
 删除文件和删除文件夹都可以使用它
 
@@ -27,7 +27,7 @@ fsp.rm(path.join(__dirname, 'aa'), { recursive: true }).catch((err) => {
 // recursive选项表示是否递归删除（类似于rm -rf）
 ```
 
-##### fs.existsSync
+## fs.existsSync
 
 这是一个同步方法，只在fs中存在
 
@@ -35,7 +35,7 @@ fsp.rm(path.join(__dirname, 'aa'), { recursive: true }).catch((err) => {
 console.log(fs.existsSync(path.resolve('input.txt')))
 ```
 
-##### fsp.readFile   fs.readFileSync
+## fsp.readFile   fs.readFileSync
 
 ``` js
 fsp.readFile(path.resolve('input.txt'), { encoding: 'utf-8' }).then((data) => {
@@ -50,7 +50,7 @@ const buffer = fs.readFileSync(path.resolve('input.txt'), 'utf8')
 console.log(buffer.toString())
 ```
 
-##### fsp.readdir   fs.readdirSync
+## fsp.readdir   fs.readdirSync
 
 ``` js
 fsp.readdir(path.resolve('.'), { encoding: 'utf-8' }).then((data) => {
@@ -65,7 +65,7 @@ const files = fs.readdirSync(path.resolve('.'))
 console.log(files)
 ```
 
-##### fsp.stat   fs.statSync
+## fsp.stat   fs.statSync
 
 ``` js
 fsp.stat(path.resolve('input.txt')).then((data) => {
@@ -73,8 +73,15 @@ fsp.stat(path.resolve('input.txt')).then((data) => {
 })
 ```
 
-> stat.isDirectory()   stat.isFile()
->
+> statSync()
+
+```js
+const stats = fs.statSync(path.resolve('input.txt'))
+console.log(stats.isFile())
+```
+
+## stat.isDirectory()   stat.isFile()
+
 > 这两个方法都返回一个布尔值
 
 ``` js
@@ -93,14 +100,7 @@ async function readPath(dir) {
 readPath('.')
 ```
 
-> statSync()
-
-``` js
-const stats = fs.statSync(path.resolve('input.txt'))
-console.log(stats.isFile())
-```
-
-##### tsnode 静态文件服务器
+## tsnode 静态文件服务器
 
 ``` ts
 import path from 'path'
@@ -131,7 +131,7 @@ http
   .listen(4000)
 ```
 
-##### fsp.writeFile   fs.writeFileSync
+## fsp.writeFile   fs.writeFileSync
 
 > fs.writeFile(file, data[, options], callback)
 >
@@ -167,7 +167,7 @@ try {
 }
 ```
 
-##### writeFile实现上传文件
+## writeFile实现上传文件
 
 > 方法一：server
 
@@ -288,7 +288,7 @@ function loadHandler(e) {}
 
 ```
 
-##### fsp.appendFile   fs.appendFileSync
+## fsp.appendFile   fs.appendFileSync
 
 ``` js
 const path = require('path')
@@ -305,7 +305,7 @@ fsp.appendFile(path.resolve('input.txt'), 'aaaaa\n', 'utf8').catch((err) => {
 fs.appendFileSync(path.resolve('input.txt'), 'aaaaa\n', 'utf8')
 ```
 
-##### fsp.rename
+## fsp.rename
 
 > 重命名文件，可以实现文件移动
 
@@ -318,7 +318,7 @@ fsp.rename(path.join(path.resolve(), 'img', '1.jpg'), path.join(path.resolve(), 
 })
 ```
 
-##### fsp.unlink
+## fsp.unlink
 
 > 如果路径是指符号链接，则删除链接而不会影响链接所指的文件或目录。如果路径是指非符号链接的文件路径，则将删除文件。
 
@@ -331,7 +331,7 @@ fsp.unlink(path.join(path.resolve(), 'input.txt')).catch((err) => {
 })
 ```
 
-##### fsp.link
+## fsp.link
 
 ``` js
 fsp.link(path.resolve('index.html'), path.resolve('index.html.lnk')).catch((err) => {
@@ -339,7 +339,7 @@ fsp.link(path.resolve('index.html'), path.resolve('index.html.lnk')).catch((err)
 })
 ```
 
-##### fs.watch  fsp.watch
+## fs.watch  fsp.watch
 
 > 侦听文件的变化，recursive选项表示会侦听后代目录下的文件
 >
@@ -370,7 +370,7 @@ const fsp = require('fs/promises')
 })()
 ```
 
-##### fs.createReadStream
+## fs.createReadStream
 
 ``` js
 const path = require('path')
@@ -392,7 +392,7 @@ readStream.on('end', () => {
 readStream.pipe(fs.createWriteStream(path.resolve('index_back.html')))
 ```
 
-##### fs.createWriteStream
+## fs.createWriteStream
 
 ``` js
 const path = require('path')
@@ -406,9 +406,9 @@ setInterval(function () {
 }, 1000)
 ```
 
-#### fs.access
+## fs.access
 
-##### 参数：
+**参数：**
 
 > `path` <strin> | <Buffer> | <URL>
 >
@@ -418,7 +418,7 @@ setInterval(function () {
 >
 > - `err` <Error>
 
-##### 作用：
+**作用：**
 
 > **测试用户对 `path` 指定的文件或目录的权限。**
 > `mode` 参数是一个可选的整数，指定要执行的可访问性检查。文件可访问性常量：
@@ -430,7 +430,7 @@ setInterval(function () {
 | W-OK | 表明调用进程可以写入文件。                                   |
 | X_OK | 表明调用进程可以执行文件。在Windows上无效（表现得像fs.constants.F_OK） |
 
-##### 检查文件是否存在：
+**检查文件是否存在：**
 
 ```js
 const fs = require('fs')
@@ -446,7 +446,7 @@ fs.access('package.json', fs.constants.F_OK, err => {
 })
 ```
 
-##### 检查文件是否可读:
+**检查文件是否可读:**
 
 ```js
 const fs = require('fs')
@@ -457,7 +457,7 @@ fs.access('index.js', fs.constants.R_OK, err => {
 })
 ```
 
-##### 检查文件是否可写：
+**检查文件是否可写：**
 
 ```js
 const fs = require('fs')
