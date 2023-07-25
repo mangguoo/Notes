@@ -2,7 +2,7 @@
 
 >  react-transition-group是react的第三方模块，借住这个模块可以实现动画切换效果
 
-```js
+```shell
 # npm 安装
 npm install react-transition-group --save
 ```

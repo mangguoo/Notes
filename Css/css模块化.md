@@ -556,7 +556,7 @@ const Thing = styled.div`
 
 > 为了避免重复的将props传递给要render的组件或元素，可以使用`.attrs`构造函数。它可以将传入的props传递到要render的元素或组件上。
 >
-> 这种方法可以将静态props附加到元素上，或者将 activeClassName 之类的第三方props传递给 React Router 的 Link 组件。
+> 这种方法可以将静态props附加到元素上，或者将activeClassName之类的第三方props传递给React Router的Link组件。
 >
 > 此外，`.attrs`对象还接受函数，这些函数接收组件接收的props，返回值也将合并到最终的props中。
 

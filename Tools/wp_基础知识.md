@@ -82,8 +82,8 @@ npm run build
 
 **直接通过webpack命令的参数来指定：**
 
-```js
-npx webpack --entry ./src/main.js --output-path ./build
+```shell
+$ npx webpack --entry ./src/main.js --output-path ./build
 ```
 
 **通过webpack的配置文件来指定：**

@@ -664,7 +664,7 @@ const App = () => (
 
 默认情况下，如果没有其他loader处理，@svgr/webpack 将尝试通过默认导出导出ReactComponent
 
-当已经有任何其他loader使用 svg 文件的默认导出时,@svgr/webpack 将始终通过命名导出导出ReactComponent
+当已经有任何其他loader使用 svg 文件的默认导出时,@svgr/webpack将始终通过命名导出导出ReactComponent
 
 ### React配置
 

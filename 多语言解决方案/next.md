@@ -263,14 +263,33 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   locale,
 }) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', [
-      'translation',
-    ])),
+    ...(await serverSideTranslations(
+      locale ?? 'en', 
+      ['translation'],
+      null, 
+      ['en', 'no']
+    )),
   },
 })
 
 export default Homepage
 ```
+
+默认情况下，next-i18next会在每次初始请求时将所有name space发送到客户机。对于内容较少的小型应用程序来说是一种合适的方法，但是如果多语言字段很多，就可以根据路由来拆分命名空间，这样就可以将每个页面所需的名称空间数组传递到serverSideTransations，这样在用户访问时，就只会收到指定命名空间的字段
+
+默认情况下，next-i18next会在请求中向客户端发送当前语言环境的字段。这有助于减少发送到客户端的初始有效负载的大小。然而在某些情况下，在运行时也可能需要其他语言的翻译。例如，当使用useTransationhook的getFixedT时
+
+```js
+// fix language to german
+const de = i18next.getFixedT('de');
+de('myKey');
+
+// or fix the namespace to anotherNamespace
+const anotherNamespace = i18next.getFixedT(null, 'anotherNamespace');
+anotherNamespace('anotherNamespaceKey'); // no need to prefix ns i18n.t('anotherNamespace:anotherNamespaceKey');
+```
+
+这里就需要加载额外的语言设置，只需将所需语言设置为数组作为最后一个参数传递给serverSideTransations即可
 
 ## 自定义生成翻译文件
 
