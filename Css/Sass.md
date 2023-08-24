@@ -379,6 +379,33 @@ $bgColor: red;
 }
 ```
 
+## sass占位符
+
+```scss
+%toolbelt {
+  box-sizing: border-box;
+  border-top: 1px rgba(#000, .12) solid;
+  padding: 16px 0;
+  width: 100%;
+
+  &:hover { border: 2px rgba(#000, .5) solid; }
+}
+
+.action-buttons {
+  @extend %toolbelt;
+  color: #4285f4;
+}
+
+.reset-buttons {
+  @extend %toolbelt;
+  color: #cddc39;
+}
+```
+
+上面的代码中用%toolbet定义了一个占位符，首先这个%toolbet的内容不会出现在最终的css输出文件中，但是我们可以定义新的css类，然后使用@extend去扩展这个占位符
+
+与exntend直接拓展一个class name比较,这种拓展方式不会生成class name
+
 ## sass function
 
 > @function指令创建的函数不会生成到编译后的css文件中，它只是返回一个值，下面是一个px转rem做个例子
@@ -508,6 +535,23 @@ $units:px;
   margin-left: 20px; 
 }
 ```
+
+## partial sass文件
+
+> 当在sass文件名前面加上“_”时，除非把它导入到另一个不是partial的sass文件中，否则它不会被生成到CSS中,这是一个用来保持样式被分隔成逻辑部分很好的方法
+
+**来自Sass语言指南：**
+您可以创建包含CSS小片段的部分Sass文件，这些CSS小片段可以包含在其他Sass文件中。这是模块化CSS的好方法，有助于使内容更易于维护。部分就是一个以下划线开头的Sass文件。您可以将其命名为_partial.scss。下划线让Sass知道这个文件只是一个部分文件，不应该生成CSS文件。Sass部分文件与@import指令一起使用
+
+**注意:**
+
+在导入partial sass文件的时候,不需要写_
+
+```scss
+@import 'variables'
+```
+
+
 
 ## 预处理器框架
 

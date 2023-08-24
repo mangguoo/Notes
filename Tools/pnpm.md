@@ -149,7 +149,7 @@ express
 
 幸运的是，pnpm支持workspace协议`workspace:`。当使用此协议时，pnpm将拒绝解析除本地workspace包含的package之外的任何内容。因此设置为`"foo": "workspace:2.0.0"`时，安装将会失败，因为`"foo@2.0.0"`不存在于此workspace中
 
-当[link-workspace-packages](https://pnpm.io/zh/npmrc#link-workspace-packages)选项被设置为`false`时，这个协议将特别有用。 在这种情况下，仅当使用`workspace:`协议声明依赖，pnpm才会从此 workspace链接所需的包
+当[link-workspace-packages](https://pnpm.io/zh/npmrc#link-workspace-packages)选项被设置为`false`时，这个协议将特别有用。在这种情况下，仅当使用`workspace:`协议声明依赖，pnpm才会从此workspace链接所需的包
 
 ## 配置方式
 
@@ -211,3 +211,14 @@ packages:
 - 下载其他依赖到node_module中
 
 这意味着无论何时添加/删除工作区时，或更改它们在文件系统中的位置，都需要在根目录下重新运行`install`以再次设置工作区
+
+## 工作区选项
+
+`pnpm <add|remove> <package> -W`
+
+- -W: --ignore-workspace-root-check ，允许依赖被安装在workspace的根目录
+
+```shell
+# 安装eslint作为根目录的devDependencies
+$ pnpm add eslint -D -W
+```

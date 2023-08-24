@@ -258,6 +258,7 @@ export default slice.reducer;
 ```jsx
 import React from 'react'
 import { PersistGate } from 'reduxjs-toolkit-persist/integration/react'
+import { Provider } from 'react-redux'
 import { store, persistor } from './store'
 
 const App = () => {

@@ -258,7 +258,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 `git status`命令可以让我们时刻掌握仓库当前的状态，上面的命令输出告诉我们，`readme.txt`被修改过了，但还没有准备提交的修改。
 
-#### git diff命令
+### git diff命令
 
 虽然Git告诉我们`readme.txt`被修改了，但是不能看到具体修改了什么内容，如果想要查看具体哪些内容被修改了，需要使用`git diff`命令：
 
@@ -300,7 +300,7 @@ git diff [first-commit] [second-commit]
 # 比较两次提交之间的差异
 ```
 
-#### 版本回退
+### 版本回退
 
 不断对文件进行修改，然后不断提交修改到版本库里，就好比玩RPG游戏时，每通过一关就会自动把游戏状态存盘，如果某一关没过去，你还可以选择读取前一关的状态。Git也是一样，每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，这个快照在Git中被称为`commit`。一旦你把文件改乱了，或者误删了文件，还可以从最近的一个`commit`恢复，然后继续工作，而不是把几个月的工作成果全部丢失。
 
@@ -389,13 +389,13 @@ ad38df9 HEAD@{7}: commit: worte a md fild
 a9b8e9e HEAD@{8}: commit (initial): first commit
 ```
 
-##### git reset的三种模式：
+#### git reset的三种模式：
 
 - reset --hard:重置stage区和工作目录
 
   reset --hard 会在重置HEAD和branch的同时，重置stage区和工作目录里的内容。stage区和工作目录里的内容会被完全重置为指定提交中的内容。
 
-  > 换句话说就是没有commit 的修改会被全部擦掉。也可以类比为先git restore暂存区中的内容，然后git reset重置HEAD，最后再把工作区中的内容更改为HEAD中的内容。
+  > 换句话说就是没有commit的修改会被全部擦掉。也可以类比为先git restore暂存区中的内容，然后git reset重置HEAD，最后再把工作区中的内容更改为HEAD中的内容。
 
 - reset --soft:保留工作目录,把重置HEAD所带来的新的差异放进暂存区
 
@@ -405,7 +405,7 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
   
   把HEAD从4移动到3，而且在reset过程中工作目录和暂存区的内容没有被清理掉，所以4中的改动在reset后就也成了工作目录新增的 [工作目录和HEAD的差异]。这就是[重置HEAD所带来的差异]。
   
-  当我们想合并当前节点和reset目标节点之间不具有太大意义的commit记录 (可能是阶段性地频繁提交)时，可以考虑使用Soft Reset来让commit 演进线图较为清晰点。
+  当我们想合并当前节点和reset目标节点之间不具有太大意义的commit记录 (可能是阶段性地频繁提交)时，可以考虑使用Soft Reset来让commit演进线图较为清晰点。
   
   > 这个操作可以类比为先使用git reset重置HEAD，这时工作区和最新提交一定是有差异的，这时再使用git add *把所有差异提交到暂存区。
   
@@ -415,7 +415,7 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
 
   > 这个操作可以类比为先使用git retore把暂存区的修改撤销，然后再使用git reset重置HEAD指向。
 
-#### 工作区和暂存区
+### 工作区和暂存区
 
 > 工作区
 
@@ -439,7 +439,7 @@ Git版本库里添加的时候，是分两步执行的：
 
 可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的：`nothing to commit, working tree clean`
 
-#### 管理修改
+### 管理修改
 
 为什么Git比其他版本控制系统设计得优秀，因为Git跟踪并管理的是修改，而非文件。什么是修改？比如你新增了一行，这就是一个修改，删除了一行，也是一个修改，更改了某些字符，也是一个修改，删了一些又加了一些，也是一个修改，甚至创建一个新文件，也算一个修改。
 
@@ -479,7 +479,7 @@ Changes not staged for commit:
 
 这就体现了Git管理的是修改，当用`git add`命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，`git commit`只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。
 
-#### 撤销修改
+### 撤销修改
 
 撤销修改可以使用`git checkout`指令：
 
@@ -526,7 +526,7 @@ On branch master
 nothing to commit, working tree clean
 ```
 
-#### 删除文件
+### 删除文件
 
 在Git中删除也是一个修改操作，比如我现在删除了一个文件，Git检测到删除了文件，因此，工作区和版本库就不一致了，`git status`命令会输出哪些文件被删除了：
 
@@ -611,7 +611,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。
 
-#### 添加远程库
+### 添加远程库
 
 1. 首先要在GitHub上创建一个仓库：
 
@@ -680,7 +680,7 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 这个警告只会出现一次，后面的操作就不会有任何警告了。如果担心有人冒充GitHub服务器，输入`yes`前可以对照GitHub的RSA Key的指纹信息是否与SSH连接给出的一致。
 
-#### 从远程库克隆
+### 从远程库克隆
 
 上节中是先有本地库，后有远程库，然后如何关联远程库。但是如果从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。
 
@@ -701,6 +701,137 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 并且GitHub给出的地址不止一个，还可以用`https://github.com/ilmangoi/HY.git`这样的地址。实际上，Git支持多种协议，默认的`git://`使用ssh，但也可以使用`https`等其他协议。使用`https`除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用`ssh`协议而只能用`https`。
 
+### 删除远程分支
+
+在git操作中，当我们通过如下命令删掉本地分支时，并不会对已经提交到远程的分支产生影响：
+
+``` shell
+# -d是--delete的缩写,在使用--delete删除分支时,该分支必须完全和它的上游分支merge完成,如果没有上游分支,必须要和HEAD完全merge
+# -D是--delete --force的缩写,这样写可以在不检查merge状态的情况下删除分支
+$ git branch -d dev
+```
+
+如果想要删除远程分支，可以使用如下命令：
+
+```shell
+$ git push origin --delete branch
+```
+
+### 远程分支回滚
+
+#### 个人开发分支版本回退方法
+
+> 如果错误提交被推送到了远程分支，那么就需要回滚远程分支
+
+第一步就是先回滚本地分支：
+
+```shell
+$ git reset --hard <branch name>
+```
+
+然后强制推送到远程分支：
+
+```shell
+# 本地分支回滚后，版本将落后远程分支，必须使用强制推送覆盖远程分支，否则无法推送到远程分支
+$ git push -f
+```
+
+#### 公共开发分支版本回退方法
+
+> 如果将错误的提交推送到了公共分支中，那么就不能采用刚才的方法进行回滚了，因为这种方法回滚可以会把别人的提交也回滚掉
+
+下面是一个例子，例如当前远程master分支的情况是这样的：
+
+```text
+A1–A2–B1
+```
+
+其中A、B分别代表两个人，A1、A2、B1代表各自的提交。并且所有人的本地分支都已经更新到最新版本，和远程分支一致
+
+这个时候发现A2这次提交有错误，用reset回滚远程分支master到A1，那么理想状态是其他人拉代码时，他们的master分支也回滚了，然而现实际情况是git提示当前分支领先远程分支两次提交，也就是说这时候git pull是不会回退本地分支的
+
+需要队友在本地分支中手动进行回退，但是这时候回退就会使其丢失到后面的提交B1，解决方法如下：
+
+```shell
+# 首先切换到自己的分支，因为自己的分支上只有自己的提交（B）
+$ git checkout tony_branch        
+
+# 然后查看当前分支最新的commit id，记录下来，比如是b0000
+$ git reflog
+
+# 将版本回退到B1提交
+$ git reset --hard B1     
+
+# 拉个分支，用于保存之前因为回退版本被覆盖掉的提交B1，这时这个分支应该是领先master分支一个B1提交
+$ git checkout -b tony_backup 
+
+# 保存完成后，回到自己的分支
+$ git checkout tony_branch      
+
+# 回到自己分支的最前端
+$ git reset --hard 0bbbbbb       
+```
+
+完成上面的操作后，就是把B1这次提交给找回来了，这时tony_backup分支最新的一次提交就是B1，接着要把自己的本地master分支和远程master分支保持一致：
+
+```shell
+$ git reset --hard origin/master
+```
+
+执行完上面的指令后，队友的本地master分支才真正的回滚了，这里回滚操作才会对队友生效，此时队友的本地master是这样的：
+
+```text
+A1
+```
+
+然后队友还需要再次合并那个被丢掉的B1提交：
+
+```shell
+$ git checkout master           
+$ git merge tony_backup           
+```
+
+这时队友的本地master才变成了正常状态：
+
+```text
+A1-B1
+```
+
+#### 使用git revert回退公共开发分支
+
+> 使用git reset回退公共远程分支的版本后，需要其他所有人手动用远程master分支覆盖本地master分支，显然这不是优雅的回退方法，下面我们使用另个一个命令来回退版本
+
+git revert是用于“反做”某一个版本，以达到撤销该版本的修改的目的。比如，我们commit了三个版本（版本一、版本二、 版本三），突然发现版本二不行（如：有bug），想要撤销版本二，但又不想影响撤销版本三的提交，就可以用git revert命令来反做版本二，生成新的版本四，这个版本四里会保留版本三的东西，但撤销了版本二的东西
+
+如果我们想撤销之前的某一版本，但是又想保留该目标版本后面的版本，记录下这整个版本变动流程，就可以用这种方法
+
+```shell
+# 撤销某一次修改
+$ git revert -n 8b896210
+```
+
+使用revert命令，如果还是要撤销最近一次提交，那么就有可能会有冲突：
+
+```text
+<<<<<<< HEAD
+全部清空
+第一次提交
+=======
+全部清空
+>>>>>>> parent of 8b896210... 全部清空
+```
+
+解决冲突很简单，因为我们只想回到某次提交，因此需要把当前最新的代码去掉即可，也就是HEAD标记的代码：
+
+```text
+<<<<<<< HEAD
+全部清空
+第一次提交
+=======
+```
+
+把上面部分代码去掉就可以了，然后再提交一次代码就可以解决冲突了
+
 ## 分支管理
 
 > 分支在实际中有什么用呢？
@@ -709,7 +840,7 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 现在有了分支就可以创建一个属于自己的分支，别人看不到，还继续在原来的分支上正常工作，而自己在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样既安全又不影响别人工作。
 
-#### 创建与合并分支
+### 创建与合并分支
 
 Git会把所有提交都串成一条时间线，这条时间线就是一个分支。仓库初始化后默认只有一个分支，即`master`分支。
 
@@ -809,7 +940,7 @@ git branch --set-upstream-to=origin/<branch> <branch>
 # master分支建立连接，其效果与git branch --set-upstream-to相同
 ```
 
-#### 解决冲突
+### 解决冲突
 
 如果`master`分支和`feature1`分支各自都分别有新的提交：
 
@@ -863,7 +994,7 @@ $ git commit -m "merge branch"
 
 ![0 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(1)-16534065410972.png)
 
-#### 分支管理策略
+### 分支管理策略
 
 通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。
 
@@ -902,7 +1033,7 @@ Merge made by the 'recursive' strategy.
 
 ![0 (3)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(3).png)
 
-#### Bug分支
+### Bug分支
 
 在Git中分支非常的强大，每个bug都可以通过一个新的临时分支来修复，修复后合并分支，然后将临时分支删除。
 
@@ -1008,7 +1139,7 @@ $ git stash show [stash_id] [-p]
 # 查看指定暂存与当前分支的差异，加上-p可以看详细差异
 ```
 
-#### Feature分支
+### Feature分支
 
 添加一个新功能时，为了不让一些实验性质的代码把主分支搞乱，所以每添加一个新功能，最好新建一个feature分支，在feature分支上面开发，开发完成后合并分支，最后删除该feature分支。
 
@@ -1044,7 +1175,7 @@ git branch -D feature
 Deleted branch feature (was 2da8299).
 ```
 
-#### 多人协作
+### 多人协作
 
 > 多人协作的工作模式：
 
@@ -1178,7 +1309,7 @@ To github.com:ilmangoi/HY.git
    bd8a39f..4d919d9  dev -> dev
 ```
 
-#### Rebase
+### Rebase
 
 多人在同一个分支上协作时，很容易出现冲突。即使没有冲突，后push的童鞋不得不先pull，在本地合并，然后才能push成功。每次合并再push后，分支就会变得很乱，为什么Git的提交历史不能是一条干净的直线？
 
@@ -1258,7 +1389,7 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 
 这是因为commit号是一串乱七八糟的数字与字母的组合，没有标识性，而tag是一个让人容易记住的有意义的名字，它跟某个commit绑在一起，这样就使方便我们去查找某一个版本。
 
-#### 创建标签
+### 创建标签
 
 ``` gas
 $ git tag v1.0         
@@ -1299,7 +1430,7 @@ Date:   Tue May 24 15:53:30 2022 +0800
 
 **注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。**
 
-#### 操作标签
+### 操作标签
 
 ``` gas
 $ git tag -d v0.1
