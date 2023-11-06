@@ -176,6 +176,29 @@ declare module '*.scss';
 
 ### **styled-components的原理**
 
+> Tagged Template Literals是ES6中的一项新功能。它允许我们自定义字符串插值规则
+
+```js
+const aVar = 'good';
+
+// 下面的代码是等效的:
+fn`this is a ${aVar} day`;
+fn(['this is a ', ' day'], aVar);
+```
+
+这种语法处理起来有点麻烦，但是这意味着我们可以在样式化组件中接收变量、函数或者Mixin(CSS helper)，并且可以将其压缩为纯CSS
+
+在展开过程中，样式化组件会忽略计算结果为undefined、null、false 或空字符串(“”)的插值，这意味着可以使用短路来有条件地添加CSS规则
+
+```js
+const Title = styled.h1<{ $upsideDown?: boolean; }>`
+  ${props => props.$upsideDown && 'transform: rotate(180deg);'}
+  text-align: center;
+`;
+```
+
+
+
 > styled-components就是通过下面这种方式来拼接模板字符串的
 
 ```js
@@ -238,7 +261,7 @@ class Child extends Component {
         <div className="title">我是一个child组件</div>
         <SubTitleContainer>我是一个副标题</SubTitleContainer>
         <hr />
-        // color和size属性不会被传递到DOM中，因为styled-components足够聪明，可以过滤非标准属性
+        {/* color和size属性不会被传递到DOM中，因为styled-components足够聪明，可以过滤非标准属性 */}
 				<ContentContainer color='#00f' size="20" className="aa">
 		  		我是内容
 				</ContentContainer>
@@ -297,6 +320,31 @@ const SColumn = styled.div<ColumnStyleProps>`
 `;
 ```
 
+### 样式对象
+
+> styled-components可选地支持将CSS作为JavaScript对象而不是字符串编写
+
+```tsx
+const Box = styled.div<{ $background?: string; }>({
+  background: '#BF4F74',
+  height: '50px',
+  width: '50px'
+});
+
+const PropsBox = styled.div(props => ({
+  background: props.$background,
+  height: '50px',
+  width: '50px'
+}));
+
+render(
+  <div>
+    <Box />
+    <PropsBox $background="blue" />
+  </div>
+);
+```
+
 ### 扩展样式
 
 > 可以把一个styled组件做为基类，然后用其它的styled组件对其进行扩展：
@@ -344,10 +392,18 @@ render(
 
 ### 样式化组件
 
-> styled方法不仅可以扩展styled组件，并且还可以扩展自定义组件：
+> styled方法不仅可以扩展styled组件，并且还可以扩展自定义组件（但是styled会给包裹的组件传入className属性，必须将该属性插入到dom中）：
 
-```jsx
-const Link = ({ className, children }) => (
+```tsx
+interface LogoProps {
+  /* 应该将该属性定义为可选的，因为ts并不知道styled包装器会传入该属性 */
+  className?: string;
+  children: any;
+  /* theme也将会被传入 */
+  theme?: ThemeInterface;
+}
+
+const Link = ({ className, children }: React.FC<LogoProps>) => (
   <a className={className}>
     {children}
   </a>
@@ -427,6 +483,83 @@ export const SContent = styled(Wrapper as React.FC<WrapperProps>)`
 `;
 ```
 
+### 传递的props
+
+- 如果styled的目录是一个简单元素（例如`styled.div`），styled-components将只会传递已知的HTML属性到DOM上
+
+```tsx
+import styled from 'styled-components';
+import Header from './Header';
+
+interface TitleProps {
+  readonly $isActive: boolean;
+}
+
+const Title = styled.h1<TitleProps>`
+  color: ${(props) => (props.$isActive ? props.theme.colors.main : props.theme.colors.secondary)};
+`;
+```
+
+- 而如果是自定义的React组件（例如`styled(MyComponent)`），styled-components会传递所有props
+
+```tsx
+import styled from 'styled-components';
+import Header from './Header';
+
+// customColor属性将会被传入Header组件中
+const NewHeader = styled(Header)<{ customColor: string }>`
+  color: ${(props) => props.customColor};
+`;
+```
+
+如果**customColor**属性不应传输到**Header**组件，可以通过在其前面添加美元符号 ($) 使其成为**Transient props** (如果想防止样式组件使用的props被传递到底层React节点或渲染到DOM元素，就可以在prop名称前添加美元符号，将其转变为Transient props)
+
+```tsx
+import styled from 'styled-components';
+import Header from './Header';
+
+// Header组件不会接收customColor属性
+const NewHeader2 = styled(Header)<{ $customColor: string }>`
+  color: ${(props) => props.$customColor};
+`;
+```
+
+也可以手动筛除指定属性：
+
+```tsx
+import styled from 'styled-components';
+import Header, { Props as HeaderProps } from './Header';
+
+const NewHeader3 = styled(({ customColor, ...rest }: { customColor: string } & HeaderProps) => <Header {...rest} />)`
+  color: ${(props) => props.customColor};
+`;
+```
+
+Styled-components也提供了一种筛选属性的方式（shouldForwardProp）：
+
+这是一种比transient props更动态、精细的过滤机制。在多个高阶组件组合在一起并且恰好共享相同props时，它将非常好用。shouldForwardProp的工作原理非常类似于 Array.filter，在shouldForwardProp的回调函数中可以返回布尔值，来决定这个prop会不会传递给底层组件
+
+**注意：**其他链式方法应始终在`.withConfig`方式之后
+
+```tsx
+const Comp = styled('div').withConfig({
+  shouldForwardProp: (prop) =>
+      !['hidden'].includes(prop),
+}).attrs({ className: 'foo' })`
+  color: red;
+  &.foo {
+    text-decoration: underline;
+  }
+`;
+
+// 由于hidden不会被传递到Comp组件中，因为该组件正常显示
+render(
+  <Comp hidden>
+    Drag Me!
+  </Comp>
+);
+```
+
 ### &与&&
 
 > 单个＆符号指代该组件的**所有实例**
@@ -470,7 +603,7 @@ render(
 )
 ```
 
-> &&双符号指的是组件的特定某个**实例**
+> &&双符号指的是组件的特定某个**实例**。如果需要在指定条件下执行样式覆盖，并且不希望某个样式应用于某个特定组件的所有实例，那么这种方法非常有用:
 
 ```tsx
 const Input = styled.input.attrs({ type: "checkbox" })``;
@@ -527,7 +660,7 @@ render(
 )
 ```
 
-> &&具有“优先级提升”的特殊行为，在处理混合着styled组件和普通的 CSS 环境的情况下，他会起到作用
+> &&具有“优先级提升”的特殊行为，在处理混合着styled组件和普通的CSS环境的情况下，他会起到作用
 
 ```tsx
 const Thing = styled.div`
@@ -863,3 +996,23 @@ render(
 );
 ```
 
+### 冲突问题
+
+如果将全局类与样式化组件类一起应用，结果可能与预期的不同。在css规则中，如果在两个类中定义的属性冲突，则后面定义的将覆盖前面定义的。样式化组件类优先于全局类，因为样式化组件在默认情况下在组件运行时注入的样式。因此它的样式胜过其他单一的类名选择器
+
+```tsx
+// MyComponent.js
+const MyComponent = styled.div`background-color: green;`;
+
+
+// my-component.css
+.red-bg {
+  background-color: red;
+}
+
+// 由于某种原因，该组件仍然具有绿色背景,
+// 即使试图使用“red-bg”类重写它
+<MyComponent className="red-bg" />
+```
+
+解决方法也很简单，只需要使用css规则提升该规则的权重即可

@@ -1562,36 +1562,36 @@ git worktree方案可以概括为：通过创建共享版本仓库的多个工�
 
 1. 工作树的创建和创建新分支一样简单而高效。运行下面的格式创建工作树：
 
-   ``` base
-   git worktree add -b ../工作树目录 分支
+   ``` shell
+   $ git worktree add -b ../工作树目录 分支
    ```
 
    该命令会在../工作树目录下，创建一套完整分支工作区。该目录可以任意指定，但是最好在主仓库目录之外，免得污染仓库。然后就可以在该目录下检出分支，向上游推送，等等。如果分支不存在，则可以用-b操作，可以新建分支并使这个新分支关联到工作树。
 
 2. list功能会列出每个工作树的详细信息：
 
-   ``` base
-   git worktree list --porcelain]
+   ``` shell
+   $ git worktree list --porcelain]
    ```
 
    --porcelain 选项，可以列出更完整的哈希值和分支信息。
 
-3. *移动worktree到其他目录* ：
+3. *移动worktree到其他目录*：
 
-   ``` base
-   git worktree move <worktree> <new-path> 
+   ``` shell
+   $ git worktree move <worktree> <new-path> 
    ```
 
-4. *清除那些检出目录已经被删除的worktree* ：
+4. *清除那些检出目录已经被删除的worktree*：
 
-   ``` base
-   git worktree prune
+   ``` shell
+   $ git worktree prune
    ```
 
-5. *删除worktree, 同时删除检出目录* ：
+5. *删除worktree, 同时删除检出目录*：
 
-   ``` base
-   git worktree remove -f <worktree>
+   ``` shell
+   $ git worktree remove -f <worktree>
    ```
 
    注意：该命令只能删除干净的工作树（没有未跟踪的文件，也无法对跟踪的文件进行任何修改）。不干净的工作树或带有子模块的树需要使用--force删除。主工作树无法删除。
