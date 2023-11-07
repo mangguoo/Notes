@@ -837,6 +837,29 @@ const StyledComp = styled.div`
 `
 ```
 
+### isStyledComponent
+
+> 用于识别styled-components的实用程序
+
+```tsx
+import React from 'react'
+import styled, { isStyledComponent } from 'styled-components'
+import MaybeStyledComponent from './somewhere-else'
+
+let TargetedComponent = isStyledComponent(MaybeStyledComponent)
+  ? MaybeStyledComponent
+  : styled(MaybeStyledComponent)``
+
+const ParentComponent = styled.div`
+  color: royalblue;
+  ${TargetedComponent} {
+    color: tomato;
+  }
+`
+```
+
+
+
 ### theme provider
 
 > Styled-Component 通过导出`<ThemeProvider>`包装组件来提供完整的主题化支持。该组件通过context API为其下面的所有React组件提供一个主题。在render tree中，所有styled组件都可以访问所提供的主题
@@ -921,7 +944,7 @@ render(
 
 #### 在styled component之外的地方使用theme
 
-- 在类组件中使用
+- 在类组件中使用(使用高阶组件)
 
 ```tsx
 import { withTheme } from 'styled-components'
@@ -934,6 +957,22 @@ class MyComponent extends React.Component {
 }
 
 export default withTheme(MyComponent)
+```
+
+- 在类组件中使用(使用消费者组件)
+
+```tsx
+import { ThemeConsumer } from 'styled-components'
+
+export default class MyComponent extends React.Component {
+  render() {
+    return (
+      <ThemeConsumer>
+        {theme => <div>The theme color is {theme.color}.</div>}
+      </ThemeConsumer>
+    )
+  }
+}
 ```
 
 - 在函数组件中使用
@@ -994,6 +1033,40 @@ render(
     </ThemeProvider>
   </div>
 );
+```
+
+#### 声明文件
+
+> 可以使用interface声明合并来扩展styled-components的TypeScript定义。DefaultTheme被用作prop.theme开箱即用的接口。默认情况下，接口DefaultTheme是空的，所以我们需要扩展它
+
+```ts
+import 'styled-components';
+
+declare module 'styled-components' {
+  export interface DefaultTheme {
+    borderRadius: string;
+    colors: {
+      main: string;
+      secondary: string;
+    };
+  }
+}
+```
+
+定义类型之后，就可以声明样式对象了：
+
+```ts
+import { DefaultTheme } from 'styled-components';
+
+const myTheme: DefaultTheme = {
+  borderRadius: '5px',
+  colors: {
+    main: 'cyan',
+    secondary: 'magenta',
+  },
+};
+
+export { myTheme };
 ```
 
 ### 冲突问题
