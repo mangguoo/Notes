@@ -858,8 +858,6 @@ const ParentComponent = styled.div`
 `
 ```
 
-
-
 ### theme provider
 
 > Styled-Component 通过导出`<ThemeProvider>`包装组件来提供完整的主题化支持。该组件通过context API为其下面的所有React组件提供一个主题。在render tree中，所有styled组件都可以访问所提供的主题

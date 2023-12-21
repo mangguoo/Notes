@@ -29,20 +29,20 @@
 - 属性选择器
 
 	- `[target]`：选择所有带有target属性元素
-- `[target=_blank]`：选择所有使用target="_blank"的元素
-- `[title~=flower]`：选择标题属性包含单词"flower"的所有元素
-- `[lang|=en]`：选择 lang 属性等于 en，或者以 en 开头的所有元素
-- `a[src^="https"]`：选择每一个src属性的值以"https"开头的元素
-- `a[src$=".pdf"]`：选择每一个src属性的值以".pdf"结尾的元素
-- `a[src*="runoob"]`：选择每一个src属性的值包含子字符串"runoob"的元素
+	- `[target=_blank]`：选择所有使用target="_blank"的元素
+	- `[title~=flower]`：选择标题属性包含单词"flower"的所有元素
+	- `[lang|=en]`：选择 lang 属性等于 en，或者以 en 开头的所有元素
+	- `a[src^="https"]`：选择每一个src属性的值以"https"开头的元素
+	- `a[src$=".pdf"]`：选择每一个src属性的值以".pdf"结尾的元素
+	- `a[src*="runoob"]`：选择每一个src属性的值包含子字符串"runoob"的元素
 
 - 伪元素选择器
 
 	- `::before`：元素的开始
-- `::after`：元素的结束
-- `::first-letter`：第一个字母
-- `::first-line`：第一行
-- `::section`：光标选中的部分
+	- `::after`：元素的结束
+	- `::first-letter`：第一个字母
+	- `::first-line`：第一行
+	- `::section`：光标选中的部分
 
 - 伪类选择器
 
@@ -81,12 +81,6 @@
 	- `input:invalid`：用于匹配输入值为非法的元素
 	- `input:valid`：用于匹配输入值为合法的元素(只作用于能指定区间值的元素，例如 input 元素中的 min 和 max 属性，及正确的 email 字段, 合法的数字字段等)
 
-- 其它伪类选择器
-
-	- `:not(p)`：选择每个并非p元素的元素
-	- `:root`：选择文档的根元素
-	- `p:empty`：选择每个没有任何子级的p元素（包括文本节点）
-
 - 结构伪类选择器
 
 	- `p:first-of-type`：选择p元素，并且该p元素是其父级中的第一个p元素
@@ -97,6 +91,81 @@
 	- `p:last-child`：选择p元素，且该p元素必须是其父级的最后一个子元素
 	- `p:only-child`：选择p元素，且该p元素必须是其父级的唯一一个子元素
 	- `p:nth-child(2)`：选择p元素，且该p元素必须是其父级的第二个子元素
+
+- 其它伪类选择器
+
+  - `:not(p)`：选择每个并非p元素的元素
+
+  - `:root`：选择文档的根元素
+
+  - `p:empty`：选择每个没有任何子级的p元素（包括文本节点）
+
+  - `:is :where`：CSS伪类函数以选择器列表作为参数，并选择该列表中任意一个选择器可以选择的元素
+
+    ```css
+    /* 选择标题、主体和页脚部分中的所有段落 */
+    :where(header, main, footer) p:hover {
+      color: red;
+      cursor: pointer;
+    }
+    
+    /* 以上内容等效于以下内容 */
+    header p:hover,
+    main p:hover,
+    footer p:hover {
+      color: red;
+      cursor: pointer;
+    }
+    ```
+
+### :is和:where的区别：
+
+> 两者之间的区别在于，`:is()`会计入整个选择器的优先级（它采用其最具体参数的优先级），而`:where()`的优先级为0
+
+```html
+<article>
+  <h2>:where()-styled links</h2>
+  <section class="styling">
+    <p>
+      Here is my main content. This
+    </p>
+  </section>
+
+  <aside class="styling">
+    <p>
+      Here is my aside content. This
+    </p>
+  </aside>
+
+  <footer class="styling">
+    <p>
+      This is my footer, also containing
+    </p>
+  </footer>
+</article>
+```
+
+```css
+:is(section.styling, aside.styling, footer.styling) a {
+  color: red;
+}
+```
+
+这里，如果想要使用一个简单的选择器来覆盖article中所有p标签中文字的颜色：
+
+```css
+article a {
+  color: blue;
+}
+```
+
+这个红色的样式不起作用，因为`:is()`中的选择器会计入整体选择器的优先级，并且类选择器的优先级高于元素选择器，而如果使用:where()，由于他列表中的选择器优先级都为0，因此可以通过上述方法进行简单覆盖
+
+```css
+:where(section.styling, aside.styling, footer.styling) a {
+  color: orange;
+}
+```
 
 ### 选择器权重
 

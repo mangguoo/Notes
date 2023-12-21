@@ -1215,7 +1215,7 @@ export default Page
 
 #### return值: paths
 
-paths键确定将预先呈现哪些路径。例如，假设有一个使用Dynamic Routes命名的页面/post/[id]。如果从此页导出getStaticPath并返回以下路径，那么Next.js 将在下一个构建过程中静态生成/post/1和/post/2
+paths键确定将预先呈现哪些路径。例如，假设有一个使用Dynamic Routes命名的页面/post/[id]。如果从此页导出getStaticPath并返回以下路径，那么Next.js将在下一个构建过程中静态生成/post/1和/post/2
 
 ```js
 return {
