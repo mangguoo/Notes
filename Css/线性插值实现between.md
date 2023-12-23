@@ -92,6 +92,18 @@ export default function between(
   const slope = (unitlessFromSize - unitlessToSize) / (unitlessMinScreen - unitlessMaxScreen)
   const base = unitlessToSize - slope * unitlessMaxScreen
   return `calc(${base.toFixed(2)}${fromSizeUnit || ''} + ${(100 * slope).toFixed(2)}vw)`
-}Ï
+}
 ```
 
+### 解析
+
+1. 线性插值公式: `y = y1 + (x - x1) * (y0 - y1) / (x0 - x1)`
+
+2. 变量`slop`即为斜率`(y0 - y1) / (x0 - x1)`，这些都为已知变量，因此斜率可以轻松求得
+
+3. 而第一点的线性插值公式可以轻松的变化为如下等式：
+
+   `y = y1 - slope * x1 + slope * x`
+
+4. `base`即为`y1 - slope * x1`
+5. 现在如果知道自变量`x`就可以求出`y`，但是实际场景`x`其实是动态变化的，他应该代表真实的屏幕宽度(但是要在`maxScreen - minScreen`之间)，而`100vw`就是真实屏幕宽度，并且他是响应式单位，刚好符合我们的需求
