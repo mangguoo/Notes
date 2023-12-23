@@ -1,6 +1,6 @@
 # chalk
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/screenshotfjskldjfalks;djfas.png" alt="screenshotfjskldjfalks;djfas" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/screenshotfjskldjfalks;djfas.png" alt="screenshotfjskldjfalks;djfas" style="zoom: 67%;" />
 
 > ### chalk.`<style>[.<style>...](string, [string...])`
 >

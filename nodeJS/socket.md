@@ -139,7 +139,7 @@ function errorHandler(error, client) {
 
 ### http与websocket的主要区别
 
-![aHR0cHM6Ly93d3cuamF2YXpoaXlpbi5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvamF2YTctMTU5NTE0MjA3Ni5wbmc](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/aHR0cHM6Ly93d3cuamF2YXpoaXlpbi5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvamF2YTctMTU5NTE0MjA3Ni5wbmc.png)
+![aHR0cHM6Ly93d3cuamF2YXpoaXlpbi5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvamF2YTctMTU5NTE0MjA3Ni5wbmc](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/aHR0cHM6Ly93d3cuamF2YXpoaXlpbi5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvamF2YTctMTU5NTE0MjA3Ni5wbmc.png)
 
 ### websocket的特点
 

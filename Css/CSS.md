@@ -237,7 +237,7 @@ article a {
 </div>
 ```
 
-![image-20221222155651000](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222155651000.png)
+![image-20221222155651000](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222155651000.png)
 
 ```html
 <div style="border: 1px solid black;">
@@ -248,7 +248,7 @@ article a {
 </div>
 ```
 
-![image-20221222160036854](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222160036854.png)
+![image-20221222160036854](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222160036854.png)
 
 ### 背景 background
 **背景颜色:**
@@ -276,7 +276,7 @@ div{
 
 background-size不只可以对背景图片生效，对渐变背景颜色同样生效，因此上例中实际上是指定了线性渐变的范围为30px的正方形。并且由于设置了重复背景，所以才有了下方栅栏状的背景
 
-![image-20221222160545539](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222160545539.png)
+![image-20221222160545539](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222160545539.png)
 
 **背景图片:**
 
@@ -330,7 +330,7 @@ background-size不只可以对背景图片生效，对渐变背景颜色同样�
 <div id="div2"></div>
 ```
 
-![image-20221222161715797](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222161715797.png)
+![image-20221222161715797](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222161715797.png)
 
 **base64和性能优化:**
 
@@ -365,7 +365,7 @@ div{
 <div class="i"></div>
 ```
 
-![image-20221222162434819](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222162434819.png)
+![image-20221222162434819](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222162434819.png)
 
 ### 边框 border
 **边框的属性:**
@@ -402,7 +402,7 @@ border-right: 1px solid red;
 }
 ```
 
-![image-20221222162801372](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222162801372.png)
+![image-20221222162801372](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222162801372.png)
 
 **边框衔接:**
 
@@ -439,7 +439,7 @@ border-right: 1px solid red;
 <div id="div4"></div>
 ```
 
-![image-20221222162921821](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222162921821.png)
+![image-20221222162921821](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222162921821.png)
 
 **outline:**
 
@@ -456,7 +456,7 @@ border-right: 1px solid red;
 }
 ```
 
-![image-20221222163001626](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222163001626.png)
+![image-20221222163001626](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222163001626.png)
 
 <div class="container"></div>
 
@@ -466,7 +466,7 @@ border-right: 1px solid red;
 - `scroll`： 超出容器时显示滚动条；
 - `auto`： 自动选择是否显示滚动条；
 
-![image-20221222163058760](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222163058760.png)
+![image-20221222163058760](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222163058760.png)
 
 ### 文字相关样式
 
@@ -492,7 +492,7 @@ p:first-letter{
 <p>埋藏中国城枯叶</p>
 ```
 
-![image-20221222163249263](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222163249263.png)
+![image-20221222163249263](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222163249263.png)
 
 **文字颜色 color:**
 
@@ -500,7 +500,7 @@ p:first-letter{
 
 - 字体族: 字体族表示一类有相同特征的字体，下图中介绍了一些字体族
 
-![image-20221222163442618](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222163442618.png)
+![image-20221222163442618](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222163442618.png)
 
 - 指定字体
 
@@ -523,7 +523,7 @@ p:first-letter{
 }
 ```
 
-![image-20221222163620919](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222163620919.png)
+![image-20221222163620919](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222163620919.png)
 
 - 自定义字体
 
@@ -563,7 +563,7 @@ div {
 </div>
 ```
 
-![image-20221222164102080](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222164102080.png)
+![image-20221222164102080](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222164102080.png)
 
 
 
@@ -647,7 +647,7 @@ li{
 <li>fadsfsdafsdfasfasdfdasfadsfasd</li>
 ```
 
-![image-20221222165351876](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222165351876.png)
+![image-20221222165351876](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222165351876.png)
 
 ### 文字折行
 
@@ -674,7 +674,7 @@ li{
 <div id="div2">fjadklfjlksadjfaskldfjlsadkfjalsdf</div>
 ```
 
-![image-20221222170634681](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222170634681.png)
+![image-20221222170634681](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222170634681.png)
 
 **指定非CJK换行规则 word-break:** 
 
@@ -696,7 +696,7 @@ li{
 </div>
 ```
 
-![image-20221222170452437](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222170452437.png)
+![image-20221222170452437](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222170452437.png)
 
 **指定元素内空白如何处理 white-space:**
 
@@ -739,7 +739,7 @@ fdsf
 </div>
 ```
 
-![image-20221222170611616](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222170611616.png)
+![image-20221222170611616](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222170611616.png)
 
 ### 装饰性样式
 
@@ -793,7 +793,7 @@ li{
 </ul>
 ```
 
-![image-20221222171255295](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222171255295.png)
+![image-20221222171255295](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222171255295.png)
 
 
 ### table相关样式
@@ -985,13 +985,13 @@ table {
 </div>
 ```
 
-![image-20221222212516290](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222212516290.png)
+![image-20221222212516290](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222212516290.png)
 
 ### 布局属性
 
 **盒模型:**
 
-![image-20221222212553318](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222212553318.png)
+![image-20221222212553318](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222212553318.png)
 
 **display:**
 
@@ -1089,7 +1089,7 @@ table {
 </div>
 ```
 
-![image-20221222213609366](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222213609366.png)
+![image-20221222213609366](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222213609366.png)
 
 **浮动元素的位置:**
 
@@ -1137,7 +1137,7 @@ table {
 </div>
 ```
 
-![image-20221222213742983](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222213742983.png)
+![image-20221222213742983](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222213742983.png)
 
 **解决高度塌陷:**
 
@@ -1221,7 +1221,7 @@ table {
 </div>
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222214059617.png" alt="image-20221222214059617" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222214059617.png" alt="image-20221222214059617" style="zoom:80%;" />
 
 - 第一个三联布局中，center被首先渲染，并且因为center是block元素，所以它会把上面的一整行全部占据，导致left和right浮动时只能在它下面找位置；
 
@@ -1277,7 +1277,7 @@ table {
 </div>
 ```
 
-![image-20221222214311132](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222214311132.png)
+![image-20221222214311132](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222214311132.png)
 
 ### 响应式布局
 
@@ -1317,7 +1317,7 @@ table {
 - color：可选。阴影的颜色
 - inset：可选。从外层的阴影（开始时）改变阴影内侧阴影
 
-![image-20221222214643593](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222214643593.png)
+![image-20221222214643593](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222214643593.png)
 
 ### text-shadow
 
@@ -1357,7 +1357,7 @@ table {
 </div>
 ```
 
-![image-20221222214808255](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222214808255.png)
+![image-20221222214808255](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222214808255.png)
 
 
 ### border-radius
@@ -1404,7 +1404,7 @@ border-radius的值可以设置百分比，50%的时候为圆形。也可以设�
 <div class="container rd3"></div>
 ```
 
-![image-20221222215147362](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222215147362.png)
+![image-20221222215147362](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222215147362.png)
 
 ### clip-path
 
@@ -1465,7 +1465,7 @@ border-radius的值可以设置百分比，50%的时候为圆形。也可以设�
 </svg>
 ```
 
-![image-20221222215854484](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222215854484.png)
+![image-20221222215854484](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222215854484.png)
 
 
 ### transform变形
@@ -1527,7 +1527,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 > - 透视距离perspective是指观察者沿着平行于z轴的视线与屏幕之间的距离，简称视距；
 > - 透视原点perspective-origin是指观察者的位置，一般地，观察者位于与屏幕平行的另一个平面上，观察者始终是与屏幕垂直的。观察者的活动区域是被观察元素的盒模型区域；
 
-![image-20221222220550139](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222220550139.png)
+![image-20221222220550139](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222220550139.png)
 
 **立方体示例:**
 
@@ -1600,7 +1600,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 </div>
 ```
 
-![image-20221222220700120](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222220700120.png)
+![image-20221222220700120](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222220700120.png)
 
 ### 动画
 
@@ -1613,7 +1613,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 > 运动曲线怎么确定动画的速度：
 > 可以把这个坐标系横轴的值当做时间，纵轴的值当做关键帧之间属性变化的数值。这样这条曲线的平陡程度就是动画快慢的反应，即越陡的部分动画反应出来就是越快，越平的部分当然动画反应的就是越慢了。
 
-![image-20221222220843193](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222220843193.png)
+![image-20221222220843193](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222220843193.png)
 
 **steps:**
 
@@ -1621,7 +1621,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 >
 > steps 函数指定了一个阶跃函数，它的第一个参数指定了时间函数中的间隔数量（必须是正整数），第二个参数可选，接受 start 和 end 两个值，指定在每个间隔的起点或是终点发生阶跃变化，默认为 end。
 
-![image-20221222220941803](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222220941803.png)
+![image-20221222220941803](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222220941803.png)
 
 #### transition过渡动画
 
@@ -1729,7 +1729,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 - forwards：目标将保留由执行期间遇到的最后一个关键帧计算值。 最后一个关键帧取决于animation-direction和animation-iteration-count的值。
 - backwards：动画将在应用于目标时立即应用第一个关键帧中定义的值，并在animation-delay期间保留此值。 第一个关键帧取决于animation-direction的值。
 
-![image-20221222223437253](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222223437253.png)
+![image-20221222223437253](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222223437253.png)
 
 **animation-play-state:**
 
@@ -1789,7 +1789,7 @@ perspective-origin 指定了观察者的位置，与 perspective 属性一起使
 }
 ```
 
-![image-20221222223615813](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222223615813.png)
+![image-20221222223615813](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222223615813.png)
 
 ## CSS预处理器
 

@@ -336,7 +336,7 @@ run();
 
 然后就会生成：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/9779a0b382ec47d78a8e9a1b57ee1985~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/9779a0b382ec47d78a8e9a1b57ee1985~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 这里的 `blend：atop` 应该是最常用的，就是单纯的把一个图叠到另一张图上。其他支持的属性见 [这里](https://link.juejin.cn?target=https%3A%2F%2Fsharp.pixelplumbing.com%2Fapi-composite%23composite)，详细介绍可以看 [这里](https://link.juejin.cn?target=https%3A%2F%2Fwww.cairographics.org%2Foperators%2F)
 
@@ -344,7 +344,7 @@ run();
 
 这里需要注意的是：**`composite` 方法接收的 `input` 属性不能是一个 sharp 实例**！例如上面的例子里，我先用 sharp 创建了要拼接的图片，但是需要在最后使用 `toBuffer` 方法将其转换为 buffer 然后才能传入 composite 进行拼接，下面是文档中的介绍：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/dfe611dc95a74fffa3b280a2f27664a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/dfe611dc95a74fffa3b280a2f27664a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 可以看到，**要么传入 buffer 或者路径字符串，要么就是用 create 创建新的图片**，唯独不能使用 sharp 实例
 
@@ -363,7 +363,7 @@ background
 
 在期望里，它的最终结果应该是全部被蓝色填满了。但是最后生成的却是这样的：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/10b50b9da5244f7287263b98b8508738~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/10b50b9da5244f7287263b98b8508738~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 **只有最后一个 composite 生效了**，要想解决这个问题有两种办法：
 
@@ -398,7 +398,7 @@ background
 
 然后就会发现颠倒的操作没生效：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/b638c203de874a65b62837c115d0329b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/b638c203de874a65b62837c115d0329b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 在这种情况下就比较推荐第二种解决方法了。如下，每次操作之后先转换成 buffer，然后再做下一个操作：
 
@@ -420,13 +420,13 @@ sharp(buffer)
 
 最后的结果就和我们预期的一致了：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/f6bc037a75ae48d0abfe19b4e14381fc~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/f6bc037a75ae48d0abfe19b4e14381fc~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 ## 修改透明度
 
 经常会有需求是调整一个图片的整体透明度，但是 sharp 这里对透明度操作的支持不太好，在 api 文档的通道操作里我们可以看到：
 
-![image.png](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/67d4d98032794a52995e4f47f860625d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
+![image.png](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/67d4d98032794a52995e4f47f860625d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
 `remvoeAlpha` 是直接砍掉透明通道，`ensureAlpha` 是如果透明通道不存在的话就补上。**没有直接调整透明度的 api**，这里把解决方法贴上，来自官方 issue 区：
 

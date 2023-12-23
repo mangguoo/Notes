@@ -109,7 +109,7 @@ local > global > system
 - Repository：仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本
 - Remote：远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换
 
-![640](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640.png)
+![640](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/640.png)
 
 > 仓库目录结构
 
@@ -120,7 +120,7 @@ local > global > system
 - Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）。
 - Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。
 
-![640 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640%20(1).png)
+![640 (1)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/640%20(1).png)
 
 > Git的工作流程
 
@@ -132,7 +132,7 @@ local > global > system
 
    因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)
 
-![640](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/640.jpg)
+![640](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/640.jpg)
 
 ## Git项目搭建
 
@@ -401,7 +401,7 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
 
   reset --soft 会在重置HEAD和branch时，保留工作目录和暂存区中的内容，并把[重置HEAD所带来的新的差异]放进暂存区。
   
-  ![](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/131f7bb20e3b4382bf5868d7a78e43ab.png)
+  ![](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/131f7bb20e3b4382bf5868d7a78e43ab.png)
   
   把HEAD从4移动到3，而且在reset过程中工作目录和暂存区的内容没有被清理掉，所以4中的改动在reset后就也成了工作目录新增的 [工作目录和HEAD的差异]。这就是[重置HEAD所带来的差异]。
   
@@ -427,7 +427,7 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
 
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
 
-![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0.jpg)
+![0](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0.jpg)
 
 Git版本库里添加的时候，是分两步执行的：
 
@@ -605,7 +605,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 2. 登陆GitHub，设置publick key。
 
-   ![Snipaste_2022-05-24_18-06-00](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-24_18-06-00.png)
+   ![Snipaste_2022-05-24_18-06-00](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-24_18-06-00.png)
 
 为什么GitHub需要SSH Key呢？
 
@@ -615,7 +615,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 1. 首先要在GitHub上创建一个仓库：
 
-   ![Snipaste_2022-05-24_18-16-42](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-24_18-16-42.png)
+   ![Snipaste_2022-05-24_18-16-42](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-24_18-16-42.png)
 
 2. 创建的仓库是一个空仓库，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。我们可以根据GitHub的提示，在本地HY仓库中运行如下命令：
 
@@ -846,19 +846,19 @@ Git会把所有提交都串成一条时间线，这条时间线就是一个分�
 
 `master`指针是指向最新的`commit`，`HEAD`指针是指向当前分支，这样就能确定当前分支，以及当前分支的提交点：
 
-![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0.png)
+![0](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0.png)
 
 当我们创建新的分支，例如`dev`时，Git新建了一个指针叫`dev`，指向`master`相同的提交，再把`HEAD`指向`dev`，就表示当前分支在`dev`上：
 
-![l](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/l.png)
+![l](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/l.png)
 
 从现在开始，对工作区的修改和提交就是针对`dev`分支了，比如新提交一次后，`dev`指针往前移动一步，而`master`指针不变：
 
-![l (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/l%20(1).png)
+![l (1)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/l%20(1).png)
 
 如果在`dev`上的工作完成了，就可以把`dev`合并到`master`上。合并的方法就是直接把`master`指向`dev`的当前提交：
 
-![0 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(1).png)
+![0 (1)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(1).png)
 
 创建`dev`分支，然后切换到`dev`分支：
 
@@ -944,7 +944,7 @@ git branch --set-upstream-to=origin/<branch> <branch>
 
 如果`master`分支和`feature1`分支各自都分别有新的提交：
 
-![0](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0-16534055659711.png)
+![0](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0-16534055659711.png)
 
 这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，可以通过`git status`查看冲突的文件：
 
@@ -992,7 +992,7 @@ $ git commit -m "merge branch"
 
 现在，`master`分支和`feature1`分支变成了下图所示：
 
-![0 (1)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(1)-16534065410972.png)
+![0 (1)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(1)-16534065410972.png)
 
 ### 分支管理策略
 
@@ -1023,7 +1023,7 @@ Merge made by the 'recursive' strategy.
 
 因为本次合并要创建一个新的commit，所以加上`-m`参数，把commit描述写进去。不使用`Fast forward`模式，merge后就是这样：
 
-![0 (2)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(2).png)
+![0 (2)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(2).png)
 
 > 分支策略
 
@@ -1031,7 +1031,7 @@ Merge made by the 'recursive' strategy.
 
 首先，`master`分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活。干活都在`dev`分支上，也就是说，`dev`分支是不稳定的，到某个时候，比如1.0版本发布时，再把`dev`分支合并到`master`上，在`master`分支发布1.0版本。每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了。所以，团队合作的分支看起来就像这样：
 
-![0 (3)](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0%20(3).png)
+![0 (3)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(3).png)
 
 ### Bug分支
 
@@ -1467,7 +1467,7 @@ To github.com:ilmangoi/HY.git
 
 要看看是否真的从远程库删除了标签，可以登陆GitHub查看：
 
-![Snipaste_2022-05-25_20-50-07](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_20-50-07.png)
+![Snipaste_2022-05-25_20-50-07](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_20-50-07.png)
 
 ## Pull Request
 
@@ -1477,7 +1477,7 @@ To github.com:ilmangoi/HY.git
 
 1. Fork自己想要参与的开源项目仓库：
 
-   ![Snipaste_2022-05-25_21-07-52](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-07-52.png)
+   ![Snipaste_2022-05-25_21-07-52](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-07-52.png)
 
 2. 克隆Fork回来的仓库，一定要从自己的账号下clone仓库，这样你才能推送修改：
 
@@ -1526,11 +1526,11 @@ To github.com:ilmangoi/HY.git
 
    > 提交pull request
 
-   ![Snipaste_2022-05-25_21-28-19](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-28-19.png)
+   ![Snipaste_2022-05-25_21-28-19](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-28-19.png)
 
    > 查看已提交的pull request
 
-   ![Snipaste_2022-05-25_21-30-02](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-05-25_21-30-02.png)
+   ![Snipaste_2022-05-25_21-30-02](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-30-02.png)
 
 ## wroktree
 
@@ -1558,7 +1558,7 @@ git worktree方案可以概括为：通过创建共享版本仓库的多个工�
 
   git worktree方式下，A工作区只要本地提交更新后，其他工作区就能立即收到（因为它们共享同一个版本仓库）
 
-![](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-1688c37a2c59e782b3d7e6b4f75ad7f4_r.jpg)
+![](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-1688c37a2c59e782b3d7e6b4f75ad7f4_r.jpg)
 
 1. 工作树的创建和创建新分支一样简单而高效。运行下面的格式创建工作树：
 

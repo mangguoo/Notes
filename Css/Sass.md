@@ -836,7 +836,7 @@ export default memo(Button)
 
 ## 巧用nth-type
 
-![image-20221220200449265](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221220200449265.png)
+![image-20221220200449265](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221220200449265.png)
 
 ```scss
 .institutionItem {

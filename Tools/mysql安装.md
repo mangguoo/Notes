@@ -28,7 +28,7 @@
 
   
 
-  ![Snipaste_2022-08-05_13-15-21](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/Snipaste_2022-08-05_13-15-21.png)
+  ![Snipaste_2022-08-05_13-15-21](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-08-05_13-15-21.png)
 
 - 安装mysql**(以管理员身份运行)**：
 

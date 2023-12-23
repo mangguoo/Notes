@@ -9,7 +9,7 @@
 >- **网格线**：划分网格的线，称为"网格线"。应该注意的是，当定义网格时，我们定义的是网格轨道，而不是网格线。Grid会创建编号的网格线来来定位每一个网格元素。m列有m + 1根垂直的网格线，n行有n + 1跟水平网格线。图示例中就有4根垂直网格线。一般而言，是从左到右，从上到下，1，2，3进行编号排序。当然也可以从右到左，从下到上，按照-1，-2，-3...顺序进行编号排序
 >
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591934e1560~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="网格线" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591934e1560~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="网格线" style="zoom:67%;" />
 
 `Grid`布局属性可以分为两大类，一类是容器属性，一类是项目属性
 
@@ -32,7 +32,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591c0fc1214~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="固定行高和列宽" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591c0fc1214~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="固定行高和列宽" style="zoom:67%;" />
 
 #### repeat函数
 
@@ -63,7 +63,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591c300e81a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591c300e81a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
 
 #### fr关键字
 
@@ -78,7 +78,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591ccc256d1~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591ccc256d1~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
 
 #### minmax函数
 
@@ -93,7 +93,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591dc05edac~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591dc05edac~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
 
 #### auto关键字
 
@@ -108,7 +108,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591f2146e1d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591f2146e1d~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
 
 ### gap
 
@@ -133,7 +133,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389591f78de6f2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389591f78de6f2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
 
 ### grid-template-areas
 
@@ -168,7 +168,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895920bbe824a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895920bbe824a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
 
 ### grid-auto-flow
 
@@ -186,15 +186,15 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895921548265c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895921548265c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom: 50%;" />
 
 如果想要使item尽量的填充空白区域，可以设置`grid-auto-flow: row dense`
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895923612a19b~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895923612a19b~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
 
 以下是`grid-auto-flow: column`（表示先列后行）的效果
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895923f11dd83~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895923f11dd83~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
 
 ### justify/align-items
 
@@ -209,19 +209,19 @@
 
 - start：对齐单元格的起始边缘
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/1738959244947d96~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/1738959244947d96~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 - end：对齐单元格的结束边缘
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389592560e3fc2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389592560e3fc2~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 - center：单元格内部居中
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895925bd879fa~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895925bd879fa~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 - stretch：拉伸，占满单元格的整个宽度（默认值）
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/1738959270057d0c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/1738959270057d0c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 ### justify/align-content
 
@@ -238,14 +238,14 @@
 - end - 对齐容器的结束边框
 - center - 容器内部居中
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895926d20f5d6~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895926d20f5d6~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 - space-around - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍
 - space-between - 项目与项目的间隔相等，项目与容器边框之间没有间隔
 - space-evenly - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔
 - stretch - 项目大小没有指定时，拉伸占据整个网格容器
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895927ba770c4~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895927ba770c4~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 ### grid-auto-columns/rows
 
@@ -266,7 +266,7 @@
 
 `grid-template-columns`属性和`grid-template-rows`属性只是指定了两行两列，但实际有九个元素，就会产生隐式网格。通过`grid-auto-rows`可以指定隐式网格的行高为 50px
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895927d99af1c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895927d99af1c~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom:50%;" />
 
 ## 项目属性
 
@@ -328,7 +328,7 @@
 
 上面代码中，类`.two`所在的网格项目，垂直网格线是从2到4，水平网格线是从1到2。其中它跟`.three`（垂直网格线是从3到4，水平网格线是从1到4）是有冲突的。可以设置`z-index`去决定它们的层级关系
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/173895928bc7e88e~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/173895928bc7e88e~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="img" style="zoom:50%;" />
 
 ### grid-area
 
@@ -363,7 +363,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389592bf7e44dd~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389592bf7e44dd~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
 
 ### repeat+auto-fill 固定列宽，动态列数量
 
@@ -381,7 +381,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389592c297495a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389592c297495a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:67%;" />
 
 ### repeat+auto-fill+minmax去掉右侧空白
 
@@ -397,7 +397,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389592cc3c2bf9~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="auto-auto-minmax.gif" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389592cc3c2bf9~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="auto-auto-minmax.gif" style="zoom: 50%;" />
 
 ### repeat+auto-fit+minmax+dense解决空缺问题
 
@@ -409,7 +409,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389592f9da3763~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389592f9da3763~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom:50%;" />
 
 但是现在右侧又会出现空白，这个时候就就需要用到`dense`关键字。`grid-auto-flow: row dense`表示尽可能填充，而不留空白
 
@@ -424,4 +424,4 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/17389593009f7fe7~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/17389593009f7fe7~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" alt="image" style="zoom: 50%;" />

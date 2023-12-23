@@ -1668,7 +1668,7 @@ babel、TS等编译器更加偏爱cjs。默认情况下，代码里写的esm都�
 
 打开react库的index.js，：
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-13b243bb852d872316ef4f2d7fd73e51_720w.webp" alt="v2-13b243bb852d872316ef4f2d7fd73e51_720w" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-13b243bb852d872316ef4f2d7fd73e51_720w.webp" alt="v2-13b243bb852d872316ef4f2d7fd73e51_720w" style="zoom: 67%;" />
 
 可以看到react是基于cjs的，相当于：
 
@@ -1837,19 +1837,19 @@ function RenderFunctionComponent() {
 
 - **初始化：**创建两个空数组：`setters`和`state`，并将cursor设置为0
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111013758-191510416.png" alt="img" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111013758-191510416.png" alt="img" style="zoom: 67%;" />
 
 - **第一次渲染：**首次运行组件函数，每次useState()调用，在第一次运行时，都会将一个setter函数推送到setters数组上，然后将一些状态推送到state数组上
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111040565-1891855337.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111040565-1891855337.png" alt="img" style="zoom:67%;" />
 
 - **后续渲染：**每次后续渲染都会重置cursor，并且仅从每个数组中读取这些值
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111057882-1329150053.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111057882-1329150053.png" alt="img" style="zoom:67%;" />
 
 - **事件处理：**每个setter都有对其cursor的引用，因此通过触发对setter的调用，setter它将更改状态数组中该位置的状态值
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111131036-1171682237.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111131036-1171682237.png" alt="img" style="zoom:67%;" />
 
 #### 简单代码实现
 
@@ -1929,11 +1929,11 @@ function RenderFunctionComponent() {
 
 - **Bad Component第一次渲染**
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111310884-1555363583.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111310884-1555363583.png" alt="img" style="zoom:67%;" />
 
 - **Bad Component第二次渲染：**`firstName`和`lastName`发生了错位，我们的状态存储变得不一致了。这就是为什么保持正确顺序的重要性
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/532971-20210729111330977-325690002.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/532971-20210729111330977-325690002.png" alt="img" style="zoom:67%;" />
 
 ### 闭包陷阱
 
@@ -1963,7 +1963,7 @@ export default LikeButton;
 
 在like为6的时候, 点击alert, 再继续增加like到10, 弹出的值为6, 而非10。当我们更改状态的时候，React会重新渲染组件，每次的渲染都会拿到独立的like值，并重新定义个handleAlertClick函数，每个handleAlertClick函数体里的like值也是它自己的，所以当like为6时，点击alert，触发了handleAlertClick，此时的like是6，哪怕后面继续更改like到10，但alert时的like已经定下来了
 
-![7de34cc101cdde7088a15dec436d7659](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/7de34cc101cdde7088a15dec436d7659.gif)
+![7de34cc101cdde7088a15dec436d7659](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/7de34cc101cdde7088a15dec436d7659.gif)
 
 **解决方法**
 
@@ -1996,7 +1996,7 @@ export default LikeButton;
 
 由于like变量是定义在组件外，所以不同渲染间是可以共用该变量,所以3秒后获取的like值就是最新的like值。但是改变like并不会触发组件重新渲染，因此看起来like一直是0
 
-![c8706c7482867dde33f0bb23ce4695b3](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/c8706c7482867dde33f0bb23ce4695b3.gif)
+![c8706c7482867dde33f0bb23ce4695b3](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/c8706c7482867dde33f0bb23ce4695b3.gif)
 
 - **使用useRef：**
 
@@ -2028,7 +2028,7 @@ export default LikeButton;
 
 采用useRef,作为组件实例的变量，保证获取到的数据肯定是最新的。但是useRef中current更改并不会触发re-render。但是useRef是定义在实例基础上的，如果代码中有多个相同的组件，每个组件的ref只跟组件本身有关，跟其他组件的ref没有关系
 
-![c8706c7482867dde33f0bb23ce4695b3](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/c8706c7482867dde33f0bb23ce4695b3.gif)
+![c8706c7482867dde33f0bb23ce4695b3](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/c8706c7482867dde33f0bb23ce4695b3.gif)
 
 #### useEffect的闭包陷阱
 

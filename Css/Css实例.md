@@ -15,7 +15,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-6027d98cccaf10b137525e1cf33deb22_1440w-20231013112202572.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-6027d98cccaf10b137525e1cf33deb22_1440w-20231013112202572.webp" alt="img" style="zoom:50%;" />
 
 有了这个特性，就可以绘制出各种三角形，比如说朝下的三角形(通过只显示上边框实现):
 
@@ -55,7 +55,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-df8849851672f8f37f2764d8e2857272_1440w.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-df8849851672f8f37f2764d8e2857272_1440w.webp" alt="img" style="zoom:50%;" />
 
 使用linear-gradient的优势就在于，它其实设置的是背景图片，那么它就被背景图片相关的属性控制比如background-size，background-repeat等等。
 
@@ -73,7 +73,7 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-046162d4025db32e98c814441b9558cb_1440w.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-046162d4025db32e98c814441b9558cb_1440w.webp" alt="img" style="zoom:50%;" />
 
 ### 使用clip-path绘制三角形
 
@@ -91,4 +91,4 @@
 }
 ```
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-332ed2dda5ce998e14e3a6c773f2aacd_1440w.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-332ed2dda5ce998e14e3a6c773f2aacd_1440w.webp" alt="img" style="zoom:50%;" />

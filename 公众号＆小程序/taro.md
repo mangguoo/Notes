@@ -86,7 +86,7 @@ export default App
 
 **开启调试(目录为tora项目的根目录)：**
 
-![image-20221031231121154](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221031231121154.png)
+![image-20221031231121154](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221031231121154.png)
 
 ## 新建页面
 

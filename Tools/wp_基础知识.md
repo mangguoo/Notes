@@ -305,7 +305,7 @@ resolve: {
 
   HMR Socket Server，会建立一个socket的长连接。长连接有一个最好的好处是建立连接后双方可以通信（服务器可以直接发送文件到客户端），当服务器监听到对应的模块发生变化时，会生成两个文件.json（manifest文件）和.js文件（update chunk），通过长连接，可以直接将这两个文件主动发送给客户端（浏览器），浏览器拿到两个新的文件后，通过HMR runtime机制，加载这两个文件，并且针对修改的模块进行更新。
 
-  ![7d517c64ab6a7a9538673a973f2c6c18b5b202c9208340f7a53825cecf16203c](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/7d517c64ab6a7a9538673a973f2c6c18b5b202c9208340f7a53825cecf16203c.png)
+  ![7d517c64ab6a7a9538673a973f2c6c18b5b202c9208340f7a53825cecf16203c](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/7d517c64ab6a7a9538673a973f2c6c18b5b202c9208340f7a53825cecf16203c.png)
 
   默认情况下，webpack-dev-server已经支持HMR，只需要开启即可：
 

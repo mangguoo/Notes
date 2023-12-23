@@ -44,7 +44,7 @@
 >
 > 通过read()函数读取到的workbook对象及他的结构：
 >
-> ![36098d2ed0e5973b1e26b05933fc2735](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/36098d2ed0e5973b1e26b05933fc2735.png)
+> ![36098d2ed0e5973b1e26b05933fc2735](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/36098d2ed0e5973b1e26b05933fc2735.png)
 >
 > 其中主要看`Props、SheetNames、Sheets`这三个属性
 >
@@ -56,7 +56,7 @@
 
 > `Sheets`保存了每个sheet的具体内容（我们称之为`Sheet Object`）。每一个`sheet`是通过类似`A1`这样的键值保存每个单元格的内容，我们称之为单元格对象（`Cell Object`），每一个`Sheet Object`表示一张表格，只要不是`!`开头的都表示普通`cell`
 >
-> ![08631ba46493789893aeecc38a7055a7](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/08631ba46493789893aeecc38a7055a7.png)
+> ![08631ba46493789893aeecc38a7055a7](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/08631ba46493789893aeecc38a7055a7.png)
 >
 > - `!ref`：表示该表中数据所占用的单元格范围
 > - `!margins`：存储单元格边框信息

@@ -77,7 +77,7 @@ CRC就是用于保证数据的**完整性。**
 
 下面看模2除法，初看的时候可能会比较疑惑，总体上与正常的除法是类似的，只不过在模2运算中数与数的大小关系与通常的理解不一致
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-01026724658d21a1dc1095187ce894e8_720w.webp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-01026724658d21a1dc1095187ce894e8_720w.webp)
 
 ### CRC计算
 
@@ -93,7 +93,7 @@ CRC就是用于保证数据的**完整性。**
 
 - 算出来的余数为1110，这就是checksum，增加了checksum的数据就是：1101011011--1110（原始数据--checksum）
 
-![v2-3a80d8cf69d5ec454596e0490637c4e5_720w](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-3a80d8cf69d5ec454596e0490637c4e5_720w.webp)
+![v2-3a80d8cf69d5ec454596e0490637c4e5_720w](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-3a80d8cf69d5ec454596e0490637c4e5_720w.webp)
 
 ### 常用的CRC计算方法
 

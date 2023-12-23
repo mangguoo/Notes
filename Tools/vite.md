@@ -33,11 +33,11 @@ Vite其核心原理是利用浏览器现在已经支持ES6的import，碰见impo
 
 对于webpack传统打包构建工具，在服务器启动之前，需要从入口文件完整解析构建整个应用。因此，有大量的时间都花在了依赖生成，构建编译上
 
-![fsda165fasd](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/fsda165fasd.png)
+![fsda165fasd](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/fsda165fasd.png)
 
 而vite主要遵循的是使用ESM(Es modules模块)的规范来执行代码，只需要从main.js入口文件， 在遇到对应的 import 语句时，将代码执行到对应的模块再进行加载到到浏览器中，本质上实现了动态加载，那么对于灰色的部分是暂时没有用到的路由，所以这部分不会进行加载，通过这种方式我们实现了按需引入
 
-![f1ads651fasd](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/f1ads651fasd.png)
+![f1ads651fasd](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/f1ads651fasd.png)
 
 对于webpack来讲初始化时，需要进行编译与打包，将多个文件进行打包为一个bundle.js(当然我们可以进行分包)，那么如果进行热更新的话，试想如果依赖越来越多，就算只修改一个文件，理论上热更新的速度也会越来越慢
 

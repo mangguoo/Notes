@@ -165,7 +165,7 @@
 </p>
 ```
 
-![image-20221222232601561](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221222232601561.png)
+![image-20221222232601561](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221222232601561.png)
 
 **label:**
 

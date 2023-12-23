@@ -1,6 +1,6 @@
 # URL
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/url.jpg)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/url.jpg)
 
 ```bash
 const { URL } = require('url')

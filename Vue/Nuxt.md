@@ -18,7 +18,7 @@
 
 ## **Nuxt工作流程**
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/f1ad213as.png" alt="f1ad213as" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/f1ad213as.png" alt="f1ad213as" style="zoom:50%;" />
 
 ## **布置开发环境**
 

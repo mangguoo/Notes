@@ -575,7 +575,7 @@ import { version } from "@walletconnect/universal-provider/package.json";
 
 > `npm link`操作会在`project1`的`node_modules`目录下创建一个`module1`的超链接（类似Windows的快捷方式），链接到`project_npmlink/module1`，生成的虚拟包名会根据`module1`的`package.json`进行指定
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/71749ab720ef459aa29f4fa46fbca4bf.png" alt="71749ab720ef459aa29f4fa46fbca4bf" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/71749ab720ef459aa29f4fa46fbca4bf.png" alt="71749ab720ef459aa29f4fa46fbca4bf" style="zoom: 67%;" />
 
 ```bash
 $ cd xxx/project_npmlink/project1

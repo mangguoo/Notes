@@ -24,15 +24,15 @@
 
 项目创建完成后，我们要先设置小程序的appid，否则调试的时候微信开发工具会提示我们使用的是游客模式登录：
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221029121427602.png" alt="image-20221029121427602" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221029121427602.png" alt="image-20221029121427602" style="zoom: 50%;" />
 
 配置完成后，就可以启动调试项目，由于每个软件的小程序都有自己的开发调试平台，因此我们开发什么小程序，就需要使用什么开发工具去调试，而uni-app也给出了一键开启调试环境：
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221029122229327.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221029122229327.png" style="zoom:50%;" />
 
 但是想要使用uni-app直接打开微信小程序的调试环境，必须先在微信小程序开发工具中进行一些设置：
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221029123155789.png" alt="image-20221029123155789" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221029123155789.png" alt="image-20221029123155789" style="zoom:50%;" />
 
 > 在调试项目时，微信小程序的开发工具会报`DevTools failed to parse SourceMap`(请求不到sourceMap，无法定位到源代码)，要想解决这个问题，需要下载一个插件：`jsSourceMap`
 
@@ -40,7 +40,7 @@
 
 - 插件会修改 unpackage/dist/dev/mp-weixin 目录下的所有js文件
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221029141137572fdsa.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221029141137572fdsa.png" style="zoom:50%;" />
 
 ## uni-app配置
 
@@ -297,7 +297,7 @@ module.exports = {
 
 ### 查看分包体积
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/8b3efbaaf89a4bf89aca4749a901e359.png" alt="8b3efbaaf89a4bf89aca4749a901e359" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/8b3efbaaf89a4bf89aca4749a901e359.png" alt="8b3efbaaf89a4bf89aca4749a901e359" style="zoom: 67%;" />
 
 ### 实现分包
 
@@ -334,7 +334,7 @@ module.exports = {
 >
 > **注意：**由于detail页面进行了分包，因此在小程序环境下可以引入不到/componets目录下的组件(h5环境下无异常)，解决方法就是直接移动这个组件到分包的页面中去
 >
-> <img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/image-20221029230228447.png" alt="image-20221029230228447" style="zoom: 67%;" />
+> <img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/image-20221029230228447.png" alt="image-20221029230228447" style="zoom: 67%;" />
 
 ```vue
 <template>

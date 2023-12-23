@@ -6,7 +6,7 @@
 >
 > RSC 使得服务端和客户端（浏览器）可以**协同渲染**React应用程序，从而实现了部分组件在服务端或客户端两者之间的渲染。下面是React团队的一个插图，展示了最终目标:一个React树，其中橙色的组件渲染在服务端上，蓝色的组件渲染在客户端上
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/76240a64508f42978808e70bda3c8d04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="image.png" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/76240a64508f42978808e70bda3c8d04~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="image.png" style="zoom: 50%;" />
 
 ## RSC与SSR的区别
 
@@ -54,7 +54,7 @@ Server Components的渲染过程与之类似：
 
 可以想象，为了某一个计算任务，我们需要将大型js第三方库传输到用户浏览器上，浏览器再进行解析执行它来创造计算任务的runtime, 最后才是计算。从用户的角度来讲：「我还没见到网页内容，你就占用了我较大带宽和CPU资源，是何居心」。然而这一切都是可以省去的，我们可以利用SSR让React在服务端先渲染，再将渲染后的html发送给用户。从这一方面看，Server Component和SSR很类似，但不同的是SSR只能适用于首页渲染，Server Component在用户交互的过程中也是服务端渲染，Server Component传输的也不是 html文本，而是json。Server Component在服务端渲染好之后会将一段类React组件json数据发送给浏览器，浏览器中的React Runtime接收到这段json数据后，将它渲染成 HTML
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/118c6c28266745e2877760c8ae14ea9c.png" alt="在这里插入图片描述" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/118c6c28266745e2877760c8ae14ea9c.png" alt="在这里插入图片描述" style="zoom:50%;" />
 
 举一个更加极端的例子：若用户无交互性组件，所以组件都可以在服务端渲染，那么所有UI渲染都将走【浏览器接收类react element文本格式的数据，React Runtime渲染】的形式进行渲染。那么除了一些Runtime， 无需其他JS Bundle。而Runtime的体积是不会随着项目的增大而增大的，这种常数系数级体积也可以称为“Zero-Bundle-Size”。因此官方这称为: “Zero-Bundle-Size Components”
 
@@ -154,7 +154,7 @@ export default function ClientComponent() {
 
 如果客户端组件无法导入服务器组件，就无法实例化服务器组件。那么我们该如何在React树中将这样的服务器和客户端组件交织在一起呢？又该如何将橙色点的服务器组件置于蓝点的客户端组件之下？
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/04ac9ba4e4a04f8884b1366356cb438f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="A React tree with server components (orange) and client components (blue)" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/04ac9ba4e4a04f8884b1366356cb438f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" alt="A React tree with server components (orange) and client components (blue)" style="zoom:50%;" />
 
 虽然客户端组件无法直接导入和渲染服务器端组件，但可以使用**组合**的方式。也就是说，客户端组件仍然可以接收不透明的 React 节点，并且这些节点可能正好由服务器端组件渲染。例如：
 

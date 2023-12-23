@@ -4,7 +4,7 @@
 >
 > 此外流还有管道的概念，我们可以封装一些类似中间件的中间流，用管道将各个流连接起来，在管道的末端就能拿到处理后的数据
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-32191f64dcda7ad21b4f58e91bf84b9e_1440w.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-32191f64dcda7ad21b4f58e91bf84b9e_1440w.png" alt="img" style="zoom:50%;" />
 
 ## 数据流管道
 
@@ -20,11 +20,11 @@
 
 Streams API赋予了fetch请求以片段处理数据的能力，让我们可以从网络中一段一段的接收数据并实时处理。而在XMLHttpRequest时代，我们需要等待浏览器把数据完整地接收后，转换为我们需要的格式，然后我们才能进行处理
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-764d70bcec14b6473cf063fd9ef27c9a_1440w.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-764d70bcec14b6473cf063fd9ef27c9a_1440w.webp" alt="img" style="zoom:50%;" />
 
 现在有了StreamsAPI , 我们一段一段的接收TypedArray的二进制数据，通过对这些底层数据的处理，组合成我们所需要的数据，大大地提高了我们在网络传输到完成处理数据的效率
 
-<img src="https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-556cc46a85e916ef3ebca8c47cc0d8d8_1440w.webp" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-556cc46a85e916ef3ebca8c47cc0d8d8_1440w.webp" alt="img" style="zoom:50%;" />
 
 ## 如何产生数据流
 

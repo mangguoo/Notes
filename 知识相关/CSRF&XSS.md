@@ -6,7 +6,7 @@
 
 ## CSRF攻击原理
 
-![0350aa6a64b56f5d992c29517c8cc32a](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/0350aa6a64b56f5d992c29517c8cc32a.png)
+![0350aa6a64b56f5d992c29517c8cc32a](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0350aa6a64b56f5d992c29517c8cc32a.png)
 
 从上图可以看出，要完成一次CSRF攻击，受害者必须依次完成两个步骤：
 

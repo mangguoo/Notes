@@ -16,7 +16,7 @@ $ npm install ganache --global
 $ ganache
 ```
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-c15bdf3fd266ba25585453a832c66166_720w.webp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-c15bdf3fd266ba25585453a832c66166_720w.webp)
 
 默认情况下，Ganache提供了10个测试账户，每个账户有1000个（假）以太币，以及相应的私钥和用于生成私钥的助记词。在开发过程中，你可以使用这个助记词将账户导入到[MetaMask](https://link.zhihu.com/?target=https%3A//metamask.io/)等钱包。
 

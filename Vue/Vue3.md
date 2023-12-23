@@ -397,11 +397,11 @@ export default {
 
 > 因为 setup 是围绕 beforeCreate 和 created 生命周期钩子运行的，所以不需要显式地定义它们。换句话说，在这些钩子中编写的任何代码都应该直接在 setup 函数中编写
 
-![2f1sad32f1sad](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/2f1sad32f1sad.png)
+![2f1sad32f1sad](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/2f1sad32f1sad.png)
 
 > compositionApi和optionsApi中的生命周期是可以混写的，这些所有生命周期的执行顺序如下：
 
-![lifecycle.16e4c08e](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/lifecycle.16e4c08e.png)
+![lifecycle.16e4c08e](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/lifecycle.16e4c08e.png)
 
 - **/src/app.vue**
 

@@ -9,7 +9,7 @@
 >
 > 下图说明了**web3.js**如何与以太坊区块链交互：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-89486b3d926d430a64bc6b287dd4563c_r.jpg)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-89486b3d926d430a64bc6b287dd4563c_r.jpg)
 
 ## web3.js和ehters.js
 

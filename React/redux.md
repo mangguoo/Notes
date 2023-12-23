@@ -28,7 +28,7 @@ $ npm i -S redux
 
 **具体流程：**
 
-![](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/%E5%A1%94%E9%A1%B6%E5%A1%94%E9%A1%B6%E5%9C%B0.png)
+![](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/%E5%A1%94%E9%A1%B6%E5%A1%94%E9%A1%B6%E5%9C%B0.png)
 
 1. store通过reducer创建了初始状态
 
@@ -261,11 +261,11 @@ export default reducer
 
 - 没有中间件：**`dispatch(action) => reducer`**
 
-![d57303e625c00c0509865edea7d9affc](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/d57303e625c00c0509865edea7d9affc.png)
+![d57303e625c00c0509865edea7d9affc](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/d57303e625c00c0509865edea7d9affc.png)
 
 - 使用中间件：**`dispatch(action) => 执行中间件代码 => reducer`**
 
-![fdc7f48d1b87fe7ebbe753578a75dbba](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/fdc7f48d1b87fe7ebbe753578a75dbba.png)
+![fdc7f48d1b87fe7ebbe753578a75dbba](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/fdc7f48d1b87fe7ebbe753578a75dbba.png)
 
 ### 自定义中间件
 
@@ -421,7 +421,7 @@ export declare type ThunkAction<ReturnType, State, ExtraThunkArg, BasicAction ex
 
 > redux-saga是redux一个中间件，它是基于ES6的**Generator**功能实现，用于解决异步问题（让redux中可以直接进行异步操作）
 
-![1](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/1.png)
+![1](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/1.png)
 
 **安装：**
 

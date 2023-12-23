@@ -154,7 +154,7 @@ app.use(function (err, req, res, next) {
 
 ## token续签(双token机制)
 
-![2b52ac84196749e0a23e2b2b5e0fbc29](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/2b52ac84196749e0a23e2b2b5e0fbc29.webp)
+![2b52ac84196749e0a23e2b2b5e0fbc29](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/2b52ac84196749e0a23e2b2b5e0fbc29.webp)
 
 如图所示，生成两个Token，access_token负责后端业务验证，refresh_token负责续签验证，所以从逻辑上各司其职并不是脱裤子放屁
 

@@ -108,11 +108,11 @@ Cache-Control: max-age=86400, must-revalidate
 
 Initial connection为 TCP链接的建立，后续资源加载就没有Initial connection
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/461c1dc07e23da2dbec0c83d0f488438.png)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/461c1dc07e23da2dbec0c83d0f488438.png)
 
 可以在Request Headers中看到`keep-alive`参数，表示他是复用已创建的tcp连接：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/0b936e48c27e60c766a4dc5bcba1f37a.png)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/0b936e48c27e60c766a4dc5bcba1f37a.png)
 
 ```nginx
 http {

@@ -19,7 +19,7 @@ package-lock.json文件锁定了依赖的版本号，所以当执行npm install�
 
 ## npm install后发生了什么
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/cf8890adb8cc45759d1d7f37336e767a.png)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/cf8890adb8cc45759d1d7f37336e767a.png)
 
 ## 版本号含义
 

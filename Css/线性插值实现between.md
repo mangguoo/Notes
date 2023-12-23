@@ -14,15 +14,15 @@
 >
 > 线性插值又可以分为单线性插值、又线性插值和三线性插值，单线性插值是在一个方向上进行线性插值,比如X方向
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-66e61db920c59a79a8991481d7f40c3b_720w.png)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-66e61db920c59a79a8991481d7f40c3b_720w.png)
 
 假设我们已知坐标 (x0, y0) 与 (x1, y1)，要得到 [x0, x1] 区间内某一位置 x 在直线上的值。根据图中所示，我们得到：
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-9e5b3837639c61d6a7989a70f7bed359_720w.webp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-9e5b3837639c61d6a7989a70f7bed359_720w.webp)
 
 由于 x 值已知，所以可以从公式得到 y 的值:
 
-![img](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img-2/v2-2dbc975691a8a83ed5dc6297d235751f_720w.webp)
+![img](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img-2/v2-2dbc975691a8a83ed5dc6297d235751f_720w.webp)
 
 已知 y 求 x 的过程与以上过程相同，只是 x 与 y 要进行交换
 

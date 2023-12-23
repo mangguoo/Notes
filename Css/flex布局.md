@@ -7,7 +7,7 @@
 >
 > **即父级元素采用flex布局，则父级元素为容器，全部子元素自动成为项目**
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826161110660.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826161110660.png)
 
 容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size
 
@@ -50,15 +50,15 @@
 
 - nowrap: 表示不换行(设置的项目的宽度就失效了，强行在一行显示)
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826162931372.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826162931372.png)
 
 - wrap：正常换行，第一个位于第一行的第一个
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826164654292.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826164654292.png)
 
 - wrap-reverse：向上换行，第一行位于下方
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826164616862.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826164616862.png)
 
 ### flex-flow属性
 
@@ -80,27 +80,27 @@
 
 - flex-start：默认值，左对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826165647428.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826165647428.png)
 
 - flex-end：右对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826165705105.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826165705105.png)
 
 - center：居中对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826165917704.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826165917704.png)
 
 - space-between：两端对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826165942170.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826165942170.png)
 
 - space-evenly: 项目之间间距与项目与容器间距相等，相当于除去项目宽度，平均分配了剩余宽度作为项目左右margin
 
-![v2-7b1d442bea60e27638c348419777bc4d_720wfdsf](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-7b1d442bea60e27638c348419777bc4d_720wfdsf.jpg)
+![v2-7b1d442bea60e27638c348419777bc4d_720wfdsf](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-7b1d442bea60e27638c348419777bc4d_720wfdsf.jpg)
 
 - space-around: 项目之间间距为左右两侧项目到容器间距的2倍
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826170003803.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826170003803.png)
 
 ### align-items属性
 
@@ -114,23 +114,23 @@
 
 - flex-start:交叉轴的起点对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826170642812.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826170642812.png)
 
 - flex-end 交叉轴的终点对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826170726171.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826170726171.png)
 
 - center 交叉轴居中对齐
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826170850724.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826170850724.png)
 
 - baseline 项目的第一行文字的基线对齐
 
-![v2-71ff4a27b4e71fc646ed5d60ebba33f9_720wfdsafdfs](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-71ff4a27b4e71fc646ed5d60ebba33f9_720wfdsafdfs.jpg)
+![v2-71ff4a27b4e71fc646ed5d60ebba33f9_720wfdsafdfs](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-71ff4a27b4e71fc646ed5d60ebba33f9_720wfdsafdfs.jpg)
 
 - stretch：默认值：如果项目未设置高度或者高度为auto，将占满整个容器的高度
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826171005498.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826171005498.png)
 
 ### align-content属性
 
@@ -150,9 +150,9 @@
 - stretch（默认值）：轴线占满整个交叉轴
 - space-evenly: 项目之间间距与项目到容器之间间距相等
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826190133439.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826190133439.png)
 
-![v2-918244a22a79e6a81030d13b374ac031_720wfdsafasdfas4564654](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/v2-918244a22a79e6a81030d13b374ac031_720wfdsafasdfas4564654.jpg)
+![v2-918244a22a79e6a81030d13b374ac031_720wfdsafasdfas4564654](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/v2-918244a22a79e6a81030d13b374ac031_720wfdsafasdfas4564654.jpg)
 
 ### gap属性
 
@@ -187,7 +187,7 @@ gap: row-gap column-gap;
 }
 ```
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826171929418.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826171929418.png)
 
 ### flex-grow属性
 
@@ -204,7 +204,7 @@ gap: row-gap column-gap;
 }
 ```
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826183920378.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826183920378.png)
 
 ### flex-shrink属性
 
@@ -246,4 +246,4 @@ gap: row-gap column-gap;
 }
 ```
 
-![在这里插入图片描述](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/20200826184505238.png)
+![在这里插入图片描述](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/20200826184505238.png)

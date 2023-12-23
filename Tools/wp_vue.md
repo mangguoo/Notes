@@ -2,7 +2,7 @@
 
 ## Vue源码打包后的不同版本
 
-![d0916b37fe87a61cd6fe9bdb84b99a20d1120c99c70a62ad0de556b8342a2c2d](https://cdn.jsdelivr.net/gh/ilmangoi/imgRepo@main/img/d0916b37fe87a61cd6fe9bdb84b99a20d1120c99c70a62ad0de556b8342a2c2d.png)
+![d0916b37fe87a61cd6fe9bdb84b99a20d1120c99c70a62ad0de556b8342a2c2d](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/d0916b37fe87a61cd6fe9bdb84b99a20d1120c99c70a62ad0de556b8342a2c2d.png)
 
 **版本命名规则：**
 
