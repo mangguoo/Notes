@@ -121,7 +121,8 @@ $ npm config set https-proxy null
 10. npm初始化package.json文件：
 
 ``` shell
-$ npm  init [-y]              // -y表示静默初始化，自动使用默认值
+# -y表示静默初始化，自动使用默认值
+$ npm  init [-y]              
 ```
 
 11. 发布npm包：

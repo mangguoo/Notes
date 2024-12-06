@@ -2,7 +2,7 @@
 
 git的所有配置文件都保存在本地，可以通过git config -l来查看他们，查看不同级别的配置文件：
 
-``` gas
+``` shell
 # 查看系统配置
 git config --system --list
 　　
@@ -22,74 +22,74 @@ Git相关的配置文件：
 
    系统配置文件中一般只存储一些公用配置：
 
-   ``` gas
-   [core]
-   	symlinks = false
-   	autocrlf = true
-   	fscache = true
-   [color]
-   	diff = auto
-   	status = auto
-   	branch = auto
-   	interactive = true
-   [help]
-   	format = html
-   [diff "astextplain"]
-   	textconv = astextplain
-   [rebase]
-   	autosquash = true
-   [filter "lfs"]
-   	clean = git-lfs clean -- %f
-   	smudge = git-lfs smudge -- %f
-   	process = git-lfs filter-process
-   	required = true
-   [credential]
-   	helper = helper-selector
-   ```
+``` shell
+ [core]
+  symlinks = false
+  autocrlf = true
+  fscache = true
+ [color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = true
+ [help]
+  format = html
+ [diff "astextplain"]
+  textconv = astextplain
+ [rebase]
+  autosquash = true
+ [filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+ [credential]
+  helper = helper-selector
+```
 
 2. %HOME%\\.gitconfig：   只适用于当前登录用户的配置  --global 全局
 
    用户配置文件通常会存放用户私有配置，如name和email等：
 
-   ``` gas
-   [user]
-   	name = ilmango
-   	email = mangguoli42@gmail.com
-   [alias]
-       co = checkout
-       ci = commit
-       br = branch
-       st = status
-   ```
+``` shell
+ [user]
+  name = ilmango
+  email = mangguoli42@gmail.com
+ [alias]
+     co = checkout
+     ci = commit
+     br = branch
+     st = status
+```
 
 3. %repository%/.git/config：   只适用于当前仓库的配置
 
    这个文件中一般用于保存仓库的配置，如origin地址、本地与远程分支的关系等：
 
-   ``` gas
-   [core]
-   	repositoryformatversion = 0
-   	filemode = false
-   	bare = false
-   	logallrefupdates = true
-   	symlinks = false
-   	ignorecase = true
-   [remote "origin"]
-   	url = git@github.com:ilmangoi/HY.git
-   	fetch = +refs/heads/*:refs/remotes/origin/*
-   [branch "master"]
-   	remote = origin
-   	merge = refs/heads/master
-   [branch "dev"]
-   	remote = origin
-   	merge = refs/heads/dev
-   ```
+``` shell
+ [core]
+  repositoryformatversion = 0
+  filemode = false
+  bare = false
+  logallrefupdates = true
+  symlinks = false
+  ignorecase = true
+ [remote "origin"]
+  url = git@github.com:ilmangoi/HY.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+ [branch "master"]
+  remote = origin
+  merge = refs/heads/master
+ [branch "dev"]
+  remote = origin
+  merge = refs/heads/dev
+```
 
 > 设置用户名与邮箱（用户标识，必要）
 
 安装Git后首先要做的事情是设置用户名称和e-mail地址。这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中：
 
-``` gas
+``` shell
 git config --global user.name "kuangshen"  #名称
 git config --global user.email 24736743@qq.com   #邮箱
 ```
@@ -138,14 +138,14 @@ local > global > system
 
 > 本地创建搭建
 
-``` gas
+``` shell
 # 在当前目录新建一个Git代码库
 git init
 ```
 
 > 克隆远程仓库
 
-``` gas
+``` shell
 # 克隆一个项目和它的整个代码历史(版本信息)
 git clone [url]  # https://gitee.com/kuangstudy/openclass.git
 ```
@@ -185,7 +185,7 @@ git clone [url]  # https://gitee.com/kuangstudy/openclass.git
 
 如果想要添加一个文件到Git，但发现添加不了，原因是这个文件被`.gitignore`忽略了，如果确实想添加该文件，可以用`-f`强制添加到Git：
 
-``` gas
+``` shell
 $ git add App.class
 The following paths are ignored by one of your .gitignore files:
 App.class
@@ -197,7 +197,7 @@ $ git add -f App.class
 
 或者也有可能是`.gitignore`写得有问题，需要找出来到底哪个规则写错了，可以用`git check-ignore`命令检查：
 
-``` gas
+``` shell
 $ git check-ignore -v App.class
 .gitignore:3:*.class	App.class
 # Git提示.gitignore的第3行规则忽略了该文件
@@ -205,16 +205,16 @@ $ git check-ignore -v App.class
 
 - 修订规则：
 
-  ``` gas
-  # 排除所有.开头的隐藏文件:
-  .*
-  # 排除所有.class文件:
-  *.class
-  
-  # 不排除.gitignore和App.class:
-  !.gitignore
-  !App.class
-  ```
+``` shell
+# 排除所有.开头的隐藏文件:
+.*
+# 排除所有.class文件:
+*.class
+
+# 不排除.gitignore和App.class:
+!.gitignore
+!App.class
+```
 
 ## Hello Wrold!
 
@@ -222,19 +222,19 @@ $ git check-ignore -v App.class
 
 一、使用git add把文件添加到仓库：
 
-``` gas
+``` shell
 git add helloWorld.md
 ```
 
 二、使用git commit把文件提交到仓库：
 
-``` gas
+``` shell
  git commit -m "wrote a readme file"
 ```
 
 为什么Git添加文件需要`add`，`commit`一共两步呢？因为`commit`可以一次提交很多文件，所以可以多次`add`不同的文件，比如：
 
-``` gas
+``` shell
 git add file1.txt
 git add file2.txt file3.txt
 git commit -m "add 3 files."
@@ -244,7 +244,7 @@ git commit -m "add 3 files."
 
 修改helloworld文件后，可以通过`git status`命令来查看仓库状态：
 
-``` gas
+``` shell
 $ git status
 
 On branch master
@@ -262,7 +262,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 虽然Git告诉我们`readme.txt`被修改了，但是不能看到具体修改了什么内容，如果想要查看具体哪些内容被修改了，需要使用`git diff`命令：
 
-``` gas
+``` shell
 $ git diff .\helloWrold.md
 
 diff --git a/helloWrold.md b/helloWrold.md
@@ -286,7 +286,7 @@ git diff 有两个主要的应用场景：
 - 查看已缓存的改动： **git diff --staged**
 - 查看已缓存的与未缓存的所有改动：**git diff HEAD**
 
-``` gas
+``` shell
 git diff [file]
 # 比较文件在暂存区和工作区的差异
 
@@ -306,7 +306,7 @@ git diff [first-commit] [second-commit]
 
 我们可以通过`git log`命令来查看历史版本，如果嫌输出信息太多，可以加上`--pretty-oneline`参数来简化输出：
 
-``` gas
+``` shell
 $ git log --pretty=oneline
 
 ad38df9d9ff3d926280ce431b0df7a39f26566a9 (HEAD -> master) worte a md fild    
@@ -319,14 +319,14 @@ a9b8e9e609922660b81e868c351e0bbb489fdd23 first commit
 
 知道了`commit id`，就可以通过它回退到之前的版本。在Git中，用`HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上100个版本写100个`^`比较容易数不过来，所以写成`HEAD~100`。
 
-``` gas
+``` shell
 $ git reset --hard HEAD^
 HEAD is now at ad38df9 worte a md fild
 ```
 
 现在项目就已经回退到了上一个版本中，可以使用`git log`再看看现在版本库的状态：
 
-``` gas
+``` shell
 $ git log
 commit ad38df9d9ff3d926280ce431b0df7a39f26566a9 (HEAD -> master)
 Author: ilmango <mangguoli42@gmail.com>
@@ -343,7 +343,7 @@ Date:   Tue May 24 13:50:21 2022 +0800
 
 最新的那个版本已经看不到了！好比从21世纪坐时光穿梭机来到了19世纪，如果想要回去，就必须找到版本的`commit id`：
 
-``` gas
+``` shell
 $ git reset --hard a8387aa
 HEAD is now at a8387aa change md file
 ```
@@ -375,7 +375,7 @@ Git的版本回退速度非常快，因为Git在内部有个指向当前版本�
 
 在Git中，总是有后悔药可以吃的。当你用`$ git reset --hard HEAD^`回退到`add distributed`版本时，再想恢复回来，就必须找到它的commit id。Git提供了一个命令`git reflog`用来记录你的每一次命令：
 
-``` gas
+``` shell
 $ git reflog
 
 a8387aa (HEAD -> master) HEAD@{0}: reset: moving to a8387aa
@@ -389,13 +389,13 @@ ad38df9 HEAD@{7}: commit: worte a md fild
 a9b8e9e HEAD@{8}: commit (initial): first commit
 ```
 
-#### git reset的三种模式：
+#### git reset的三种模式
 
 - reset --hard:重置stage区和工作目录
 
   reset --hard 会在重置HEAD和branch的同时，重置stage区和工作目录里的内容。stage区和工作目录里的内容会被完全重置为指定提交中的内容。
 
-  > 换句话说就是没有commit的修改会被全部擦掉。也可以类比为先git restore暂存区中的内容，然后git reset重置HEAD，最后再把工作区中的内容更改为HEAD中的内容。
+  <u>换句话说就是没有commit的修改会被全部擦掉。也可以类比为先git restore暂存区中的内容，然后git reset重置HEAD，最后再把工作区中的内容更改为HEAD中的内容。</u>
 
 - reset --soft:保留工作目录,把重置HEAD所带来的新的差异放进暂存区
 
@@ -407,23 +407,17 @@ a9b8e9e HEAD@{8}: commit (initial): first commit
   
   当我们想合并当前节点和reset目标节点之间不具有太大意义的commit记录 (可能是阶段性地频繁提交)时，可以考虑使用Soft Reset来让commit演进线图较为清晰点。
   
-  > 这个操作可以类比为先使用git reset重置HEAD，这时工作区和最新提交一定是有差异的，这时再使用git add *把所有差异提交到暂存区。
+  <u>这个操作可以类比为先使用git reset重置HEAD，这时工作区和最新提交一定是有差异的，这时再使用git add *把所有差异提交到暂存区。</u>
   
 - reset 不加参数（mixed）：保留工作目录，并清空暂存区
 
   保留工作目录并且清空暂存区。也就是说工作目录的修改、暂存区的内容以及由reset所导致的新的文件的差异，都会被放进工作目录。简而言之 ，就是把所有差异都混合（mixed）放在工作目录中。
 
-  > 这个操作可以类比为先使用git retore把暂存区的修改撤销，然后再使用git reset重置HEAD指向。
+  <u>这个操作可以类比为先使用git retore把暂存区的修改撤销，然后再使用git reset重置HEAD指向。</u>
 
 ### 工作区和暂存区
 
-> 工作区
-
-工作区就是电脑中能看到的项目文件。
-
-> 版本库
-
-工作区有一个隐藏目录`.git`，这个不算工作区，而是Git的版本库。
+工作区就是电脑中能看到的项目文件。工作区有一个隐藏目录`.git`，这个不算工作区，而是Git的版本库。
 
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支`master`，以及指向`master`的一个指针叫`HEAD`。
 
@@ -445,7 +439,7 @@ Git版本库里添加的时候，是分两步执行的：
 
 为什么说Git管理的是修改，而不是文件呢？我们对helloWrold.md做一个修改，比如加一行内容，然后添加它：
 
-``` gas
+``` shell
 $ git add readme.txt
 $ git status
 On branch master
@@ -456,7 +450,7 @@ Changes to be committed:
 
 然后再修改readme.txt，最后提交它：
 
-``` gas
+``` shell
 $ git commit -m "change"
 [master 1850a27] change
  1 file changed, 1 insertion(+)
@@ -464,7 +458,7 @@ $ git commit -m "change"
 
 提交完成之后再查看仓库状态：
 
-``` gas
+``` shell
 $ git status
 On branch master
 Changes not staged for commit:
@@ -483,7 +477,7 @@ Changes not staged for commit:
 
 撤销修改可以使用`git checkout`指令：
 
-``` gas
+``` shell
 git checkout helloWorld.md
 ```
 
@@ -499,13 +493,13 @@ git checkout helloWorld.md
 
 如果在helloWorld中写了一些错误的内容，并且已经将其add到暂存区了，所幸在commit之前发现了这个问题。那么这时，可以通过`git restore`来解决这个问题：
 
-``` gas
+``` shell
 git restore --staged .\helloWrold.md
 ```
 
 这个命令可以把暂存区的修改撤销掉(unstage)，重新放回到工作区，再用`git status`查看一下，现在暂存区是干净的，工作区有修改：
 
-``` gas
+``` shell
 $ git status
 
 On branch master
@@ -517,7 +511,7 @@ Changes not staged for commit:
 
 然后再结合`git checkout`来撤销工作区的修改：
 
-``` gas
+``` shell
 $ git checkout .\helloWrold.md
 Updated 1 path from the index
 
@@ -530,7 +524,7 @@ nothing to commit, working tree clean
 
 在Git中删除也是一个修改操作，比如我现在删除了一个文件，Git检测到删除了文件，因此，工作区和版本库就不一致了，`git status`命令会输出哪些文件被删除了：
 
-``` gas
+``` shell
 $ del helloWorld.md
 $ git status
 
@@ -545,28 +539,28 @@ Changes not staged for commit:
 
 1. 确实要从版本库中删除该文件，那就用命令`git rm`删掉，并且`git commit`：
 
-   ``` gas
-   $ git rm helloWrold.md
-   rm 'helloWrold.md'
-   
-   $ git commit -m "remove md file"
-   [master d82db0c] remove md file
-    1 file changed, 3 deletions(-)
-    delete mode 100644 helloWrold.md
-   ```
+ ``` shell
+ $ git rm helloWrold.md
+ rm 'helloWrold.md'
+
+ $ git commit -m "remove md file"
+ [master d82db0c] remove md file
+  1 file changed, 3 deletions(-)
+  delete mode 100644 helloWrold.md
+ ```
 
 2. 删错了，因为版本库里还有呢，所以可以很轻松地把误删的文件恢复到最新版本：
 
-   ``` gas
-   $ git checkout helloWrold.md
-   Updated 1 path from the index
-   ```
+ ``` shell
+ $ git checkout helloWrold.md
+ Updated 1 path from the index
+ ```
 
 `git checkout`其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。从来没有被添加到版本库就被删除的文件，是无法恢复的！
 
 当我们删除一个文件，并使用`git rm`命令对其进行删除后，将无法使用`git checkout`命令将其删除操作撤销，只能通过`git restore`撤销缓存区的修改，然后再将仓库回退至上一个版本。
 
-``` gas
+``` shell
 $ git rm helloWrold.md
 rm 'helloWrold.md'
 
@@ -587,19 +581,19 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 1. 创建SSH Key。
 
-   ``` shell
-   $ ssh-keygen -t rsa -C "youremail@example.com"
-   ```
+ ``` shell
+ $ ssh-keygen -t rsa -C "youremail@example.com"
+ ```
 
-   指令运行完毕后，就可以在用户主目录里找到`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人
+ 指令运行完毕后，就可以在用户主目录里找到`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人
 
-   > 如果出现了在给远程git仓库配置好密钥后，还是提示Permission defined(publickey)无权限的问题。那就是就是openSSH版本的问题，因为 **openSSH 8.8 以上版本弃用了 rsa 算法**
-   >
-   > 解决办法就是使用其它加密方式，比如ed25519，它比rsa更加安全，并且生成的密钥也很短
+ > 如果出现了在给远程git仓库配置好密钥后，还是提示Permission defined(publickey)无权限的问题。那就是就是openSSH版本的问题，因为 **openSSH 8.8 以上版本弃用了 rsa 算法**
+ >
+ > 解决办法就是使用其它加密方式，比如ed25519，它比rsa更加安全，并且生成的密钥也很短
 
-   ``` shell
-   $ ssh-keygen -t ed25519 -C “xxx@email.com
-   ```
+ ``` shell
+ $ ssh-keygen -t ed25519 -C “xxx@email.com
+ ```
 
    
 
@@ -619,53 +613,53 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 2. 创建的仓库是一个空仓库，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。我们可以根据GitHub的提示，在本地HY仓库中运行如下命令：
 
-   ``` gas
-   git remote add origin git@github.com:ilmangoi/HY.git
-   ```
+ ``` shell
+ git remote add origin git@github.com:ilmangoi/HY.git
+ ```
 
-   每个本地仓库都可以单独绑定远和仓库，如果添加的时候地址写错了，或者就是想删除远程库，可以用`git remote rm <name>`命令。使用前，建议先用`git remote -v`查看远程库信息：
+ 每个本地仓库都可以单独绑定远和仓库，如果添加的时候地址写错了，或者就是想删除远程库，可以用`git remote rm <name>`命令。使用前，建议先用`git remote -v`查看远程库信息：
 
-   ``` gas
-   $ git remote -v
-   origin  git@github.com:ilmangoi/HY.git (fetch)
-   origin  git@github.com:ilmangoi/HY.git (push)
-   $ git remote rm origin
-   ```
+ ``` shell
+ $ git remote -v
+ origin  git@github.com:ilmangoi/HY.git (fetch)
+ origin  git@github.com:ilmangoi/HY.git (push)
+ $ git remote rm origin
+ ```
 3. 下一步就可以把本地库的所有内容推送到远程库上：
 
-   ``` gas
-   $ git push -u origin master
-   The authenticity of host 'github.com (20.205.243.166)' can't be established.
-   ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
-   This key is not known by any other names
-   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-   Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
-   Enumerating objects: 24, done.
-   Counting objects: 100% (24/24), done.
-   Delta compression using up to 8 threads
-   Compressing objects: 100% (20/20), done.
-   Writing objects: 100% (24/24), 8.48 KiB | 1.06 MiB/s, done.
-   Total 24 (delta 5), reused 0 (delta 0), pack-reused 0
-   remote: Resolving deltas: 100% (5/5), done.
-   To github.com:ilmangoi/HY.git
-    * [new branch]      master -> master
-   Branch 'master' set up to track remote branch 'master' from 'origin'.
-   ```
+ ``` shell
+ $ git push -u origin master
+ The authenticity of host 'github.com (20.205.243.166)' can't be established.
+ ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+ This key is not known by any other names
+ Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+ Enumerating objects: 24, done.
+ Counting objects: 100% (24/24), done.
+ Delta compression using up to 8 threads
+ Compressing objects: 100% (20/20), done.
+ Writing objects: 100% (24/24), 8.48 KiB | 1.06 MiB/s, done.
+ Total 24 (delta 5), reused 0 (delta 0), pack-reused 0
+ remote: Resolving deltas: 100% (5/5), done.
+ To github.com:ilmangoi/HY.git
+  * [new branch]      master -> master
+ Branch 'master' set up to track remote branch 'master' from 'origin'.
+ ```
 
-   由于远程库是空的，我们第一次推送`master`分支时，加上了`-u`参数，Git不但会把本地的`master`分支内容推送的远程新的`master`分支，还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。
+ 由于远程库是空的，我们第一次推送`master`分支时，加上了`-u`参数，Git不但会把本地的`master`分支内容推送的远程新的`master`分支，还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
-   推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样，从现在起，只要本地作了提交，就可以通过命令把本地`master`分支的最新修改推送至GitHub：
+ 推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样，从现在起，只要本地作了提交，就可以通过命令把本地`master`分支的最新修改推送至GitHub：
 
-   ``` gas
-   git push
-   ```
+ ``` shell
+ git push
+ ```
 
 
 > SSH警告
 
 第一次使用Git的`clone`或者`push`命令连接GitHub时，会得到一个警告：
 
-``` gas
+``` shell
 The authenticity of host 'github.com (20.205.243.166)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 This key is not known by any other names
@@ -674,7 +668,7 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 
 这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入`yes`回车即可。然后Git会输出另一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：
 
-``` gas
+``` shell
 Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 ```
 
@@ -688,14 +682,14 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 2. 远程库准备好了以后，就可以用`git clone`克隆一个本地库。
 
-   ``` gas
-   $ git clone git@github.com:ilmangoi/HY.git
-   
-   Cloning into 'HY'...
-   remote: Counting objects: 3, done.
-   remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 3
-   Receiving objects: 100% (3/3), done.
-   ```
+ ``` shell
+ $ git clone git@github.com:ilmangoi/HY.git
+
+ Cloning into 'HY'...
+ remote: Counting objects: 3, done.
+ remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 3
+ Receiving objects: 100% (3/3), done.
+ ```
 
 如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
 
@@ -807,30 +801,9 @@ git revert是用于“反做”某一个版本，以达到撤销该版本的修�
 
 ```shell
 # 撤销某一次修改
+# 参数 -n 代表不要自动提交，而是把反做内容放在暂存区，由用户自己进行提交
 $ git revert -n 8b896210
 ```
-
-使用revert命令，如果还是要撤销最近一次提交，那么就有可能会有冲突：
-
-```text
-<<<<<<< HEAD
-全部清空
-第一次提交
-=======
-全部清空
->>>>>>> parent of 8b896210... 全部清空
-```
-
-解决冲突很简单，因为我们只想回到某次提交，因此需要把当前最新的代码去掉即可，也就是HEAD标记的代码：
-
-```text
-<<<<<<< HEAD
-全部清空
-第一次提交
-=======
-```
-
-把上面部分代码去掉就可以了，然后再提交一次代码就可以解决冲突了
 
 ## 分支管理
 
@@ -862,7 +835,7 @@ Git会把所有提交都串成一条时间线，这条时间线就是一个分�
 
 创建`dev`分支，然后切换到`dev`分支：
 
-``` gas
+``` shell
 $ git branch dev
 
 $ git switch dev
@@ -875,7 +848,7 @@ $ git branch
 
 进行一次提交后，`dev`分支的工作完成，切换回`master`分支：
 
-``` gas
+``` shell
 $ git add *
 $ git commit -m "branch test"
 [dev 579cb2d] branch test
@@ -888,7 +861,7 @@ Your branch is up to date with 'origin/master'.
 
 现在就把`dev`分支的工作成果合并到`master`分支上：
 
-``` gas
+``` shell
 git merge dev
 Updating 6420dcf..579cb2d
 Fast-forward
@@ -900,7 +873,7 @@ Fast-forward
 
 注意到上面的`Fast-forward`信息，Git告诉我们，这次合并是“快进模式”，也就是直接把`master`指向`dev`的当前提交，所以合并速度非常快。当然，也不是每次合并都能`Fast-forward`，因为dev分支提交内容的同时，master分支也有可能提交内容，这就有可能导致合并冲突。合并完成后，就可以放心地删除`dev`分支了：
 
-``` gas
+``` shell
 $ git branch -d dev
 Deleted branch dev (was 579cb2d).
 
@@ -912,7 +885,7 @@ $ git branch
 
 > git branch常见选项
 
-``` gas
+``` shell
 git branch
 # 列举仓库中的所有分支。此命令与`git branch --list`是同义词。
 
@@ -948,7 +921,7 @@ git branch --set-upstream-to=origin/<branch> <branch>
 
 这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，可以通过`git status`查看冲突的文件：
 
-``` gas
+``` shell
 $ git merge feature1
 Auto-merging helloWrold.md
 CONFLICT (content): Merge conflict in helloWrold.md
@@ -970,7 +943,7 @@ Unmerged paths:
 
 Git告诉我们helloWorld.md文件在合并时发生了冲突，我们看一下这个文件的内容：
 
-``` gas
+``` shell
 hello world!
 changed!
 changed!
@@ -984,7 +957,7 @@ feature1
 
 手动解决冲突，可以删除其中一个分支的内容，也可以合并两个分支冲突的内容，或者进行其它修改，修改完成后再对其进行提交：
 
-``` gas
+``` shell
 $ git add .\helloWrold.md
 $ git commit -m "merge branch"
 [master cbb3bfd] merge branch
@@ -994,44 +967,153 @@ $ git commit -m "merge branch"
 
 ![0 (1)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(1)-16534065410972.png)
 
-### 分支管理策略
+### 分支合并方式
 
-通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。
+#### Fast-Forward Merge
 
-如果要强制禁用`Fast forward`模式，Git就会在merge时生成一个新的`commit`，这样，从分支历史上就可以看出分支信息。
+环境：
 
-首先在`dev`分支中提交一个新的`commit`，切换回`master`后合并`dev`分支，请注意`--no-ff`参数，表示禁用`Fast forward`：
+```shell
+$ git log --oneline --graph --all
+* 0f029c3 (dev) c4
+* c594fa9 c3
+* 9229adb (HEAD -> master) c2
+* cfbff28 c1
+```
 
-``` gas
-# 创建并切换dev分支：
-$ git switch -c dev
-Switched to a new branch 'dev'
-# 修改readme.txt文件，并提交一个新的commit：
-$ git add readme.txt 
-$ git commit -m "add merge"
-[dev f52c633] add merge
- 1 file changed, 1 insertion(+)
-# 我们切换回master
-$ git switch master
-Switched to branch 'master'
-# 合并dev分支
-$ git merge --no-ff -m "merge with no-ff" dev
-Merge made by the 'recursive' strategy.
- readme.txt | 1 +
+现在切换回master分支，并把dev分支上的变更合并到master：
+
+```shell
+$ git merge dev
+Updating 9229adb..0f029c3
+Fast-forward
+ README | 1 +
  1 file changed, 1 insertion(+)
 ```
 
-因为本次合并要创建一个新的commit，所以加上`-m`参数，把commit描述写进去。不使用`Fast forward`模式，merge后就是这样：
+可以看到输出结果中的“Fast-forward”，这表明Git在做合并时采用的是Fast-Forward Merge
 
-![0 (2)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(2).png)
+```shell
+$ git log --oneline --graph --all
+* 0f029c3 (HEAD -> master, dev) c4
+* c594fa9 c3
+* 9229adb c2
+* cfbff28 c1
+```
 
-> 分支策略
+由于master分支从c2开始与dev分叉以后就再也没有新的提交了，所以Git只是简单地把master的head指针向前移动到c4，合并就完成了。这就是所谓的Fast-Forward Merge。因为不涉及内容变更的比较，所以这种合并方式效率很高。Fast-Forward Merge要求参与合并的两个分支上的提交必须是“一脉相承”的父子或祖孙关系。不过它有个缺点，作为被合并的dev分支，它的提交历史在合并以后会和master分支的提交历史重合。
 
-在实际开发中，我们应该按照几个基本原则进行分支管理：
+如果想在合并后保留来自被合并分支的提交历史，并显式标注出合并发生的位置，那就需要在执行合并时加上参数`--no-ff`。这样也表示我们在合并时将不使用Fast-Forward Merge：
 
-首先，`master`分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活。干活都在`dev`分支上，也就是说，`dev`分支是不稳定的，到某个时候，比如1.0版本发布时，再把`dev`分支合并到`master`上，在`master`分支发布1.0版本。每个人都在`dev`分支上干活，每个人都有自己的分支，时不时地往`dev`分支上合并就可以了。所以，团队合作的分支看起来就像这样：
+```shell
+$ git merge --no-ff -m c5 dev
+Merge made by the 'recursive' strategy.
+ README | 1 +
+ 1 file changed, 1 insertion(+)
+```
 
-![0 (3)](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/0%20(3).png)
+这一次，由于没有采用Fast-Forward Merge，Git生成了一个新的提交：
+
+```shell
+git log --oneline --graph --all
+*   b735987 (HEAD -> master) c5
+|\  
+| * 0f029c3 (dev) c4
+| * c594fa9 c3
+|/  
+* 9229adb c2
+* cfbff28 c1
+```
+
+#### Three-Way Merge
+
+环境：
+
+```shell
+$ git log --oneline --graph --all
+* 098be39 (HEAD -> master) c5
+| * 0f029c3 (dev) c4
+| * c594fa9 c3
+|/  
+* 9229adb c2
+* cfbff28 c1
+```
+
+这个时候，Git会自动采用Three-Way Merge方式进行合并。首先它会在两个分支上分别找到head指针（又被称为branch tip）所对应的提交：c4和c5。然后，找到距离它们俩最近的“共同祖先”：c2（common ancestor），然后进行Three-Way Merge。
+
+```shell
+$ git merge -m c6 dev
+Auto-merging README
+Merge made by the 'recursive' strategy.
+ README | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+根据合并的结果，Git会生成一个新的快照，并创建一个新的提交指向这个快照。这个提交被称为“合并提交”（merge commit）：
+
+```shell
+$ git log --oneline --graph --all
+*   9c3ee95 (HEAD -> master) c6
+|\  
+| * 0f029c3 (dev) c4
+| * c594fa9 c3
+* | 098be39 c5
+|/  
+* 9229adb c2
+* cfbff28 c1
+```
+
+这种提交特别的地方在于，它有两个parent。
+
+#### Squash Merge
+
+环境：
+
+```shell
+$ git log --oneline --graph --all
+* 098be39 (HEAD -> master) c5
+| * 0f029c3 (dev) c4
+| * c594fa9 c3
+|/  
+* 9229adb c2
+* cfbff28 c1
+```
+
+执行Squash Merge，把dev分支的内容合并到master分支：
+
+```shell
+$ git merge --squash dev
+Auto-merging README
+Squash commit -- not updating HEAD
+Automatic merge went well; stopped before committing as requested
+```
+
+然后，生成新的提交：
+
+```shell
+$ git commit -m c6
+[master 0b7fd35] c6
+ 1 file changed, 1 insertion(+)
+```
+
+再用`git log`观察提交历史：
+
+```shell
+$ git log --oneline --graph --all
+* 0b7fd35 (HEAD -> master) c6
+* 098be39 c5
+| * 0f029c3 (dev) c4
+| * c594fa9 c3
+|/  
+* 9229adb c2
+* cfbff28 c1
+```
+
+从图上可以看到，作为合并提交的c6，的确只有一个parent，即：c5。而且，如果这个时候我们把dev分支删掉，整个提交历史就会变得非常干净。
+
+Squash Merge不会像普通Merge那样在合并后的提交历史里保留被合并分支的分叉，被合并分支上的提交记录也不会出现在合并后的提交历史里，所有被合并分支上的变更都被“压缩”成了一个合并提交。
+
+如果在被合并分支上，完整的提交历史里包含了很多中间提交（intermediate commit），比如：改正一个小小的拼写错误可能也会成为一个独立的提交，而我们并不希望在合并时把这些细节都反应在当前分支的提交历史里。这时，我们就可以选择Squash Merge。
 
 ### Bug分支
 
@@ -1041,7 +1123,7 @@ Merge made by the 'recursive' strategy.
 
 这个时候就可以用到Git提供的`stash`功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
 
-``` gas
+``` shell
 $ git status
 On branch dev
 Changes not staged for commit:
@@ -1061,7 +1143,7 @@ nothing to commit, working tree clean
 
 在当前的master分支中创建一个issue-101分支修复Bug，然后切换回`master`分支，完成合并，最后删除`issue-101`分支：
 
-``` gas
+``` shell
 $ git switch master
 Switched to branch 'master'
 
@@ -1085,7 +1167,7 @@ Merge made by the 'ort' strategy.
 
 Bug修复完毕后，就可以回到`dev`分支上干活了：
 
-``` gas
+``` shell
 git switch dev
 Switched to branch 'dev'
 PS G:\web\HY> git stash pop
@@ -1102,7 +1184,7 @@ Changes not staged for commit:
 
 同样的bug，要在dev上修复，我们只需要把`fix issue-101`这个提交所做的修改“复制”到dev分支。注意：我们只想复制`fix issue-101`这个提交所做的修改，并不是把整个master分支merge过来。 为了方便操作，Git专门提供了一个`cherry-pick`命令，让我们能复制一个特定的提交到当前分支：
 
-``` gas
+``` shell
 $ git branch
 * dev
   master
@@ -1116,7 +1198,7 @@ Git自动给dev分支做了一次提交，注意这次提交的commit是`1d4b803
 
 > git stash指令
 
-``` gas
+``` shell
 $ git stash [save "XXX"]                          
 # 暂存工作区，加上save选项表示给暂存加注释
 
@@ -1143,7 +1225,7 @@ $ git stash show [stash_id] [-p]
 
 添加一个新功能时，为了不让一些实验性质的代码把主分支搞乱，所以每添加一个新功能，最好新建一个feature分支，在feature分支上面开发，开发完成后合并分支，最后删除该feature分支。
 
-``` gas
+``` shell
 # 创建feature分支
 $ git branch feature
 $ git switch feature
@@ -1158,7 +1240,7 @@ $ git commit -m "add feature vulcan"
 
 开发完成后就可以切回`dev`，准备合并。正常情况下就是合并feature分支，然后删除。但如果此时领导要求这个新功能要废弃掉，虽然白干了，但是这个包含机密资料的分支还是必须就地销毁：
 
-``` gas
+``` shell
 $ git switch dev
 Switched to branch 'dev'
 Your branch is up to date with 'origin/dev'.
@@ -1170,7 +1252,7 @@ If you are sure you want to delete it, run 'git branch -D feature'.
 
 销毁失败。Git提醒`feature`分支还没有被合并，如果删除，将丢失掉修改，如果要强行删除，需要使用大写的`-D`参数：
 
-``` gas
+``` shell
 git branch -D feature
 Deleted branch feature (was 2da8299).
 ```
@@ -1190,7 +1272,7 @@ Deleted branch feature (was 2da8299).
 
 从远程仓库克隆时，实际上Git自动把本地的`master`分支和远程的`master`分支对应起来了，并且，远程仓库的默认名称是`origin`，可以通过git remote进行查看：
 
-``` gas
+``` shell
 $ git remote -v
 origin  git@github.com:ilmangoi/HY.git (fetch)
 origin  git@github.com:ilmangoi/HY.git (push)
@@ -1202,7 +1284,7 @@ origin  git@github.com:ilmangoi/HY.git (push)
 
 推送分支，就是把该分支上的所有本地提交推送到远程库。推送时要指定本地分支，这样Git就会把该分支推送到远程库对应的远程分支上：
 
-``` gas
+``` shell
 $ git push -u origin master
 # master分支是主分支，因此要时刻与远程同步；
 
@@ -1216,7 +1298,7 @@ $ git push -u origin dev
 
 现在模拟一个小伙伴与我协同合作。可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆：
 
-``` gas
+``` shell
 $ git clone git@github.com:ilmangoi/HY.git
 Cloning into 'HY'...
 remote: Enumerating objects: 57, done.
@@ -1236,7 +1318,7 @@ $ git branch
 
 clone完成后，默认情况下只能看到本地的`master`分支。如果要在`dev`分支上开发，就必须创建远程`origin`的`dev`分支到本地：
 
-``` gas
+``` shell
 $ git branch dev origin/dev
 Branch 'dev' set up to track remote branch 'dev' from 'origin'.
 
@@ -1247,7 +1329,7 @@ Your branch is up to date with 'origin/dev'.
 
 现在，小伙伴就可以在`dev`上继续修改，然后，时不时地把`dev`分支`push`到远程：
 
-``` gas
+``` shell
 $ git add *
 $ git commit -m "firend change!"
 [dev bd8a39f] firend change!
@@ -1267,7 +1349,7 @@ To github.com:ilmangoi/HY.git
 
 小伙伴已经向`origin/dev`分支推送了他的提交，而碰巧自己也对同样的文件作了修改并试图推送：
 
-``` gas
+``` shell
 $ git add *
 $ git commit -m "master change"
 [dev 227f6dc] master change
@@ -1285,7 +1367,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 推送失败，因为小伙伴的最新提交和自己推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用`git pull`把最新的提交从`origin/dev`抓下来，然后在本地合并，解决冲突后再推送：
 
-``` gas
+``` shell
 $ git pull
 Auto-merging helloWrold.md
 CONFLICT (content): Merge conflict in helloWrold.md
@@ -1311,7 +1393,7 @@ To github.com:ilmangoi/HY.git
 
 ### Rebase
 
-多人在同一个分支上协作时，很容易出现冲突。即使没有冲突，后push的童鞋不得不先pull，在本地合并，然后才能push成功。每次合并再push后，分支就会变得很乱，为什么Git的提交历史不能是一条干净的直线？
+多人在同一个分支上协作时，很容易出现冲突。即使没有冲突，后push的人需要先pull，在本地合并，然后才能push成功。每次合并再push后，分支就会变得很乱，为什么Git的提交历史不能是一条干净的直线？
 
 这里就可以用到`git rebase`指令了，rebase操作可以把本地未push的分叉提交历史整理成直线，rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
 
@@ -1319,7 +1401,7 @@ To github.com:ilmangoi/HY.git
 
 仓库在和远程分支同步后，又对`hello.py`这个文件做了两次提交。用`git log`命令看看：
 
-``` gas
+``` shell
 $ git log --graph --pretty=oneline --abbrev-commit
 * 582d922 (HEAD -> master) add author
 * 8875536 add comment
@@ -1328,7 +1410,7 @@ $ git log --graph --pretty=oneline --abbrev-commit
 
 可以注意到Git用`(HEAD -> master)`和`(origin/master)`标识出当前分支的HEAD和远程origin的位置分别是`582d922 add author`和`d1be385 init hello`，本地分支比远程分支快两个提交。现在我们尝试推送本地分支：
 
-``` gas
+``` shell
 $ git push
 To github.com:ilmangoi/HY.git
  ! [rejected]        master -> master (fetch first)
@@ -1338,14 +1420,14 @@ error: failed to push some refs to 'git@github.com:ilmangoi/HY.git'
 
 提交失败了，这说明有人先于我们推送了远程分支。这时候要pull一下：
 
-``` gas
+``` shell
 $ git pull
   ... ...
 ```
 
 远程分支与本地分支没有冲突，因此Git自己帮我们对分支进行了合并，用`git log`看看：
 
-``` gas
+``` shell
 $ git log --graph --pretty=oneline --abbrev-commit
 *   e0ea545 (HEAD -> master) Merge branch 'master' of github.com:ilmangoi/HY.git
 |\  
@@ -1358,7 +1440,7 @@ $ git log --graph --pretty=oneline --abbrev-commit
 
 可以看到提交历史分叉了，如果现在把本地分支push到远程当然也没有问题，但是很显然，这样并不美观。想要解决这个问题就可以使用`git rebase`指令： 
 
-``` gas
+``` shell
 $ git rebase
   ... ...
   
@@ -1373,7 +1455,7 @@ $ git log --graph --pretty=oneline --abbrev-commit
 
 最后，通过push操作把本地分支推送到远程后用`git log`看看效果，远程分支的提交历史也是一条直线了：
 
-``` gas
+``` shell
 $ git push
 
 $ git log --graph --pretty=oneline --abbrev-commit
@@ -1383,6 +1465,87 @@ $ git log --graph --pretty=oneline --abbrev-commit
 * d1be385 init hello
 ```
 
+#### rebase原理解析
+
+环境：
+
+<img src="https://raw.githubusercontent.com/mangguoo/imgRepo/main/img-2/11b5dfb6fcb1b5e2e3d68d726b7a07bb-20241206110617731.png" alt="在这里插入图片描述" style="zoom:50%;" />
+
+切换到feature分支上，执行rebase命令，相当于是想要把master分支合并到feature分支：
+
+- feature：待变基分支、当前分支
+- master：基分支、目标分支
+
+```bash
+# 这两条命令等价于git rebase master feature
+git checkout feature
+git rebase master
+```
+
+<img src="https://raw.githubusercontent.com/mangguoo/imgRepo/main/img-2/0e5ced3de53e575c3af477e2dd8a0ce6-20241206110713317.png" alt="在这里插入图片描述" style="zoom:50%;" />
+
+**变基**可以直接理解为改变基底。feature分支是基于master分支的B拉出来的分支，feature的基底是B。而master在B之后有新的提交，就相当于此时要用master上新的提交来作为feature分支的新基底。实际操作为把B之后feature的提交先暂存下来，然后删掉原来这些提交，再找到master的最新提交位置，把存下来的提交再接上去（**接上去是逐个和新基底处理冲突的过程**），如此feature分支的基底就相当于变成了M而不是原来的B了。（注意，如果master上在B以后没有新提交，那么就还是用原来的B作为基，rebase操作相当于无效，此时和git merge就基本没区别了，差异只在于git merge会多一条记录Merge操作的提交记录）
+
+**上面的例子可抽象为如下实际工作场景：远程库上有一个master分支目前开发到B了，张三从B拉了代码到本地的feature分支进行开发，目前提交了两次，开发到D了；李四也从B拉到本地的master分支，他提交到了M，然后合到远程库的master上了。此时张三想从远程库master拉下最新代码，于是他在feature分支上执行了git pull origin master:feature --rebase（注意要加–rebase参数），即把远程库master分支给rebase下来，由于李四更早开发完，此时远程master上是李四的最新内容，rebase后再看张三的历史提交记录，就相当于是张三是基于李四的最新提交M进行的开发了。**
+
+#### 使用场景
+
+1. **拉公共分支最新代码——rebase**，也就是git pull -r或git pull --rebase。这样的好处很明显，提交记录会比较简洁。但有个缺点就是rebase以后我就不知道我的当前分支最早是从哪个分支拉出来的了，因为基底变了嘛，所以看个人需求了。**总体来说，即使是单机也不建议使用。**
+2. **往公共分支上合代码——merge**。如果使用rebase，那么其他开发人员想看主分支的历史，就不是原来的历史了，历史已经被你篡改了。举个例子解释下，比如张三和李四从共同的节点拉出来开发，张三先开发完提交了两次然后merge上去了，李四后来开发完如果rebase上去（注意，李四需要切换到自己本地的主分支，假设先pull了张三的最新改动下来，然后执行<git rebase 李四的开发分支>，然后再git push到远端），则李四的新提交变成了张三的新提交的新基底，本来李四的提交是最新的，结果最新的提交显示反而是张三的，就乱套了，以后有问题就不好追溯了。
+3. **正因如此，大部分公司其实会禁用rebase，不管是拉代码还是push代码统一都使用merge，虽然会多出无意义的一条提交记录“Merge … to …”，但至少能清楚地知道主线上谁合了的代码以及他们合代码的时间先后顺序**
+
+#### 使用rebase编辑提交
+
+> `rebase`的常见用法之一就是通过交互式rebase（`git rebase -i`）来编辑、删除、合并或者重新排序提交，这样可以去掉那些不需要的中间提交。以下是如何通过`rebase`去掉中间提交的步骤：
+
+1. **启动交互式rebase**： 确定要重新整理的提交范围。例如要整理过去的5个提交，可以使用：
+
+ ```shell
+ git rebase -i HEAD~5
+ ```
+
+ 这会打开一个编辑器，列出这 5 个提交。
+
+2. **编辑提交历史**： 在编辑器中会看到类似下面的内容：
+
+ ```shell
+ pick a1b2c3d 提交信息1
+ pick d4e5f6g 提交信息2
+ pick h7i8j9k 提交信息3
+ pick l0m1n2o 提交信息4
+ pick p3q4r5s 提交信息5
+ ```
+
+ 现在就可以对每个提交执行不同的操作：
+
+ - `pick`：保留此提交。
+ - `drop`：删除此提交。
+ - `squash`或`fixup`：将此提交与前一个提交合并。
+
+ 比如说想去掉一些中间提交，可以将它们前面的`pick`改为`drop`，如：
+
+ ```shell
+pick a1b2c3d 提交信息1
+drop d4e5f6g 提交信息2
+pick h7i8j9k 提交信息3
+ ```
+
+3. **保存并退出编辑器**：编辑完成后，保存并退出编辑器（通常在 `vim` 中是 `:wq`）。Git会根据编辑后的内容重写提交历史。
+
+4. **解决冲突**：如果在rebase过程中出现冲突，Git会暂停并提示需要解决冲突。解决冲突即可以继续：
+
+ ```shell
+git rebase --continue
+ ```
+
+ 继续 rebase 操作，直到完成。
+
+5. **推送更改**：完成rebase后，本地提交历史会被修改。如果已经将这些提交推送到了远程仓库，需要使用`--force`（或 `-f`）选项来强制推送更新：
+
+ ```shell
+git push --force
+ ```
+
 ## 标签管理
 
 Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像，但是分支可以移动，标签不能移动），所以创建和删除标签都是瞬间完成的。Git已经有了commit，为什么还要引入tag？
@@ -1391,7 +1554,7 @@ Git的标签虽然是版本库的快照，但其实它就是指向某个commit�
 
 ### 创建标签
 
-``` gas
+``` shell
 $ git tag v1.0         
 # 创建一个标签，默认标签是打在最新提交的commit上的
 
@@ -1432,7 +1595,7 @@ Date:   Tue May 24 15:53:30 2022 +0800
 
 ### 操作标签
 
-``` gas
+``` shell
 $ git tag -d v0.1
 Deleted tag 'v0.1' (was 288f40d)
 # 删除标签
@@ -1440,7 +1603,7 @@ Deleted tag 'v0.1' (was 288f40d)
 
 因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。如果要推送某个标签到远程，使用如下命令：
 
-``` gas
+``` shell
 $ git push origin v1.0
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
 To github.com:ilmangoi/HY.git
@@ -1456,7 +1619,7 @@ To github.com:ilmangoi/HY.git
 
 如果标签已经推送到远程，要删除远程标签要先从本地删除，然后再从远程删除：
 
-``` gas
+``` shell
 $ git tag -d v0.9
 Deleted tag 'v0.9' (was 5d53bf1)
 
@@ -1481,56 +1644,56 @@ To github.com:ilmangoi/HY.git
 
 2. 克隆Fork回来的仓库，一定要从自己的账号下clone仓库，这样你才能推送修改：
 
-   ``` gas
-   git clone git@github.com:ilmangoi/learngit.git
-   ```
+ ``` shell
+ git clone git@github.com:ilmangoi/learngit.git
+ ```
 
-   learngit的官方仓库`michaelliao/learngit`、自己在GitHub上克隆的仓库`ilmangoi/learngit`，以及自己克隆到本地电脑的仓库，他们的关系如下图所示：
+ learngit的官方仓库`michaelliao/learngit`、自己在GitHub上克隆的仓库`ilmangoi/learngit`，以及自己克隆到本地电脑的仓库，他们的关系如下图所示：
 
-   ```ascii
-   ┌─ GitHub ────────────────────────────────────┐
-   │                                             │
-   │ ┌─────────────────┐     ┌─────────────────┐ │
-   │ │ twbs/bootstrap  │────>│  my/bootstrap   │ │
-   │ └─────────────────┘     └─────────────────┘ │
-   │                                  ▲          │
-   └──────────────────────────────────┼──────────┘
-                                      ▼
-                             ┌─────────────────┐
-                             │ local/bootstrap │
-                             └─────────────────┘
-   ```
+ ```ascii
+ ┌─ GitHub ────────────────────────────────────┐
+ │                                             │
+ │ ┌─────────────────┐     ┌─────────────────┐ │
+ │ │ twbs/bootstrap  │────>│  my/bootstrap   │ │
+ │ └─────────────────┘     └─────────────────┘ │
+ │                                  ▲          │
+ └──────────────────────────────────┼──────────┘
+                                    ▼
+                           ┌─────────────────┐
+                           │ local/bootstrap │
+                           └─────────────────┘
+ ```
 
 3. 给learngit添加一点内容，然后往自己Fork的仓库中推送：
 
-   ``` gas
-   $ git add *
-   $ git commit -m "add a git notes"
-   [master 7296579] add a git notes
-    17 files changed, 1086 insertions(+)
-    ... ...
-    
-   $ git push origin master
-   Enumerating objects: 23, done.
-   Counting objects: 100% (23/23), done.
-   Delta compression using up to 8 threads
-   Compressing objects: 100% (21/21), done.
-   Writing objects: 100% (21/21), 393.32 KiB | 887.00 KiB/s, done.
-   Total 21 (delta 2), reused 0 (delta 0), pack-reused 0
-   remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
-   To github.com:ilmangoi/learngit.git
-      f38a6b3..7296579  master -> master
-   ```
+ ``` shell
+ $ git add *
+ $ git commit -m "add a git notes"
+ [master 7296579] add a git notes
+  17 files changed, 1086 insertions(+)
+  ... ...
+
+ $ git push origin master
+ Enumerating objects: 23, done.
+ Counting objects: 100% (23/23), done.
+ Delta compression using up to 8 threads
+ Compressing objects: 100% (21/21), done.
+ Writing objects: 100% (21/21), 393.32 KiB | 887.00 KiB/s, done.
+ Total 21 (delta 2), reused 0 (delta 0), pack-reused 0
+ remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+ To github.com:ilmangoi/learngit.git
+    f38a6b3..7296579  master -> master
+ ```
 
 4. pull request：
 
-   > 提交pull request
+提交pull request
 
-   ![Snipaste_2022-05-25_21-28-19](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-28-19.png)
+   <img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-28-19.png" alt="Snipaste_2022-05-25_21-28-19" style="zoom:50%;align: 'center';" />
 
-   > 查看已提交的pull request
+查看已提交的pull request
 
-   ![Snipaste_2022-05-25_21-30-02](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-30-02.png)
+  <img src="https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-25_21-30-02.png" alt="Snipaste_2022-05-25_21-30-02" style="zoom:50%;" />
 
 ## wroktree
 
@@ -1576,19 +1739,19 @@ git worktree方案可以概括为：通过创建共享版本仓库的多个工�
 
    --porcelain 选项，可以列出更完整的哈希值和分支信息。
 
-3. *移动worktree到其他目录*：
+3. 移动worktree到其他目录：
 
    ``` shell
    $ git worktree move <worktree> <new-path> 
    ```
 
-4. *清除那些检出目录已经被删除的worktree*：
+4. 清除那些检出目录已经被删除的worktree：
 
    ``` shell
    $ git worktree prune
    ```
 
-5. *删除worktree, 同时删除检出目录*：
+5. 删除worktree, 同时删除检出目录：
 
    ``` shell
    $ git worktree remove -f <worktree>
@@ -1613,21 +1776,3 @@ git commit --amend
 ```
 
 则会进入编辑模式，按i键然后直接编辑注释信息，编辑完成后则可以ZZ保存并退出
-
-### rtab与btag
-
-> #### btag:
->
-> **用途：**用来记录一次测试环境打包的产物名称，可以用来作为查找某一次功能打包的时间点，大多数情况下作为发布线上的tag_name
->
-> #### rtag：
->
-> **用途：**用来记录线上环境打包的产物名称，可以用来作为查找某一次功能打包的时间点，大多数情况下作为<u>回滚线上发布</u>的tag_name
-
-**rtag产生的过程：**
-
-分支部署 → 生成btag  → 发布线上，生成rtag
-
-首先确认需要上线分支的已经是最新代码，btag是由已经diff过的最新代码打包生成，并且在测试环境验证无其他问题，再确认发布上线的btag是正确的，来确保rtag是正确的
-
-备注：若为回滚的rtag，一定要与开发确认该rtag的正确性（一般使用上一次线上发布的rtag）
