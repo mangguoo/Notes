@@ -72,6 +72,56 @@ She is not old enough to drive.
 
 I fare well without computers.
 
+She is an expert in this field.
+
+Fragrant perfume.
+
+If you can't sign your name, make a cross instead.
+
+Instead of moving forward, they drew back.
+
+His success relies on his luck instead of his skill.
+
+The path leads to the village.
+
+Spicy jokes.
+
+Tennis court.
+
+Is this bracelet genuine gold?
+
+A scientific method.
+
+Circus performers.
+
+To herd cattle.
+
+They kept a large herd of cattle.
+
+The Panama Canal joins two oceans.
+
+Costume play.
+
+These songs entrance all the audience.
+
+The architect of his own fortunes.
+
+Architect of a revolution.
+
+The maple leaf is the symbol of Canada.
+
+Maple leaves glowed red in the sunlight.
+
+I go there several times each year.
+
+The castle is founded on solid rock.
+
+The physician fared well in practice.
+
+She is licensed to practice nursing.
+
+In a westward direction.
+
 
 
 姓：Surname | Family name | Last name
@@ -326,6 +376,20 @@ Mason 梅森 石匠
 
 Sailor 赛勒 水手
 
+Mechanic 技工，机械师
+
+Architect 建筑师，设计师
+
+Carpenter 木匠，木工
+
+Hairdresser 理发师，美容师
+
+Athlete 运动员，体育家
+
+Plumber 水管工
+
+Detective 侦探，侦探的
+
 
 
 Plane 飞机
@@ -339,6 +403,10 @@ Plant 植物
 Place 地方
 
 Palace 宫殿
+
+Plenty 足够的
+
+Present n. 目前，礼物 adj. 在场的，目前的 v. 呈现，提出
 
 
 
@@ -394,11 +462,19 @@ Gas 气体
 
 
 
-Award 颁奖，授予 | 奖品，裁定
+Award v. 颁奖，授予 n. 奖品，裁定
 
-Reward 奖励，回报 | 奖励，报酬
+Reward v. 奖励，回报 n. 奖励，报酬
 
-Prize 珍视，珍藏 | 奖赏，奖品
+Prize v. 珍视，珍藏 n. 奖赏，奖品
+
+Advantage 优势，好处，有利条件
+
+Interest 兴趣，利益，利息
+
+Benefit n. 利益，好处，救济金 v. 有益于，有助于
+
+Profit n. 利润，收益 v. 获得，有益于
 
 
 
@@ -516,7 +592,9 @@ Dinning hall 餐厅
 
 Coach n. 教练 v. 培训
 
-Couch 沙发
+Couch 长沙发
+
+Lounge n. 休息室，长沙发 v. 躺卧，闲逛
 
 
 
@@ -634,6 +712,10 @@ Harbor 海港
 
 Port 港口
 
+Canal 运河，沟渠
+
+Lake 湖
+
 
 
 Pantyhose 丝袜，连裤袜
@@ -670,9 +752,17 @@ Dull 愚笨的，迟钝的，无趣的
 
 
 
+Instruct 指导，指示，命令
+
+Instructor 指导者，教练
+
 Instruction 指示，指令，说明
 
+Introduce 介绍，引进
+
 Introduction 介绍，引入
+
+Instrument 仪器，乐器，工具，手段，法律文件
 
 
 
@@ -681,6 +771,8 @@ Strick 严格的，严厉的
 Strike 击打，罢工
 
 Brick 砖
+
+Trick n. 戏法，诡计，恶作剧 v. 哄骗，欺骗
 
 
 
@@ -719,6 +811,208 @@ Negative 消极负面的
 Optimistic 乐观的
 
 Pessimistic 悲观的
+
+
+
+Community 社区，团体
+
+Communicate v. 沟通，交流
+
+Communication n. 通信，交流
+
+
+
+Swear 发誓，咒骂
+
+Bet 打赌
+
+Beg 恳求，乞求
+
+
+
+Bite 咬，叮，上钩
+
+Bit 小块，少许，片刻 bite的过去式
+
+
+
+Rooster 公鸡，雄禽，狂妄自负的人
+
+Roost 窝，棚
+
+Cock 公鸡，雄禽
+
+Hen 母鸡
+
+Kitten 小猫
+
+Tomcat 雄猫,到处找女人鬼混的男子
+
+Puppy 小狗
+
+Bunny 小兔子
+
+Dinosaur 恐龙
+
+Cricket 板球，蟋蟀
+
+Parrot n. 鹦鹉，学舌者 v. 学舌，机械的模仿
+
+Zebra 斑马
+
+Lizard 蜥蜴
+
+Lamb 小羊
+
+Goat 山羊
+
+Sheep 绵羊
+
+Bull 公牛，大型雄性动物
+
+Cow 母牛，大型母兽
+
+Dragon 龙，悍妇
+
+Dragonfly 蜻蜓
+
+Fly 苍蝇
+
+Cattle 牛（复数）,家畜
+
+
+
+Hide v.隐藏 过去式 => hid 过去分词 => hidden(adj. 隐藏的)
+
+Exhibit [ig'zibit] v. 展览 n. 展品，展览 
+
+Exhibition [exsi'bis(e)n] n. 展览，展出
+
+
+
+Glad adj. 高兴的，欢乐的
+
+Fun n. 兴趣，快乐
+
+Joy n. 喜悦，快乐
+
+Happy adj.快乐的，高兴的
+
+Cheerful adj. 欢乐的，愉快的
+
+Enjoyable adj. 令人愉快的，可享受的
+
+Merry adj. 欢乐的
+
+Pleasant adj. 令人愉快的，合意的，宜人的
+
+Pleased adj. 高兴的，愉快的，满意的
+
+
+
+Giant adj. 巨大的，伟大的 n. 巨人，伟人 （指如巨人般的庞大体积）
+
+Huge adj. 巨大的 （强调容积或体积的庞大）
+
+Immense adj. 巨大的 （侧重空间的广阔，也指面积或分量的巨大）
+
+Enormous adj. 巨大的，大量的 （指体积，数量或程度远远超过一般标准）
+
+Vast adj. 巨大的，广阔的，大量的 （多指空间，面积，范围的巨大，不涉及重量）
+
+Massive adj. 大而重的，大块的 （指大的体积，数量和重量，侧重庞大而笨重）
+
+
+
+Blow 吹，打击 过去式 => Blew
+
+Brow 额头，眉毛
+
+Brown 棕色的
+
+Bowl 碗
+
+Crow n. 乌鸦，雄鸡的啼声 v. 打鸣，啼叫
+
+Crowd n. 人群，群众 v. 拥挤，群集
+
+Crew 全体船员，全体人员
+
+Crown 皇冠，王冠
+
+Crowded 拥挤的，密集的
+
+
+
+Enter 进入，进去
+
+Entry 进入，入口
+
+Entrance n. 进入，入口 v. 使出神，使入迷
+
+
+
+Fright n. 惊吓，恐惧
+
+Frighten v. 使惊吓，使恐惧
+
+Frightened adj. 受惊的，恐惧的
+
+Awful 可怕的，糟糕的，讨厌的
+
+Scared 害怕的，恐惧的
+
+Scare 惊吓，把...吓跑
+
+Horrible 恐惧的，可怕的
+
+Terrible 可怕的，极坏的
+
+
+
+Waste n. 垃圾，废物 v. 浪费，白费
+
+Rubbish 垃圾，废物
+
+Trash n. 垃圾，无价值之物 v. 丢弃，损坏，诋毁
+
+Litter n. 垃圾，杂物 v. 乱扔，乱丢杂物
+
+
+
+Sign n. 标志，符号，告示版，手势 v. 签名，做标记
+
+Signal n. 信号，标志 v. 发信号，标志着
+
+
+
+Put on 穿戴
+
+Take off 拿掉，脱下，离开，起飞
+
+Get up 起床
+
+Get on 上车，进展,相处
+
+Fare n. 车费，票价，费用 v. 进展，成功
+
+Try on 试穿
+
+Bring up 养育，教育，提出，呕出
+
+
+
+Remain 剩下，留下，保持
+
+Reserve v. 保留，储备，预订 n. 保护区，候补，储备，保留
+
+
+
+
+
+
+
+
 
 
 

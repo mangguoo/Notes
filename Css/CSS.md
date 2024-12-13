@@ -28,13 +28,30 @@
 
 - 属性选择器
 
-	- `[target]`：选择所有带有target属性元素
-	- `[target=_blank]`：选择所有使用target="_blank"的元素
-	- `[title~=flower]`：选择标题属性包含单词"flower"的所有元素
-	- `[lang|=en]`：选择 lang 属性等于 en，或者以 en 开头的所有元素
-	- `a[src^="https"]`：选择每一个src属性的值以"https"开头的元素
-	- `a[src$=".pdf"]`：选择每一个src属性的值以".pdf"结尾的元素
-	- `a[src*="runoob"]`：选择每一个src属性的值包含子字符串"runoob"的元素
+  - `[target]`：选择所有带有target属性元素
+  - `[target="_blank"]`：选择所有使用target="_blank"的元素
+  - `[class~="foo"]`：**空格分隔的词匹配**模式，它用于匹配属性值中**包含某个特定的单词**，并且该单词是通过空格分隔的
+
+  ```css
+  <div class="foo bar"></div>       <!-- 匹配 -->
+  <div class="foo"></div>           <!-- 不匹配 -->
+  <div class="bar"></div>           <!-- 不匹配 -->
+  <div class="foo bar baz"></div>   <!-- 匹配 -->
+  <div class="foolish bar"></div>   <!-- 不匹配 -->
+  ```
+
+  - `[lang|="en"]`：这个选择器用于匹配属性值**精确等于**给定值**或者以给定值为开头，后面跟一个连字符** (`-`) 的属性值
+
+  ```css
+  <html lang="en"></html>       <!-- 匹配 -->
+  <html lang="en-US"></html>    <!-- 匹配 -->
+  <html lang="en-GB"></html>    <!-- 匹配 -->
+  <html lang="fr-CA"></html>    <!-- 不匹配 -->
+  ```
+
+  - `a[src^="https"]`：这个选择器用于匹配属性值**以指定值为开头**的元素。它只关注属性值的开头部分，后面可以跟任何字符
+  - `a[src$=".pdf"]`：该选择器用于匹配属性值**以指定字符串结尾**的元素
+  - `a[src*="runoob"]`：该选择器用于匹配属性值**包含指定字符串**的元素。它会检查属性值中是否包含给定的子字符串，无论该子字符串出现在字符串的开始、中间还是结尾
 
 - 伪元素选择器
 
