@@ -74,7 +74,7 @@ I fare well without computers.
 
 She is an expert in this field.
 
-Fragrant perfume.
+Fragrant perfume. (Fragrance 芳香，香味)
 
 If you can't sign your name, make a cross instead.
 
@@ -121,6 +121,34 @@ The physician fared well in practice.
 She is licensed to practice nursing.
 
 In a westward direction.
+
+Some of the sea creature have poison.
+
+Strengthen environmental protection.
+
+Strengthen national defense.
+
+If you can't do it yourself, you can check in your luggage.
+
+The driver gave a blast on his horn.
+
+The horn blew loudly.
+
+To hang a prisoner.
+
+Hang your hat on the hook.
+
+His wife was among the dead.
+
+The bat is a flying mammal. Swing a bat.
+
+Current deposit/interest. Solid deposit. He put a deposit on a house.
+
+Regular customer. Potential customer.
+
+He managed to squash into the car.
+
+Press conference. Press freedom.
 
 
 
@@ -175,6 +203,8 @@ Chemist 化学家
 Electricity 电力，电学
 
 Photography 摄影学，摄影术
+
+Statistics 统计学，统计资料，统计数字，一项统计数据
 
 
 
@@ -300,6 +330,8 @@ Bug sb off
 
 
 
+Promote 提升，提拔，推销
+
 Property 属性，财产，所有物
 
 Properly 适当的，得体的
@@ -390,6 +422,20 @@ Plumber 水管工
 
 Detective 侦探，侦探的
 
+Attendant 服务人员，待者
+
+Clerk 职员，办事员
+
+Bellhop 旅馆待者
+
+Cashier 出纳
+
+Accountant 会计师
+
+Porter 行里搬运工，守门人，列车卧车的服务生
+
+Vendor 小贩，卖主，自动售卖机
+
 
 
 Plane 飞机
@@ -428,7 +474,7 @@ Costume 服装
 
 Consume 消费，消耗
 
-Customer 顾客
+Customer 顾客，客户
 
 Consumer 消费者
 
@@ -484,11 +530,23 @@ Abroad 在国外，出国
 
 
 
-Variant 相异的 | 变体
+Variant adj. 相异的，各种各样的，不定的 n. 变体，变种
 
-Various 各种各样的 | 变化
+Various adj. 各种各样的，不同的，各种的
 
-Variable 可变的 | 变量
+Variable adj. 可变的，易变的，不稳定的 n. 变量，易变的东西
+
+Variety n. 变化，多样性，(同一事物)不同种类 
+
+A Variety show. 
+
+This variety is now out of favor with customers.
+
+A variety of foods are sold at a supermarket.
+
+Vary v. 改变，变化 
+
+Variation n. 变化，变动
 
 
 
@@ -500,9 +558,11 @@ Splice 接合，拼接 | 接合处
 
 
 
-Raise 增加，提高，养育
+Raise 增加，提高，养育(bring up)
 
 Rise 上升，提高
+
+Praise 赞扬，称赞
 
 
 
@@ -812,6 +872,14 @@ Optimistic 乐观的
 
 Pessimistic 悲观的
 
+Activity n. 活动，活跃
+
+Activate v. 激活，使活动
+
+Activated adj. 活泼的，活跃的
+
+Activation n. 活动，激活(Activation code)
+
 
 
 Community 社区，团体
@@ -880,6 +948,18 @@ Fly 苍蝇
 
 Cattle 牛（复数）,家畜
 
+Bat n. 蝙蝠，球拍 v. 击球
+
+Toad 蟾蜍，讨厌的家伙
+
+Frog 青蛙
+
+Turtle 海龟
+
+Crocodile 鳄鱼
+
+Giraffe 长颈鹿
+
 
 
 Hide v.隐藏 过去式 => hid 过去分词 => hidden(adj. 隐藏的)
@@ -941,6 +1021,14 @@ Crew 全体船员，全体人员
 Crown 皇冠，王冠
 
 Crowded 拥挤的，密集的
+
+Chew v. 咀嚼
+
+Brew n. 啤酒 v. 酿造
+
+Screw n.螺丝钉 v. 拧紧 
+
+Cruel 残忍的
 
 
 
@@ -1005,6 +1093,164 @@ Bring up 养育，教育，提出，呕出
 Remain 剩下，留下，保持
 
 Reserve v. 保留，储备，预订 n. 保护区，候补，储备，保留
+
+
+
+
+
+Portable 便于携带的，手提式的，轻便的
+
+Compact 紧密的，小型的
+
+
+
+Celery 芹菜
+
+Lettuce 莴苣，生菜
+
+Grape 葡萄
+
+
+
+Prison n. 监狱，监禁
+
+Poison 毒药，毒害
+
+
+
+Cracker 爆竹，饼干
+
+Pecan 美洲山核桃
+
+Crumb 面包屑
+
+Protein 蛋白质
+
+Pepper 胡椒粉，甜椒
+
+Peppers 辣椒
+
+Pastry 油酥点心，面粉糕饼
+
+Crust 外壳，硬壳，面包壳，地壳
+
+Flaky 薄脆的 (Flaky pastry)
+
+Crispy 脆的，易碎的
+
+Crisps 薯片
+
+
+
+Dead adj. 死的 n. 死人，死
+
+Die v. 死
+
+Death n. 死亡
+
+Dying adj. 垂死的
+
+
+
+Thief 小偷
+
+Chief n. 首领 adj. 首要的
+
+Brief adj. 短暂的，简短的 n. 摘要，概要
+
+Grief 悲伤，悲痛
+
+Grave 坟墓 
+
+Steal 偷，窃取
+
+Steel 钢
+
+
+
+Mess n. 脏乱，杂乱 v. 弄糟，弄乱
+
+Mass adj. 大量的 n. 大量，质量
+
+Messy adj. 脏乱的，杂乱的
+
+Upset v. 打翻，打乱，使心烦 adj. 沮丧的，难过的
+
+Tidy adj. 整洁的，整齐的 v. 收拾，整理
+
+
+
+Temporarily 暂时地，临时的
+
+Temporary n. 临时工 adj. 临时的，短暂的
+
+
+
+Wedding 婚礼，婚宴
+
+Marriage 婚姻，结婚
+
+Bride 新娘
+
+Bridegroom 新郎
+
+Bridesmaid 伴娘
+
+Groomsman 伴郎
+
+Engaged adj. 忙着的，占线的，使用中的，试婚了的 v. 雇用，从事于
+
+
+
+Singular adj. 单数的 n. 单数，单数形式
+
+Plural adj. 复数的 n. 复数，复数形式
+
+Noun 名词
+
+Adjective 形容词
+
+Verb 动词
+
+
+
+Schedule n. 时间表，日程安排表 v. 排定，安排
+
+Routine n. 例行公事，日常工作 adj. 日常的，例行的 (Workday routines)
+
+Ordinary adj. 普通的，平常的，平凡的 n. 普通，平常的人或事
+
+Survey n. 调查，测量 v. 调查，勘测
+
+Statistic 统计的，统计学的
+
+Analysis n. 分析
+
+Analyse v. 分析
+
+Research v. 研究，探讨 n. 研究，探讨
+
+Typical 典型的，有代表性的
+
+Press v. 按，压 n. 按压，出版社，新闻界
+
+
+
+Firm adj. 坚定的，坚固的 v. 使牢固，使坚定 n. 商号，公司
+
+Rock n. 岩石，摇滚乐 v. 使摇动，震撼
+
+Rocky 多岩石的，坚硬如岩石的，不稳固的，困难重重的
+
+
+
+Anxious adj. 焦虑的，不安的，担忧的，渴望的
+
+Anxiety n. 忧虑，焦虑，渴望
+
+Nervous adj. 担忧的，焦虑的，紧张不安的，神经系统的
+
+
 
 
 
