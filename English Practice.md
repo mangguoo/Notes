@@ -14,7 +14,7 @@ I asked her if she had any rooms to let.
 
 What if it is true?
 
-He's very sensitive about his ugly apperance.
+He's very sensitive about his ugly appearance.
 
 He earn twice as much as i do.
 
@@ -22,9 +22,9 @@ The Arabic numeral system.
 
 A dust particle weighs only a thousandth of a gram.
 
-Every ovther day. 每隔一天
+Every other day. 每隔一天
 
-Traditional costume/costom/festival.
+Traditional costume/custom/festival.
 
 Swing a bat.
 
@@ -46,7 +46,7 @@ To revise the Constitution.
 
 Nervous system. 神经系统
 
-A toy aricraft kit.
+A toy aircraft kit.
 
 The horn blew loudly.
 
@@ -112,6 +112,8 @@ The maple leaf is the symbol of Canada.
 
 Maple leaves glowed red in the sunlight.
 
+The crystals give off faint glow.
+
 I go there several times each year.
 
 The castle is founded on solid rock.
@@ -149,6 +151,50 @@ Regular customer. Potential customer.
 He managed to squash into the car.
 
 Press conference. Press freedom.
+
+The hungry dog bit on a bone.
+
+A church tower.
+
+No pain, no gain.
+
+The liquid was 5 liters in volume.
+
+He can get on well with his colleagues.
+
+Let's get on the bus one by one.
+
+Get on with your work.
+
+This drink doesn't contain any alcohol.
+
+This is beyond my capacity.
+
+To project a tax decrease.
+
+The zebra is marked with the black and white stripes.
+
+The mandarin's skin comes off easily.
+
+He didn't mean to embarrass you.
+
+Scientists are trying to track the lost satellite.
+
+They suddenly became extinct.
+
+The dirty dishes are in the sink.
+
+Cough syrup / Chocolate syrup.
+
+The police will fine you for speeding.
+
+Tom never paid the fine.
+
+This instrument can monitor the patient's heartbeats.
+
+The output of natural gas will ballon.
+
+Their skirts ballon in the wind.
 
 
 
@@ -232,6 +278,8 @@ Debt 债务
 
 Bankrupt 破产
 
+Repay 偿还
+
 
 
 Long Length
@@ -284,7 +332,7 @@ Century 世纪
 
 Impress 使印象深刻
 
-Enbarrass 使尴尬
+Embarrass 使尴尬
 
 Excite 使兴奋
 
@@ -317,16 +365,6 @@ Succeed Fail
 Success Failure
 
 Win Lose
-
-
-
-Born to
-
-Be born
-
-
-
-Bug sb off
 
 
 
@@ -494,7 +532,7 @@ Ex-wife 前妻
 
 Ex-husband 前夫
 
-Ex-bodyfriend 前男友
+Ex-boyfriend 前男友
 
 Ex-girlfriend 前女友
 
@@ -678,9 +716,7 @@ Executive 执行的
 
 Chief Executive Officer 
 
-
-
-Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
+CBD: Central Business District
 
 
 
@@ -738,9 +774,9 @@ Exactly 精确地，准确地
 
 Precise 精确的，严格的，明确的
 
-Definate 明确的，确定的 
+Definite 明确的，确定的 
 
-Definately 明确的，肯定的
+Definitely 明确的，肯定的
 
 Certain 确定的，一定的
 
@@ -826,13 +862,21 @@ Instrument 仪器，乐器，工具，手段，法律文件
 
 
 
-Strick 严格的，严厉的
+Restrict 限制，限定，约束
+
+Strict 严格的，严厉的
 
 Strike 击打，罢工
+
+Stripe 条纹，类型
 
 Brick 砖
 
 Trick n. 戏法，诡计，恶作剧 v. 哄骗，欺骗
+
+Cheat 欺骗，作弊
+
+Track n. 轨道，踪迹，小路 v. 追踪，跟踪
 
 
 
@@ -960,6 +1004,14 @@ Crocodile 鳄鱼
 
 Giraffe 长颈鹿
 
+Calf 小牛
+
+Squirrel n. 松鼠 v. 贮藏
+
+Quail n. 鹌鹑 v. 畏缩，胆怯
+
+Crow n. 乌鸦,雄鸡的啼声 v. 打鸣，啼叫
+
 
 
 Hide v.隐藏 过去式 => hid 过去分词 => hidden(adj. 隐藏的)
@@ -984,7 +1036,11 @@ Enjoyable adj. 令人愉快的，可享受的
 
 Merry adj. 欢乐的
 
+Pleasure 愉快
+
 Pleasant adj. 令人愉快的，合意的，宜人的
+
+Please 使高兴，使满意
 
 Pleased adj. 高兴的，愉快的，满意的
 
@@ -1030,6 +1086,12 @@ Screw n.螺丝钉 v. 拧紧
 
 Cruel 残忍的
 
+Claw n. 爪，钳 v. 用爪抓 
+
+Flow 流动
+
+Clown 小丑
+
 
 
 Enter 进入，进去
@@ -1047,6 +1109,8 @@ Frighten v. 使惊吓，使恐惧
 Frightened adj. 受惊的，恐惧的
 
 Awful 可怕的，糟糕的，讨厌的
+
+Scary 吓人的，恐怖的
 
 Scared 害怕的，恐惧的
 
@@ -1082,6 +1146,8 @@ Get up 起床
 
 Get on 上车，进展,相处
 
+Get off 下车
+
 Fare n. 车费，票价，费用 v. 进展，成功
 
 Try on 试穿
@@ -1095,6 +1161,112 @@ Remain 剩下，留下，保持
 Reserve v. 保留，储备，预订 n. 保护区，候补，储备，保留
 
 
+
+Recipient 接受者，联系人
+
+Receipt 收据
+
+Receptionist 接待员
+
+Recipe 食谱，处方，秘诀
+
+Prescription 处方，药方
+
+Reception 接待，执行会
+
+
+
+Shame 羞耻
+
+Ashamed 羞愧的，惭愧的
+
+Shameful 可耻的
+
+shameless 无耻的
+
+
+
+Grief 悲痛，忧伤
+
+Brief adj. 简洁的 n. 摘要
+
+Chief adj. 首要的 n. 首领
+
+Thief 小偷
+
+Grave 坟墓
+
+
+
+Premium n. 保险费，资金，额外费用，溢价 adj. 高价的，优质的
+
+Exclusive adj. 独有的，高级的，排外的
+
+
+
+Active adj. 主动的，有效的，积极的，活跃的
+
+Activity n. 活动，行动
+
+Activate v. 使活动
+
+Activation n. 活化，激活
+
+
+
+Violation n. 违反，冒犯，侵害
+
+Violate v. 违反，违背，侵犯
+
+Author 作者，作家，创造者
+
+Authorize 授权，批准，委托
+
+Copyright 版权
+
+Authentic adj. 真的，真正的，可靠的
+
+Authenticity n. 可靠性，确定性，真实性
+
+Authenticate 鉴定，证明的真实的、可靠的
+
+Authentication 鉴定，证明
+
+Genuine 真实的，真正的
+
+Eligible 合适的，合格的，符合条件的
+
+
+
+Inherit 继承
+
+Generate 使形成，生死，发生
+
+Generation 同时代的人，一代人，一代，产生，发生
+
+Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
+
+
+
+Transform 改变
+
+Transition 转变，过渡
+
+Translate 翻译，转化
+
+Transfer 转移，转让
+
+
+
+Refer v. 提到，关系到，参考，查阅
+
+Reference n. 提及，涉及，参考，查阅
+
+Referral 移交，推举，介绍者，推荐人
+
+Referee 裁判，介绍人，仲裁者
+
+After the invitee places an order, the invitee's referral are eligible for invitation rewards, which are calculated based on the actual amount of the order placed by the invitee, as shown below
 
 
 
