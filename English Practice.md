@@ -192,9 +192,59 @@ Tom never paid the fine.
 
 This instrument can monitor the patient's heartbeats.
 
+The king signed the instrument of abdication.
+
+Language is an instrument for communication.
+
+Is his hair curly or straight?
+
 The output of natural gas will ballon.
 
 Their skirts ballon in the wind.
+
+Market maker unwind(解开，放松).
+
+An act(v. 表演，行动 n. 行动，装模作样) of kindness.
+
+His anger was real. it wasn't an act.
+
+Don't think you can buy me off!
+
+To purse one's lips.
+
+There's no money left in the purse.
+
+People are eager to seek peace.
+
+Greece is located in the south of Europe.
+
+The national flag of Greece.
+
+If you cook, I'ii do the washing-up.
+
+The sink was still full of last night's washing-up.
+
+It's her nature(天性) to be generous.
+
+His spiritual nature is good.
+
+What time does the concert finish?
+
+Three defeats in a row dispirited him.
+
+The students stood in a row.
+
+He won the title for three years in a row.
+
+I'd like to reserve a twin room for three nights.
+
+The girls pitched(扎营) a tent(帐篷， tend: 趋向，朝向，照料).
+
+Neighborhood committee.
+
+His generosity is well-known in the neighborhood.
+
+I can't help missing your smile.
 
 
 
@@ -224,6 +274,12 @@ Never 0%
 
 Physical 身体的，外观的，物质的，物理的
 
+Mental 精神的，心理的
+
+Spirit 精神，情绪，灵魂，心灵，勇气，酒精
+
+Spiritual 精神的
+
 Physic 医学
 
 Physics 物理学
@@ -233,6 +289,8 @@ Physician 内科医生
 Surgery 外科手术
 
 Surgeon 外科医生
+
+Surgical 外科的，外科手术的(Surgical spirit)
 
 Physiology 生理学
 
@@ -268,11 +326,11 @@ Lend 借出
 
 Let 出租，让，允许
 
-Rent v.出租，租借 n.租金 
+Rent v.出租，租借 n.租金,裂口，裂缝
 
-Rend 撕碎，分裂, 过去式和过去分词 rent
+Rend v. 撕碎，分裂, 过去式和过去分词 rent
 
-Loan 借出 ｜ 贷款
+Loan v. 借出 n. 借出物，贷款
 
 Debt 债务
 
@@ -355,6 +413,10 @@ Satisfy 使满意
 Depress 使沮丧
 
 Depressed 沮丧的
+
+Dispirit 使沮丧，使气馁
+
+Dispirited 沮丧的，失去勇气的
 
 
 
@@ -778,6 +840,10 @@ Definite 明确的，确定的
 
 Definitely 明确的，肯定的
 
+Define v. 下定义，定范围
+
+Definition n. 定义，清晰度
+
 Certain 确定的，一定的
 
 Certainly 当然
@@ -848,7 +914,7 @@ Dull 愚笨的，迟钝的，无趣的
 
 
 
-Instruct 指导，指示，命令
+Instruct 指导，教导，指示，命令
 
 Instructor 指导者，教练
 
@@ -1012,6 +1078,14 @@ Quail n. 鹌鹑 v. 畏缩，胆怯
 
 Crow n. 乌鸦,雄鸡的啼声 v. 打鸣，啼叫
 
+Mosquito 蚊子
+
+Beef 牛肉
+
+Mutton 羊肉
+
+Port 猪肉
+
 
 
 Hide v.隐藏 过去式 => hid 过去分词 => hidden(adj. 隐藏的)
@@ -1122,16 +1196,6 @@ Terrible 可怕的，极坏的
 
 
 
-Waste n. 垃圾，废物 v. 浪费，白费
-
-Rubbish 垃圾，废物
-
-Trash n. 垃圾，无价值之物 v. 丢弃，损坏，诋毁
-
-Litter n. 垃圾，杂物 v. 乱扔，乱丢杂物
-
-
-
 Sign n. 标志，符号，告示版，手势 v. 签名，做标记
 
 Signal n. 信号，标志 v. 发信号，标志着
@@ -1220,31 +1284,45 @@ Violate v. 违反，违背，侵犯
 
 Author 作者，作家，创造者
 
-Authorize 授权，批准，委托
+Authorize v. 授权，批准，委托
+
+Authorization n. 授权，批准，批准的证书
+
+Authority n. 权威，权力，权威人士，官方机构
 
 Copyright 版权
-
-Authentic adj. 真的，真正的，可靠的
-
-Authenticity n. 可靠性，确定性，真实性
-
-Authenticate 鉴定，证明的真实的、可靠的
-
-Authentication 鉴定，证明
 
 Genuine 真实的，真正的
 
 Eligible 合适的，合格的，符合条件的
 
+Organ 器官，机构，风琴
+
+Organize v. 组织，安排
+
+Organization n. 组织，机构
+
 
 
 Inherit 继承
+
+Peer 同等的人，同辈
+
+Sibling 兄弟姐妹
+
+Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
 
 Generate 使形成，生死，发生
 
 Generation 同时代的人，一代人，一代，产生，发生
 
-Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
+Generous adj.慷慨的，大方的
+
+Generosity n. 慷慨，宽宏，大方
+
+General adj. 总的，普遍的，一般的，大致的，首席的 n. 将军
+
+Generally adv. 通常地，一般地
 
 
 
@@ -1421,6 +1499,90 @@ Anxious adj. 焦虑的，不安的，担忧的，渴望的
 Anxiety n. 忧虑，焦虑，渴望
 
 Nervous adj. 担忧的，焦虑的，紧张不安的，神经系统的
+
+Suspense n. 悬疑，焦虑，悬念
+
+
+
+Claim n. 声称，索要，要求，认领 v. 声称，要求，索赔
+
+Claim a reward.
+
+Disclaimer 免责声明书
+
+Please read the disclaimer before you read this article.
+
+
+
+Proud adj. 自豪的，骄傲的
+
+pride n. 骄傲，自豪，自尊 v. 对...感到骄傲
+
+
+
+Identification n. 识别，鉴定，身份证明
+
+Identify v. 识别，鉴别，确定
+
+Identity n. 身份，特性
+
+Identifier n. 识别符
+
+
+
+Entire adj. 全部的，整个的，完全的
+
+Entity n. 独立存在体，实体
+
+A political entity.
+
+
+
+File n. 文件，档案 v. 把...归档
+
+Filing n. 归档，存档 v. 把...归档 "file"的现在分词
+
+A filing cabinet.
+
+
+
+Waste n. 垃圾，废物，浪费 v. 浪费 adj. 荒芜的，废弃的
+
+Wastebasket 废纸蒌
+
+Garbage 垃圾，废物
+
+Garbage can 垃圾桶
+
+Rubbish 垃圾，废物
+
+Rubbish bin 垃圾桶
+
+Trash n. 垃圾，无价值之物 v. 丢弃，损坏，诋毁
+
+Clean up the trash.
+
+Litter n. 垃圾，杂物 v. 乱扔，乱丢杂物
+
+
+
+Depend v. 依赖，依靠，取决于，信赖
+
+Dependent adj. 依靠的，信赖的 n. 依赖他人者 | Independent adj. 独立的，自主的
+
+Dependence n. 依靠，依赖，信赖 | Independence n. 独立，自主
+
+Dependable adj. 可靠的，可信赖的
+
+Dependency n. 依赖，附属国，附属地 | Independency n. 独立，独立国
+
+Dependability n. 可靠性，可信任性
+
+Independently adv. 独立地，自主地
+
+
+
+
 
 
 
