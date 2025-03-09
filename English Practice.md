@@ -12,7 +12,7 @@ The helicopter had taken off when we got here.
 
 I asked her if she had any rooms to let.
 
-What if it is true?
+What if(如果...会怎样) it is true?
 
 He's very sensitive about his ugly appearance.
 
@@ -51,8 +51,6 @@ A toy aircraft kit.
 The horn blew loudly.
 
 She had been nominated as a candidate for a presidency.
-
-Establish contact.
 
 The two wires were in contact.
 
@@ -134,8 +132,6 @@ If you can't do it yourself, you can check in your luggage.
 
 The driver gave a blast on his horn.
 
-The horn blew loudly.
-
 To hang a prisoner.
 
 Hang your hat on the hook.
@@ -144,7 +140,7 @@ His wife was among the dead.
 
 The bat is a flying mammal. Swing a bat.
 
-Current deposit/interest. Solid deposit. He put a deposit on a house.
+Current deposit/interest. Solid deposit. He put a deposit(保证金) on a house.
 
 Regular customer. Potential customer.
 
@@ -246,6 +242,18 @@ His generosity is well-known in the neighborhood.
 
 I can't help missing your smile.
 
+He is financially independent.
+
+We provide free delivery and installation.
+
+Installation of the new system will take several days.
+
+The stormy waves pounded against the rocks.
+
+Correct ideas come from social practice(社会实践).
+
+His plans were transformed overnight into reality.
+
 
 
 姓：Surname | Family name | Last name
@@ -273,6 +281,12 @@ Never 0%
 
 
 Physical 身体的，外观的，物质的，物理的
+
+Mind n. 心，思维，大脑，智力，情绪 v. 介意，专注于，注意，照顾
+
+Sense n. 知觉，感觉，理解力 v. 感觉到，意识的
+
+Sensitive 敏感的，易损坏的，体贴的
 
 Mental 精神的，心理的
 
@@ -489,12 +503,6 @@ Slim 苗条的
 Fat 肥胖的
 
 Overweight 超重的
-
-
-
-As 如同，作为，由于，尽管，当..时，和...一样
-
-Mind 思维，大脑，介意
 
 
 
@@ -894,12 +902,6 @@ Legging 运动紧身裤
 
 
 
-Sense n. 知觉，感觉，理解力 v. 感觉到，意识的
-
-Sensitive 敏感的，易损坏的，易受伤害的
-
-
-
 Shame n. 羞耻
 
 Ashamed 羞愧的，惭愧的
@@ -1114,9 +1116,13 @@ Pleasure 愉快
 
 Pleasant adj. 令人愉快的，合意的，宜人的
 
-Please 使高兴，使满意
+Please v. 使高兴，使满意
 
 Pleased adj. 高兴的，愉快的，满意的
+
+Delight v. 使高兴，使愉快
+
+Delighted adj. 高兴的，愉快的
 
 
 
@@ -1579,6 +1585,32 @@ Dependency n. 依赖，附属国，附属地 | Independency n. 独立，独立�
 Dependability n. 可靠性，可信任性
 
 Independently adv. 独立地，自主地
+
+
+
+"Generational bottom" 可以翻译为 "跨世代底部" 或 "一代人的底部"。这个术语通常用于描述金融市场中出现的一个极其低的点，这个点通常被认为是一个长期周期中的最低点，并且可能不会在未来的许多年中再次出现。这个底部标志着市场经历了重大调整或熊市之后的最低点，从此可能开始新一轮的长期上涨趋势
+
+
+
+Freeze v. 冻结，冰冻
+
+Freezer n. 冷冻室，冰库，冰箱
+
+Frozen adj. 冷冻的，冷藏的
+
+
+
+Society n. 社会，社交，社团
+
+Reality n. 现实，事实
+
+
+
+Loss n. 损失，丢失，亏损
+
+Lose v. 失去，丢失，输
+
+Lost adj. 丢失的 lose的过去式与过去分词
 
 
 
