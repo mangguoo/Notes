@@ -1146,6 +1146,8 @@ Dead adj. 死的 n. 死人，死
 
 Die v. 死
 
+Died v. die的过去式和过去分词
+
 Death n. 死亡
 
 Dying adj. 垂死的
