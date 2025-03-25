@@ -216,30 +216,6 @@ $ git check-ignore -v App.class
 !App.class
 ```
 
-## Hello Wrold!
-
-进行第一次版本控制：
-
-一、使用git add把文件添加到仓库：
-
-``` shell
-git add helloWorld.md
-```
-
-二、使用git commit把文件提交到仓库：
-
-``` shell
- git commit -m "wrote a readme file"
-```
-
-为什么Git添加文件需要`add`，`commit`一共两步呢？因为`commit`可以一次提交很多文件，所以可以多次`add`不同的文件，比如：
-
-``` shell
-git add file1.txt
-git add file2.txt file3.txt
-git commit -m "add 3 files."
-```
-
 ## 版本控制
 
 修改helloworld文件后，可以通过`git status`命令来查看仓库状态：
@@ -575,7 +551,7 @@ $ git checkout helloWrold.md
 Updated 1 path from the index
 ```
 
-## 远程仓库
+## 远程版本控制
 
 GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以免费获得Git远程仓库。由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要一点设置：
 
@@ -595,8 +571,6 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
  $ ssh-keygen -t ed25519 -C “xxx@email.com
  ```
 
-   
-
 2. 登陆GitHub，设置publick key。
 
    ![Snipaste_2022-05-24_18-06-00](https://raw.githubusercontent.com/ilmangoi/imgRepo/main/img/Snipaste_2022-05-24_18-06-00.png)
@@ -605,7 +579,7 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
 
 因为GitHub需要识别出你推送的提交确实是你推送的，而不是别人冒充的，而Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。
 
-### 添加远程库
+### 连接远程仓库
 
 1. 首先要在GitHub上创建一个仓库：
 
@@ -651,9 +625,43 @@ GitHub提供Git仓库托管服务，只要注册一个GitHub账号，就可以�
  推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样，从现在起，只要本地作了提交，就可以通过命令把本地`master`分支的最新修改推送至GitHub：
 
  ``` shell
- git push
+ $ git push origin
  ```
 
+> 关联本地与远程分支
+
+后续如果创建新的本地分支，想要直接将其与某个远程分支进行关联的话，也可以使用如下指令：
+
+```shell
+$ git switch -c feature origin/feature
+```
+
+如果是先创建了一个本地分支，后续想上传到远程仓库的话，就需要手动去进行关联：
+
+```shell
+$ git branch --set-upstream-to=origin/feature feature
+```
+
+这样以后运行`git pull`或`git push`时，git就会自动从origin/feature获取或推送代码，而不需要手动指定分支。
+
+或者也可以在第一次向远程仓库推送本地分支时进行关联：
+
+```shell
+$ git push --set-upstream origin feature
+$ git push -u origin feature # 等效于上面的指令
+```
+
+如果想要查看本地分支是否已经与远程分支建立连接，可使用如下指令：
+
+```shell
+$ git branch -vv
+```
+
+或者说想要取消本地分支对远程分支的追踪，可以使用：
+
+```shell
+$ git branch --unset-upstream feature
+```
 
 > SSH警告
 
@@ -674,7 +682,7 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 这个警告只会出现一次，后面的操作就不会有任何警告了。如果担心有人冒充GitHub服务器，输入`yes`前可以对照GitHub的RSA Key的指纹信息是否与SSH连接给出的一致。
 
-### 从远程库克隆
+### 克隆远程仓库
 
 上节中是先有本地库，后有远程库，然后如何关联远程库。但是如果从零开发，那么最好的方式是先创建远程库，然后，从远程库克隆。
 
@@ -695,7 +703,7 @@ Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
 
 并且GitHub给出的地址不止一个，还可以用`https://github.com/ilmangoi/HY.git`这样的地址。实际上，Git支持多种协议，默认的`git://`使用ssh，但也可以使用`https`等其他协议。使用`https`除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用`ssh`协议而只能用`https`。
 
-### 删除远程分支
+### 操作远程仓库分支
 
 在git操作中，当我们通过如下命令删掉本地分支时，并不会对已经提交到远程的分支产生影响：
 
@@ -711,7 +719,40 @@ $ git branch -d dev
 $ git push origin --delete branch
 ```
 
-### 远程分支回滚
+### 同步远程仓库状态
+
+在git操作中，一般使用`git fetch`去同步远程仓库的状态，他有如下功能及特征：
+
+1. 同步远程仓库的分支信息
+
+让本地Git知道远程仓库（origin）有哪些新提交。但不会自动合并到本地分支，需要手动`git merge`或`git rebase`。
+
+2. 更新远程追踪分支（remote-tracking branches, 不会修改本地工作区）
+
+```shell
+$ git fetch origin
+```
+
+这会更新origin/main，但main仍然停留在旧的提交。
+
+只会把远程的新提交记录下载到.git目录里，不会影响当前代码。
+
+**`git fetch`和`git pull`的区别**
+
+示例：
+
+```shell
+$ git fetch origin      # 仅获取最新远程分支信息
+$ git merge origin/main # 手动合并最新代码
+```
+
+VS.
+
+```shell
+$ git pull origin main  # 拉取并自动合并
+```
+
+### 远程仓库版本回退
 
 #### 个人开发分支版本回退方法
 

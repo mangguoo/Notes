@@ -12,9 +12,9 @@ The helicopter had taken off when we got here.
 
 I asked her if she had any rooms to let.
 
-What if it is true?
+What if(如果...会怎样) it is true?
 
-He's very sensitive about his ugly apperance.
+He's very sensitive about his ugly appearance.
 
 He earn twice as much as i do.
 
@@ -22,9 +22,9 @@ The Arabic numeral system.
 
 A dust particle weighs only a thousandth of a gram.
 
-Every ovther day. 每隔一天
+Every other day. 每隔一天
 
-Traditional costume/costom/festival.
+Traditional costume/custom/festival.
 
 Swing a bat.
 
@@ -46,13 +46,11 @@ To revise the Constitution.
 
 Nervous system. 神经系统
 
-A toy aricraft kit.
+A toy aircraft kit.
 
 The horn blew loudly.
 
 She had been nominated as a candidate for a presidency.
-
-Establish contact.
 
 The two wires were in contact.
 
@@ -112,6 +110,8 @@ The maple leaf is the symbol of Canada.
 
 Maple leaves glowed red in the sunlight.
 
+The crystals give off faint glow.
+
 I go there several times each year.
 
 The castle is founded on solid rock.
@@ -132,8 +132,6 @@ If you can't do it yourself, you can check in your luggage.
 
 The driver gave a blast on his horn.
 
-The horn blew loudly.
-
 To hang a prisoner.
 
 Hang your hat on the hook.
@@ -142,13 +140,119 @@ His wife was among the dead.
 
 The bat is a flying mammal. Swing a bat.
 
-Current deposit/interest. Solid deposit. He put a deposit on a house.
+Current deposit/interest. Solid deposit. He put a deposit(保证金) on a house.
 
 Regular customer. Potential customer.
 
 He managed to squash into the car.
 
 Press conference. Press freedom.
+
+The hungry dog bit on a bone.
+
+A church tower.
+
+No pain, no gain.
+
+The liquid was 5 liters in volume.
+
+He can get on well with his colleagues.
+
+Let's get on the bus one by one.
+
+Get on with your work.
+
+This drink doesn't contain any alcohol.
+
+This is beyond my capacity.
+
+To project a tax decrease.
+
+The zebra is marked with the black and white stripes.
+
+The mandarin's skin comes off easily.
+
+He didn't mean to embarrass you.
+
+Scientists are trying to track the lost satellite.
+
+They suddenly became extinct.
+
+The dirty dishes are in the sink.
+
+Cough syrup / Chocolate syrup.
+
+The police will fine you for speeding.
+
+Tom never paid the fine.
+
+This instrument can monitor the patient's heartbeats.
+
+The king signed the instrument of abdication.
+
+Language is an instrument for communication.
+
+Is his hair curly or straight?
+
+The output of natural gas will ballon.
+
+Their skirts ballon in the wind.
+
+Market maker unwind(解开，放松).
+
+An act(v. 表演，行动 n. 行动，装模作样) of kindness.
+
+His anger was real. it wasn't an act.
+
+Don't think you can buy me off!
+
+To purse one's lips.
+
+There's no money left in the purse.
+
+People are eager to seek peace.
+
+Greece is located in the south of Europe.
+
+The national flag of Greece.
+
+If you cook, I'ii do the washing-up.
+
+The sink was still full of last night's washing-up.
+
+It's her nature(天性) to be generous.
+
+His spiritual nature is good.
+
+What time does the concert finish?
+
+Three defeats in a row dispirited him.
+
+The students stood in a row.
+
+He won the title for three years in a row.
+
+I'd like to reserve a twin room for three nights.
+
+The girls pitched(扎营) a tent(帐篷， tend: 趋向，朝向，照料).
+
+Neighborhood committee.
+
+His generosity is well-known in the neighborhood.
+
+I can't help missing your smile.
+
+He is financially independent.
+
+We provide free delivery and installation.
+
+Installation of the new system will take several days.
+
+The stormy waves pounded against the rocks.
+
+Correct ideas come from social practice(社会实践).
+
+His plans were transformed overnight into reality.
 
 
 
@@ -178,6 +282,18 @@ Never 0%
 
 Physical 身体的，外观的，物质的，物理的
 
+Mind n. 心，思维，大脑，智力，情绪 v. 介意，专注于，注意，照顾
+
+Sense n. 知觉，感觉，理解力 v. 感觉到，意识的
+
+Sensitive 敏感的，易损坏的，体贴的
+
+Mental 精神的，心理的
+
+Spirit 精神，情绪，灵魂，心灵，勇气，酒精
+
+Spiritual 精神的
+
 Physic 医学
 
 Physics 物理学
@@ -187,6 +303,8 @@ Physician 内科医生
 Surgery 外科手术
 
 Surgeon 外科医生
+
+Surgical 外科的，外科手术的(Surgical spirit)
 
 Physiology 生理学
 
@@ -222,15 +340,17 @@ Lend 借出
 
 Let 出租，让，允许
 
-Rent v.出租，租借 n.租金 
+Rent v.出租，租借 n.租金,裂口，裂缝
 
-Rend 撕碎，分裂, 过去式和过去分词 rent
+Rend v. 撕碎，分裂, 过去式和过去分词 rent
 
-Loan 借出 ｜ 贷款
+Loan v. 借出 n. 借出物，贷款
 
 Debt 债务
 
 Bankrupt 破产
+
+Repay 偿还
 
 
 
@@ -284,7 +404,7 @@ Century 世纪
 
 Impress 使印象深刻
 
-Enbarrass 使尴尬
+Embarrass 使尴尬
 
 Excite 使兴奋
 
@@ -308,6 +428,10 @@ Depress 使沮丧
 
 Depressed 沮丧的
 
+Dispirit 使沮丧，使气馁
+
+Dispirited 沮丧的，失去勇气的
+
 
 
 Successful Failing
@@ -317,16 +441,6 @@ Succeed Fail
 Success Failure
 
 Win Lose
-
-
-
-Born to
-
-Be born
-
-
-
-Bug sb off
 
 
 
@@ -389,12 +503,6 @@ Slim 苗条的
 Fat 肥胖的
 
 Overweight 超重的
-
-
-
-As 如同，作为，由于，尽管，当..时，和...一样
-
-Mind 思维，大脑，介意
 
 
 
@@ -494,7 +602,7 @@ Ex-wife 前妻
 
 Ex-husband 前夫
 
-Ex-bodyfriend 前男友
+Ex-boyfriend 前男友
 
 Ex-girlfriend 前女友
 
@@ -678,9 +786,7 @@ Executive 执行的
 
 Chief Executive Officer 
 
-
-
-Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
+CBD: Central Business District
 
 
 
@@ -738,9 +844,13 @@ Exactly 精确地，准确地
 
 Precise 精确的，严格的，明确的
 
-Definate 明确的，确定的 
+Definite 明确的，确定的 
 
-Definately 明确的，肯定的
+Definitely 明确的，肯定的
+
+Define v. 下定义，定范围
+
+Definition n. 定义，清晰度
 
 Certain 确定的，一定的
 
@@ -792,12 +902,6 @@ Legging 运动紧身裤
 
 
 
-Sense n. 知觉，感觉，理解力 v. 感觉到，意识的
-
-Sensitive 敏感的，易损坏的，易受伤害的
-
-
-
 Shame n. 羞耻
 
 Ashamed 羞愧的，惭愧的
@@ -812,7 +916,7 @@ Dull 愚笨的，迟钝的，无趣的
 
 
 
-Instruct 指导，指示，命令
+Instruct 指导，教导，指示，命令
 
 Instructor 指导者，教练
 
@@ -826,13 +930,21 @@ Instrument 仪器，乐器，工具，手段，法律文件
 
 
 
-Strick 严格的，严厉的
+Restrict 限制，限定，约束
+
+Strict 严格的，严厉的
 
 Strike 击打，罢工
+
+Stripe 条纹，类型
 
 Brick 砖
 
 Trick n. 戏法，诡计，恶作剧 v. 哄骗，欺骗
+
+Cheat 欺骗，作弊
+
+Track n. 轨道，踪迹，小路 v. 追踪，跟踪
 
 
 
@@ -960,6 +1072,22 @@ Crocodile 鳄鱼
 
 Giraffe 长颈鹿
 
+Calf 小牛
+
+Squirrel n. 松鼠 v. 贮藏
+
+Quail n. 鹌鹑 v. 畏缩，胆怯
+
+Crow n. 乌鸦,雄鸡的啼声 v. 打鸣，啼叫
+
+Mosquito 蚊子
+
+Beef 牛肉
+
+Mutton 羊肉
+
+Port 猪肉
+
 
 
 Hide v.隐藏 过去式 => hid 过去分词 => hidden(adj. 隐藏的)
@@ -984,9 +1112,17 @@ Enjoyable adj. 令人愉快的，可享受的
 
 Merry adj. 欢乐的
 
+Pleasure 愉快
+
 Pleasant adj. 令人愉快的，合意的，宜人的
 
+Please v. 使高兴，使满意
+
 Pleased adj. 高兴的，愉快的，满意的
+
+Delight v. 使高兴，使愉快
+
+Delighted adj. 高兴的，愉快的
 
 
 
@@ -1030,6 +1166,12 @@ Screw n.螺丝钉 v. 拧紧
 
 Cruel 残忍的
 
+Claw n. 爪，钳 v. 用爪抓 
+
+Flow 流动
+
+Clown 小丑
+
 
 
 Enter 进入，进去
@@ -1048,6 +1190,8 @@ Frightened adj. 受惊的，恐惧的
 
 Awful 可怕的，糟糕的，讨厌的
 
+Scary 吓人的，恐怖的
+
 Scared 害怕的，恐惧的
 
 Scare 惊吓，把...吓跑
@@ -1055,16 +1199,6 @@ Scare 惊吓，把...吓跑
 Horrible 恐惧的，可怕的
 
 Terrible 可怕的，极坏的
-
-
-
-Waste n. 垃圾，废物 v. 浪费，白费
-
-Rubbish 垃圾，废物
-
-Trash n. 垃圾，无价值之物 v. 丢弃，损坏，诋毁
-
-Litter n. 垃圾，杂物 v. 乱扔，乱丢杂物
 
 
 
@@ -1082,6 +1216,8 @@ Get up 起床
 
 Get on 上车，进展,相处
 
+Get off 下车
+
 Fare n. 车费，票价，费用 v. 进展，成功
 
 Try on 试穿
@@ -1095,6 +1231,126 @@ Remain 剩下，留下，保持
 Reserve v. 保留，储备，预订 n. 保护区，候补，储备，保留
 
 
+
+Recipient 接受者，联系人
+
+Receipt 收据
+
+Receptionist 接待员
+
+Recipe 食谱，处方，秘诀
+
+Prescription 处方，药方
+
+Reception 接待，执行会
+
+
+
+Shame 羞耻
+
+Ashamed 羞愧的，惭愧的
+
+Shameful 可耻的
+
+shameless 无耻的
+
+
+
+Grief 悲痛，忧伤
+
+Brief adj. 简洁的 n. 摘要
+
+Chief adj. 首要的 n. 首领
+
+Thief 小偷
+
+Grave 坟墓
+
+
+
+Premium n. 保险费，资金，额外费用，溢价 adj. 高价的，优质的
+
+Exclusive adj. 独有的，高级的，排外的
+
+
+
+Active adj. 主动的，有效的，积极的，活跃的
+
+Activity n. 活动，行动
+
+Activate v. 使活动
+
+Activation n. 活化，激活
+
+
+
+Violation n. 违反，冒犯，侵害
+
+Violate v. 违反，违背，侵犯
+
+Author 作者，作家，创造者
+
+Authorize v. 授权，批准，委托
+
+Authorization n. 授权，批准，批准的证书
+
+Authority n. 权威，权力，权威人士，官方机构
+
+Copyright 版权
+
+Genuine 真实的，真正的
+
+Eligible 合适的，合格的，符合条件的
+
+Organ 器官，机构，风琴
+
+Organize v. 组织，安排
+
+Organization n. 组织，机构
+
+
+
+Inherit 继承
+
+Peer 同等的人，同辈
+
+Sibling 兄弟姐妹
+
+Will v. 愿意，遗赠 n. 意志，意愿，遗嘱
+
+Generate 使形成，生死，发生
+
+Generation 同时代的人，一代人，一代，产生，发生
+
+Generous adj.慷慨的，大方的
+
+Generosity n. 慷慨，宽宏，大方
+
+General adj. 总的，普遍的，一般的，大致的，首席的 n. 将军
+
+Generally adv. 通常地，一般地
+
+
+
+Transform 改变
+
+Transition 转变，过渡
+
+Translate 翻译，转化
+
+Transfer 转移，转让
+
+
+
+Refer v. 提到，关系到，参考，查阅
+
+Reference n. 提及，涉及，参考，查阅
+
+Referral 移交，推举，介绍者，推荐人
+
+Referee 裁判，介绍人，仲裁者
+
+After the invitee places an order, the invitee's referral are eligible for invitation rewards, which are calculated based on the actual amount of the order placed by the invitee, as shown below
 
 
 
@@ -1251,6 +1507,116 @@ Anxious adj. 焦虑的，不安的，担忧的，渴望的
 Anxiety n. 忧虑，焦虑，渴望
 
 Nervous adj. 担忧的，焦虑的，紧张不安的，神经系统的
+
+Suspense n. 悬疑，焦虑，悬念
+
+
+
+Claim n. 声称，索要，要求，认领 v. 声称，要求，索赔
+
+Claim a reward.
+
+Disclaimer 免责声明书
+
+Please read the disclaimer before you read this article.
+
+
+
+Proud adj. 自豪的，骄傲的
+
+pride n. 骄傲，自豪，自尊 v. 对...感到骄傲
+
+
+
+Identification n. 识别，鉴定，身份证明
+
+Identify v. 识别，鉴别，确定
+
+Identity n. 身份，特性
+
+Identifier n. 识别符
+
+
+
+Entire adj. 全部的，整个的，完全的
+
+Entity n. 独立存在体，实体
+
+A political entity.
+
+
+
+File n. 文件，档案 v. 把...归档
+
+Filing n. 归档，存档 v. 把...归档 "file"的现在分词
+
+A filing cabinet.
+
+
+
+Waste n. 垃圾，废物，浪费 v. 浪费 adj. 荒芜的，废弃的
+
+Wastebasket 废纸蒌
+
+Garbage 垃圾，废物
+
+Garbage can 垃圾桶
+
+Rubbish 垃圾，废物
+
+Rubbish bin 垃圾桶
+
+Trash n. 垃圾，无价值之物 v. 丢弃，损坏，诋毁
+
+Clean up the trash.
+
+Litter n. 垃圾，杂物 v. 乱扔，乱丢杂物
+
+
+
+Depend v. 依赖，依靠，取决于，信赖
+
+Dependent adj. 依靠的，信赖的 n. 依赖他人者 | Independent adj. 独立的，自主的
+
+Dependence n. 依靠，依赖，信赖 | Independence n. 独立，自主
+
+Dependable adj. 可靠的，可信赖的
+
+Dependency n. 依赖，附属国，附属地 | Independency n. 独立，独立国
+
+Dependability n. 可靠性，可信任性
+
+Independently adv. 独立地，自主地
+
+
+
+"Generational bottom" 可以翻译为 "跨世代底部" 或 "一代人的底部"。这个术语通常用于描述金融市场中出现的一个极其低的点，这个点通常被认为是一个长期周期中的最低点，并且可能不会在未来的许多年中再次出现。这个底部标志着市场经历了重大调整或熊市之后的最低点，从此可能开始新一轮的长期上涨趋势
+
+
+
+Freeze v. 冻结，冰冻
+
+Freezer n. 冷冻室，冰库，冰箱
+
+Frozen adj. 冷冻的，冷藏的
+
+
+
+Society n. 社会，社交，社团
+
+Reality n. 现实，事实
+
+
+
+Loss n. 损失，丢失，亏损
+
+Lose v. 失去，丢失，输
+
+Lost adj. 丢失的 lose的过去式与过去分词
+
+
+
+
 
 
 
