@@ -2,7 +2,7 @@
 
 > **DTO（Data Transfer Object）** ：**接口边界** 用的数据“形状”（请求/响应）。关注**输入校验、序列化/反序列化** ，不关心数据库。
 >
-> **DAO（Data Access Object）** ：**持久化层** 的数据访问封装。关注**如何读写数据库** ，不暴露 SQL/ORM 细节给业务层。
+> * [ ] **DAO（Data Access Object）** ：**持久化层** 的数据访问封装。关注**如何读写数据库** ，不暴露 SQL/ORM 细节给业务层。
 
 ```pgsql
 Controller  <--->  DTO（校验/转换）

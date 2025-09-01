@@ -125,7 +125,7 @@ export class LogInterceptor implements NestInterceptor {
 }
 ```
 
-在上面的拦截器中，我们使用 `Reflector.get()` 方法读取了键为 `'log'` 的元数据（即检查目标方法是否使用了 `@Log()` 装饰器）。如果元数据存在，则在调用 `next.handle()` 之前打印一条日志“执行前...”，然后利用 RxJS 的 `tap` 操作符在请求处理完成后再打印“执行后...”[**shiftasia.com**](https://shiftasia.com/community/mastering-custom-decorators-and-metadata-in-nestjs/#:~:text=return%20next.handle%28%29.pipe%28%20tap%28%28%29%20%3D,action%7D%60%29%3B%20%7D%20%7D%29%2C)。若没有找到该元数据（即方法未使用 `@Log`)，则 `shouldLog` 为 `undefined` 或 `false`，拦截器不会执行任何额外的日志操作，直接放行请求。
+在上面的拦截器中，我们使用 `Reflector.get()` 方法读取了键为 `'log'` 的元数据（即检查目标方法是否使用了 `@Log()` 装饰器）。如果元数据存在，则在调用 `next.handle()` 之前打印一条日志“执行前...”，然后利用 RxJS 的 `tap` 操作符在请求处理完成后再打印“执行后...”。若没有找到该元数据（即方法未使用 `@Log`)，则 `shouldLog` 为 `undefined` 或 `false`，拦截器不会执行任何额外的日志操作，直接放行请求。
 
 3. 控制器中应用装饰器和拦截器
 
