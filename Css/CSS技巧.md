@@ -1,10 +1,10 @@
-# Css实例
+# CSS技巧
 
 ## 绘制三角形
 
 ### 使用border属性实现
 
-> 给定一个宽度和高度都为 0 的元素，其 border 的任何值都会直接相交，我们可以利用这个交点来创建三角形。也就是说，border属性是三角形组成的，下面给每一边都提供不同的边框颜色
+> 给定一个宽度和高度都为0的元素，其border的任何值都会直接相交，我们可以利用这个交点来创建三角形。也就是说，border属性是三角形组成的，下面给每一边都提供不同的边框颜色
 
 ```css
 .triangle {
@@ -43,7 +43,7 @@
 
 ### 使用linear-gradient实现
 
-> linear-gradient 需要结合 background-image 来实现三角形
+> linear-gradient需要结合background-image来实现三角形
 
 ```css
 .triangle {

@@ -10,12 +10,11 @@
 
 ## CSS Module
 
-> 使用 `.css` 文件
+> 使用`.css`文件经常遇到的问题就是需要注意防止样式名冲突
 >
-> 这种方式可能会导致样式名冲突
 
 ```css
-// style.css
+/* style.css */
 .home-wrapper{
 	background: #f00;
 	width: 100%;
@@ -41,7 +40,7 @@ export default Hello;
 > 使用 `.module.css` 文件
 
 ```css
-// style.module.css
+/* style.module.css */
 .homeWrapper{
 	background: #f00;
 	width: 100%;
