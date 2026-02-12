@@ -35,7 +35,16 @@
 
 * 最简单（把 tailnet 入口代理到本机 http 服务）：
   `sudo tailscale serve --bg http://127.0.0.1:18927` ([Tailscale][3])
-* 映射多个：思路是“多个入口 -> 多个后端”，常见做法是用不同对外端口或不同路径分别指向不同本地端口（具体参数以 `tailscale serve --help`/官方参考中的端口与 handler 语法为准）。([Tailscale][3])
+  
+* 映射多个：思路是“多个入口 -> 多个后端”，常见做法是用不同对外端口或不同路径分别指向不同本地端口
+
+  例子（路径分流）：
+
+  `tailscale serve --bg --set-path=/a 3000`
+
+  `tailscale serve --bg --set-path=/b 4000`
+
+  访问就是 https://<node>.ts.net/a、/b。--set-path 会把规则挂载到不同 URL path 上
 
 关闭某一条映射
 
