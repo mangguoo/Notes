@@ -24,6 +24,16 @@ echo "auth required $(brew --prefix)/opt/google-authenticator-libpam/lib/securit
 
 Homebrew 公式页给的就是这个路径和写法。 ([Homebrew Formulae][2])
 
+注意pam_google_authenticator.so验证模块一定要是required，如果 pam_google_authenticator.so 是 optional，认证流程：
+
+- 公钥 → 通过
+
+- Google Auth → optional = 可选
+
+  - 用户提供了 → 验证
+
+  - 用户没提供 → 跳过 → 继续
+
 4. 配置 sshd 强制 “公钥 + OTP”（server 端）
    编辑 `/etc/ssh/sshd_config`，确保/新增以下项：
 
@@ -99,4 +109,13 @@ google-authenticator
    系统设置 → 通用 → 共享 → 把「远程登录」关掉再打开（相当于重启 sshd）。 ([Gist][5])
 
 完成后，从 client 连接时流程应是：先用 SSH key 成功，再提示输入一次性验证码（OTP）。
+
+补充：
+ PAM = Pluggable Authentication Modules（可插拔认证模块）
+
+ 它是 Linux/macOS 的一套认证框架，让系统可以灵活组合各种认证方式（密码、指纹、OTP、sudo 等）。
+
+ 简单说：
+ - sshd_config 决定 SSH 服务整体的认证策略（比如用公钥+两步验证）
+ - PAM 决定具体怎么验证（密码怎么验、Google Authenticator 怎么验）
 
